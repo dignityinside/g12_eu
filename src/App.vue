@@ -1,13 +1,14 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import LanguageSelect from './components/LanguageSelect.vue'
 </script>
 
 <template>
   <header>
     <div class="wrapper">
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <language-select />
+        <router-link to="/">{{ $t('menu.church') }}</router-link>
       </nav>
     </div>
   </header>
