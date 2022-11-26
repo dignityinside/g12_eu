@@ -5,6 +5,7 @@ export default {
     // russian translation
     ru: {
       title: 'Новая Жизнь',
+      subtitle: 'христианская церковь',
       menu: {
         church: 'Церковь',
       }
@@ -12,6 +13,7 @@ export default {
     // german translation
     de: {
       title: 'Neues Leben',
+      subtitle: 'christliche gemeinde',
       menu: {
         church: 'Gemeinde',
       }
@@ -19,6 +21,7 @@ export default {
     // english translation
     en: {
       title: 'New Life',
+      subtitle: 'christian church',
       menu: {
         church: 'Church',
       }
