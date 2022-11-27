@@ -1,4 +1,4 @@
-# g12new
+# g12eu
 
 ## Project Setup
 

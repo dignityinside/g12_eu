@@ -53,7 +53,7 @@ const currentRoute = computed(() => route.name);
       </nav>
     </header>
 
-    <img src="./assets/images/header.jpg" :alt="$t('site.name')" class="header__image" />
+    <img src="img/header.jpg" :alt="$t('site.name')" class="header__image" />
 
     <RouterView />
 

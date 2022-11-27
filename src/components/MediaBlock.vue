@@ -12,7 +12,7 @@
   
   <div v-if="image" class="image">
     <div class="content" v-html="content"></div>
-    <img :src="image" alt="" />
+    <img :src="`/img/${image}`" alt="" />
   </div>
 
   <div v-if="!image && content" class="content" v-html="content"></div>

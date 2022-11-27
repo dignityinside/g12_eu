@@ -8,7 +8,7 @@
     <div class="home">
       <media-block :title="$t('text.welcome.title')" :content="$t('text.welcome.text')" id="welcome" />
       
-      <media-block :title="$t('text.pastor.title')" :content="$t('text.pastor.text')" image="../src/assets/images/pastor.jpg" id="pastor" />
+      <media-block :title="$t('text.pastor.title')" :content="$t('text.pastor.text')" image="pastor.jpg" id="pastor" />
 
       <media-block :title="$t('text.ministry.title')" :content="$t('text.ministry.text')" id="ministry">
         <ministries-block />

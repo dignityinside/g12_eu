@@ -18,7 +18,7 @@ const ministries = ref([
     <media-block :title="$t('text.ministry.title')" :content="$t('text.ministry.text')">
       <div class="ministries">
         <div v-for="ministry in ministries" :key="ministry.name">
-          <div :style="{ backgroundImage: 'url(' + '../src/assets/images/' + ministry.image + ')' }" class="ministries__item">
+          <div :style="{ backgroundImage: 'url(' + '/img/' + ministry.image + ')' }" class="ministries__item">
             <p class="ministry__name">
               {{ $t(ministry.name) }}
             </p>
