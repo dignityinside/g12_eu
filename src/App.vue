@@ -26,7 +26,11 @@ const isOpen = ref(false);
 
       <nav class="menu" :class="!isOpen ? 'menu--hidden' : ''">
         <language-select class="menu__item menu__item--language" />
-        <router-link to="/" class="menu__item">{{ $t('menu.church') }}</router-link>
+        <router-link to="/#welcome" class="menu__item">{{ $t('menu.church') }}</router-link>
+        <router-link to="/#pastor" class="menu__item">{{ $t('menu.pastor') }}</router-link>
+        <router-link to="/#ministries" class="menu__item">{{ $t('menu.ministries') }}</router-link>
+        <router-link to="/#sermons" class="menu__item">{{ $t('menu.sermons') }}</router-link>
+        <router-link to="/#contacts" class="menu__item">{{ $t('menu.contacts') }}</router-link>
       </nav>
     </header>
 
@@ -63,6 +67,9 @@ const isOpen = ref(false);
 .header {
   display: flex;
   flex-direction: column;
+  position: sticky;
+  top: 0;
+  z-index: 1;
   padding: $spacing-10 $spacing-20;
   background-color: $color-primary;
   border-bottom-left-radius: $spacing-10;
