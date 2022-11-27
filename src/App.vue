@@ -4,6 +4,16 @@ import LanguageSelect from './components/LanguageSelect.vue'
 import { ref } from 'vue';
   
 const isOpen = ref(false);
+
+function scrollTo(id, offset = 90) {
+  window.scrollTo({
+    behavior: 'smooth',
+    top:
+      document.getElementById(id).getBoundingClientRect().top -
+      document.body.getBoundingClientRect().top -
+      offset,
+  })
+}
 </script>
 
 <template>
@@ -26,11 +36,12 @@ const isOpen = ref(false);
 
       <nav class="menu" :class="!isOpen ? 'menu--hidden' : ''">
         <language-select class="menu__item menu__item--language" />
-        <router-link to="/#welcome" class="menu__item">{{ $t('menu.church') }}</router-link>
-        <router-link to="/#pastor" class="menu__item">{{ $t('menu.pastor') }}</router-link>
-        <router-link to="/#ministries" class="menu__item">{{ $t('menu.ministries') }}</router-link>
-        <router-link to="/#sermons" class="menu__item">{{ $t('menu.sermons') }}</router-link>
-        <router-link to="/#contacts" class="menu__item">{{ $t('menu.contacts') }}</router-link>
+        <span @click="scrollTo('welcome')" class="menu__item">{{ $t('menu.church') }}</span>
+        <span @click="scrollTo('pastor')" class="menu__item">{{ $t('menu.pastor') }}</span>
+        <span @click="scrollTo('ministry')" class="menu__item">{{ $t('menu.ministries') }}</span>
+        <span @click="scrollTo('sermons')" class="menu__item">{{ $t('menu.sermons') }}</span>
+        <span @click="scrollTo('contacts')" class="menu__item">{{ $t('menu.contacts') }}</span>
+        <span @click="scrollTo('donate')" class="menu__item">{{ $t('menu.donate') }}</span>
       </nav>
     </header>
 
@@ -44,9 +55,7 @@ const isOpen = ref(false);
       <a href="https://www.instagram.com/g12eu/" target="_blank" class="menu__item">Instagram</a>
       <a :href="$i18n.locale === 'ru' ? 'http://imbf.mobi' : 'https://www.bibleserver.com'" target="_blank" class="menu__item">{{ $t('menu.bible') }}</a>
       <a href="http://www.ihopkc.org/prayerroom/" target="_blank" class="menu__item">iHOP</a>
-      <router-link to="/imprint" class="menu__item">
-        {{ $t('menu.imprint') }}
-      </router-link>
+      <router-link to="/imprint" class="menu__item">{{ $t('menu.imprint') }}</router-link>
     </nav>
   </div>
 
@@ -101,6 +110,7 @@ const isOpen = ref(false);
 .menu {
   display: flex;
   flex-direction: column;
+  color: $color-white;
   
   @include breakpoint('s') {
     flex-direction: row;
@@ -120,6 +130,12 @@ const isOpen = ref(false);
 
   .menu__item {
     padding: $spacing-5 $spacing-10;
+
+    &:hover {
+      background: $color-primarty-light;
+      border-radius: $spacing-5;
+      cursor: pointer;
+    }
   }
 
   .menu__item--language {

@@ -3,11 +3,12 @@
     title: String,
     content: String,
     image: String,
+    id: String,
   })
 </script>
 
 <template>
-  <h3 class="headline">{{ title }}</h3>
+  <h3 :id="id" class="headline">{{ title }}</h3>
   
   <div v-if="image" class="image">
     <div class="content" v-html="content"></div>
