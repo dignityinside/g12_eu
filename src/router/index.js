@@ -13,7 +13,12 @@ const router = createRouter({
       path: '/imprint',
       name: 'imprint',
       component: () => import('../views/ImprintView.vue')
-    }
+    },
+    {
+      path: "/:catchAll(.*)",
+      name: 'Error404',
+      component: () => import('../views/ErrorView.vue'),
+    },
   ]
 })
 
