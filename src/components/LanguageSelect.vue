@@ -1,7 +1,7 @@
 <script setup>
   import { ref } from 'vue';
   
-  const languages = ref(['ru', 'de', 'en']);
+  const languages = ref(['ru', 'de', 'ua', 'en']);
 </script>
 
 <template>

@@ -10,10 +10,12 @@ const isOpen = ref(false);
   <div class="container">
     <header class="header">
       <div class="logo-wrapper">
-        <div class="logo">
-          <div class="logo__title">{{ $t('title') }}</div>
-          <div class="logo__description">{{ $t('subtitle') }}</div>
-        </div>
+        <a href="/">
+          <div class="logo">
+            <div class="logo__title">{{ $t('site.name') }}</div>
+            <div class="logo__description">{{ $t('site.description') }}</div>
+          </div>
+        </a>
 
         <div class="burger-icon" :class="isOpen ? 'burger-icon--close' : ''" @click="isOpen = !isOpen">
           <span class="burger-icon__line"></span>   
@@ -28,8 +30,25 @@ const isOpen = ref(false);
       </nav>
     </header>
 
+    <img src="./assets/images/header.jpg" :alt="$t('site.name')" class="header__image" />
+
     <RouterView />
+
+    <nav class="footer menu">
+      <a href="https://t.me/NeuesLebenPL" target="_blank" class="menu__item">Telegram</a>
+      <a href="https://www.youtube.com/user/g12eu" target="_blank" class="menu__item">YouTube</a>
+      <a href="https://www.instagram.com/g12eu/" target="_blank" class="menu__item">Instagram</a>
+      <a :href="$i18n.locale === 'ru' ? 'http://imbf.mobi' : 'https://www.bibleserver.com'" target="_blank" class="menu__item">{{ $t('menu.bible') }}</a>
+      <a href="http://www.ihopkc.org/prayerroom/" target="_blank" class="menu__item">iHOP</a>
+      <router-link to="/imprint" class="menu__item">
+        {{ $t('menu.imprint') }}
+      </router-link>
+    </nav>
   </div>
+
+  <footer class="copyright">
+    © 2005-{{ new Date().getFullYear() }} {{ $t('site.copyright') }}<br>{{ $t('site.powered') }}
+  </footer>
 </template>
 
 <style lang="scss">
@@ -151,5 +170,30 @@ const isOpen = ref(false);
   .burger-icon__line:nth-child(3){
     transform: translateY(-14px) rotate(45deg);
   }
+}
+
+.header__image {
+  max-width: calc(100% - $spacing-20);
+  border: solid $spacing-10 $color-white;
+  border-top: solid $spacing-5 $color-white;
+  -webkit-font-smoothing: antialiased;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  padding: $spacing-20;
+  background-color: $color-primary;
+  border-bottom-left-radius: $spacing-10;
+  border-bottom-right-radius: $spacing-10;
+
+  @include breakpoint('s') {
+    flex-direction: row;
+  }
+}
+
+.copyright {
+  padding: $spacing-20;
+  text-align: center;
 }
 </style>
