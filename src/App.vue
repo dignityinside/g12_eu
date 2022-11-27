@@ -1,7 +1,7 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView, useRoute } from 'vue-router'
+import { ref, computed } from 'vue';
 import LanguageSelect from './components/LanguageSelect.vue'
-import { ref } from 'vue';
   
 const isOpen = ref(false);
 
@@ -14,6 +14,9 @@ function scrollTo(id, offset = 90) {
       offset,
   })
 }
+
+const route = useRoute();
+const currentRoute = computed(() => route.name);
 </script>
 
 <template>
@@ -36,12 +39,17 @@ function scrollTo(id, offset = 90) {
 
       <nav class="menu" :class="!isOpen ? 'menu--hidden' : ''">
         <language-select class="menu__item menu__item--language" />
-        <span @click="scrollTo('welcome')" class="menu__item">{{ $t('menu.church') }}</span>
-        <span @click="scrollTo('pastor')" class="menu__item">{{ $t('menu.pastor') }}</span>
-        <span @click="scrollTo('ministry')" class="menu__item">{{ $t('menu.ministries') }}</span>
-        <span @click="scrollTo('sermons')" class="menu__item">{{ $t('menu.sermons') }}</span>
-        <span @click="scrollTo('contacts')" class="menu__item">{{ $t('menu.contacts') }}</span>
-        <span @click="scrollTo('donate')" class="menu__item">{{ $t('menu.donate') }}</span>
+        <template v-if="currentRoute !== 'imprint'">
+          <span @click="scrollTo('welcome')" class="menu__item">{{ $t('menu.church') }}</span>
+          <span @click="scrollTo('pastor')" class="menu__item">{{ $t('menu.pastor') }}</span>
+          <span @click="scrollTo('ministry')" class="menu__item">{{ $t('menu.ministries') }}</span>
+          <span @click="scrollTo('sermons')" class="menu__item">{{ $t('menu.sermons') }}</span>
+          <span @click="scrollTo('contacts')" class="menu__item">{{ $t('menu.contacts') }}</span>
+          <span @click="scrollTo('donate')" class="menu__item">{{ $t('menu.donate') }}</span>
+        </template>
+        <template v-else>
+          <router-link to="/" class="menu__item">{{ $t('menu.back') }}</router-link>
+        </template>
       </nav>
     </header>
 

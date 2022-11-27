@@ -26,6 +26,7 @@ export default {
         donate: 'Пожертвовать',
         imprint: 'Impressum',
         bible: 'Библия',
+        back: 'На главную',
       },
       text: {
         phone: 'Тел. ',
@@ -95,6 +96,7 @@ export default {
         donate: 'Spenden',
         imprint: 'Impressum',
         bible: 'Bibel',
+        back: 'Zur startseite',
       },
       text: {
         phone: 'Tel. ',
@@ -164,6 +166,7 @@ export default {
         donate: 'Donations',
         imprint: 'Imprint',
         bible: 'Bibel',
+        back: 'Back to main page',
       },
       text: {
         phone: 'Phone',
@@ -233,6 +236,7 @@ export default {
         donate: 'Пожертвувати',
         imprint: 'Imprint',
         bible: 'Біблія',
+        back: 'На головну сторінку',
       },
       text: {
         phone: 'Тел. ',
