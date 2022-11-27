@@ -63,6 +63,9 @@ const currentRoute = computed(() => route.name);
       <a href="https://www.instagram.com/g12eu/" target="_blank" class="menu__item">Instagram</a>
       <a :href="$i18n.locale === 'ru' ? 'http://imbf.mobi' : 'https://www.bibleserver.com'" target="_blank" class="menu__item">{{ $t('menu.bible') }}</a>
       <a href="http://www.ihopkc.org/prayerroom/" target="_blank" class="menu__item">iHOP</a>
+      <a v-show="$i18n.locale === 'ru' || $i18n.locale === 'ua'" href="https://gnctv.org" target="_blank" class="menu__item">GNC</a>
+      <a :href="$i18n.locale === 'ru' ? 'https://tbn-tv.com' : 'https://www.tbn.org'" target="_blank" class="menu__item">TBN</a>
+      <a v-show="$i18n.locale === 'de'" href="https://www.bibeltv.de" target="_blank" class="menu__item">BibelTV</a>
       <router-link to="/imprint" class="menu__item">{{ $t('menu.imprint') }}</router-link>
     </nav>
   </div>
