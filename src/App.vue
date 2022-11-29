@@ -1,22 +1,30 @@
 <script setup>
-import { RouterLink, RouterView, useRoute } from 'vue-router'
-import { ref, computed } from 'vue';
-import LanguageSelect from './components/LanguageSelect.vue'
-  
-const isOpen = ref(false);
+import { RouterView } from 'vue-router'
+import { ref } from 'vue';
+import Navigation from '@components/Navigation.vue'
 
-function scrollTo(id, offset = 90) {
-  window.scrollTo({
-    behavior: 'smooth',
-    top:
-      document.getElementById(id).getBoundingClientRect().top -
-      document.body.getBoundingClientRect().top -
-      offset,
-  })
-}
+const mainMenuItems = ref([
+  { id: 'welcome', name: 'menu.church' },
+  { id: 'pastor', name: 'menu.pastor' },
+  { id: 'ministry', name:'menu.ministries' },
+  { id: 'sermons', name:'menu.sermons' },
+  { id: 'contacts', name:'menu.contacts' },
+  { id: 'donate', name:'menu.donate' }
+]);
 
-const route = useRoute();
-const currentRoute = computed(() => route.name);
+const footerItems = ref([
+  { to: 'https://t.me/NeuesLebenPL', name: 'Telegram', external: true, i18n: false },
+  { to: 'https://www.youtube.com/user/g12eu', name: 'YouTube', external: true, i18n: false },
+  { to: 'https://www.instagram.com/g12eu/', name: 'Instagram', external: true, i18n: false },
+  { to: 'http://imbf.mobi', name: 'menu.bible', external: true, hideOnLocale: ['en','de'] },
+  { to: 'https://www.bibleserver.com', name: 'menu.bible', external: true, hideOnLocale: ['ru','ua','en'] },
+  { to: 'http://www.ihopkc.org/prayerroom/', name: 'iHOP', external: true, i18n: false },
+  { to: 'https://gnctv.org', name: 'GNC', external: true, i18n: false, hideOnLocale: ['de','en'] },
+  { to: 'https://tbn-tv.com', name: 'TBN', external: true, i18n: false, hideOnLocale: ['de','en'] },
+  { to: 'https://www.tbn.org', name: 'TBN', external: true, i18n: false, hideOnLocale: ['ru','ua'] },
+  { to: 'https://www.bibeltv.de', name: 'BibelTV', external: true, i18n: false, hideOnLocale: ['ru','ua'] },
+  { to: '/imprint', name: 'menu.imprint' },
+]);
 </script>
 
 <template>
@@ -29,45 +37,16 @@ const currentRoute = computed(() => route.name);
             <div class="logo__description">{{ $t('site.description') }}</div>
           </div>
         </a>
-
-        <div class="burger-icon" :class="isOpen ? 'burger-icon--close' : ''" @click="isOpen = !isOpen">
-          <span class="burger-icon__line"></span>   
-          <span class="burger-icon__line"></span>
-          <span class="burger-icon__line"></span>
-        </div>
       </div>
 
-      <nav class="menu" :class="!isOpen ? 'menu--hidden' : ''">
-        <language-select class="menu__item menu__item--language" />
-        <template v-if="currentRoute !== 'imprint'">
-          <span @click="scrollTo('welcome')" class="menu__item">{{ $t('menu.church') }}</span>
-          <span @click="scrollTo('pastor')" class="menu__item">{{ $t('menu.pastor') }}</span>
-          <span @click="scrollTo('ministry')" class="menu__item">{{ $t('menu.ministries') }}</span>
-          <span @click="scrollTo('sermons')" class="menu__item">{{ $t('menu.sermons') }}</span>
-          <span @click="scrollTo('contacts')" class="menu__item">{{ $t('menu.contacts') }}</span>
-          <span @click="scrollTo('donate')" class="menu__item">{{ $t('menu.donate') }}</span>
-        </template>
-        <template v-else>
-          <router-link to="/" class="menu__item">{{ $t('menu.back') }}</router-link>
-        </template>
-      </nav>
+      <navigation :items="mainMenuItems" />
     </header>
 
     <img src="/img/header.jpg" :alt="$t('site.name')" class="header__image" />
 
     <RouterView />
 
-    <nav class="footer menu">
-      <a href="https://t.me/NeuesLebenPL" target="_blank" class="menu__item">Telegram</a>
-      <a href="https://www.youtube.com/user/g12eu" target="_blank" class="menu__item">YouTube</a>
-      <a href="https://www.instagram.com/g12eu/" target="_blank" class="menu__item">Instagram</a>
-      <a :href="$i18n.locale === 'ru' ? 'http://imbf.mobi' : 'https://www.bibleserver.com'" target="_blank" class="menu__item">{{ $t('menu.bible') }}</a>
-      <a href="http://www.ihopkc.org/prayerroom/" target="_blank" class="menu__item">iHOP</a>
-      <a v-show="$i18n.locale === 'ru' || $i18n.locale === 'ua'" href="https://gnctv.org" target="_blank" class="menu__item">GNC</a>
-      <a :href="$i18n.locale === 'ru' ? 'https://tbn-tv.com' : 'https://www.tbn.org'" target="_blank" class="menu__item">TBN</a>
-      <a v-show="$i18n.locale === 'de'" href="https://www.bibeltv.de" target="_blank" class="menu__item">BibelTV</a>
-      <router-link to="/imprint" class="menu__item">{{ $t('menu.imprint') }}</router-link>
-    </nav>
+    <navigation :is-footer="true" :hide-language-select="true" :hide-back-link="true" :items="footerItems"  />
   </div>
 
   <footer class="copyright">
@@ -76,7 +55,7 @@ const currentRoute = computed(() => route.name);
 </template>
 
 <style lang="scss">
-@import "./assets/scss/main.scss";
+@import "@assets/scss/main.scss";
 
 .container {
   background: $color-white;
@@ -118,112 +97,11 @@ const currentRoute = computed(() => route.name);
   color: $color-white;
 }
 
-.menu {
-  display: flex;
-  flex-direction: column;
-  color: $color-white;
-  
-  @include breakpoint('s') {
-    flex-direction: row;
-    align-items: center;
-  }
-
-  a {
-    color: $color-white;
-    text-decoration: none;
-    font-size: $size-15;
-
-    &:hover {
-      background: $color-primarty-light;
-      border-radius: $spacing-5;
-    }
-  }
-
-  .menu__item {
-    padding: $spacing-5 $spacing-10;
-
-    &:hover {
-      background: $color-primarty-light;
-      border-radius: $spacing-5;
-      cursor: pointer;
-    }
-  }
-
-  .menu__item--language {
-    background: $color-primarty-light;
-    border-radius: $spacing-5;
-    border: none;
-    color: $color-white;
-    padding: calc($spacing-10 - 2px);
-    margin-bottom: $spacing-10;
-
-    @include breakpoint('s') {
-      margin-right: $spacing-10;
-      margin-bottom: 0;
-    }
-  }
-}
-
-.menu--hidden {
-  display: none;
-
-  @include breakpoint('s') {
-    display: flex;
-  }
-}
-
-.burger-icon {
-   width: $spacing-30;
-   border-radius: 4px;
-   align-self: center;
-
-   @include breakpoint('s') {
-    display: none;
-  }
-
-   .burger-icon__line { 
-    display: block; 
-    height: 2px;
-    background: $color-white;
-    border-radius: 2px;  
-    margin-bottom: 4px;
-    transition: 0.5s; 
-    transform-origin: center; 
-   }
-}
-
-.burger-icon--close {
-  .burger-icon__line:nth-child(1){
-    transform: translateY(-2px) rotate(-45deg);
-  }
-
-  .burger-icon__line:nth-child(2){
-    opacity: 0;
-  }
-
-  .burger-icon__line:nth-child(3){
-    transform: translateY(-14px) rotate(45deg);
-  }
-}
-
 .header__image {
   max-width: calc(100% - $spacing-20);
   border: solid $spacing-10 $color-white;
   border-top: solid $spacing-5 $color-white;
   -webkit-font-smoothing: antialiased;
-}
-
-.footer {
-  display: flex;
-  flex-direction: column;
-  padding: $spacing-20;
-  background-color: $color-primary;
-  border-bottom-left-radius: $spacing-10;
-  border-bottom-right-radius: $spacing-10;
-
-  @include breakpoint('s') {
-    flex-direction: row;
-  }
 }
 
 .copyright {

@@ -29,7 +29,7 @@ const ministries = ref([
 </template>
 
 <style scoped lang="scss">
-  @import "../assets/scss/main.scss";
+  @import "@assets/scss/main.scss";
 
   .ministries {
     display: grid;
