@@ -65,6 +65,7 @@ const footerItems = ref([
 
 .header {
   display: flex;
+  flex-direction: row;
   flex-direction: column;
   position: sticky;
   top: 0;
@@ -82,8 +83,8 @@ const footerItems = ref([
 
 .logo-wrapper {
   display: flex;
-  justify-content: space-between;
-  padding-bottom: $spacing-10;
+  align-items: center;
+  align-self: center;
 }
 
 .logo__title {

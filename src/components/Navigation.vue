@@ -41,7 +41,7 @@ function scrollTo(id, offset = 100) {
   <div class="navigation" :class="isFooter ? 'navigation--footer' : ''">
     <nav class="navigation__wrapper">
       <div class="navigation__toggle" @click="isOpen = !isOpen">
-        {{ !isOpen ? 'open icon' : 'close icon' }}
+        <font-awesome-icon v-show="!isOpen" icon="fa-solid fa-bars" />
       </div>
 
       <div class="navigation__items" :class="{ 'navigation__items--hidden': !isOpen }">
@@ -67,6 +67,10 @@ function scrollTo(id, offset = 100) {
 
         <router-link v-if="!hideBackLink && path !== '/'" to="/" class="navigation__item">{{ $t('menu.back') }}</router-link>
       </div>
+
+      <div v-show="isOpen" class="navigation__toggle" @click="isOpen = !isOpen">
+        <font-awesome-icon icon="fa-solid fa-x" />
+      </div>
     </nav>
   </div>
 </template>
@@ -86,6 +90,11 @@ function scrollTo(id, offset = 100) {
 .navigation--footer {
   border-bottom-left-radius: $spacing-10;
   border-bottom-right-radius: $spacing-10;
+  padding: $spacing-5;
+
+  @include breakpoint('s') {
+    padding: 0;
+  }
 }
 
 .navigation__wrapper {
@@ -97,6 +106,9 @@ function scrollTo(id, offset = 100) {
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: $color-white;
+  padding: $spacing-10;
+  font-size: $size-20;
 
   @include breakpoint('s') {
     display: none;
