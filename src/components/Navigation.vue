@@ -26,7 +26,7 @@ const isOpen = ref(false);
 const route = useRoute();
 const path = computed(() => route.path);
 
-function scrollTo(id, offset = document.querySelector('.header').offsetHeight) {
+function scrollTo(id, offset = document.querySelector('.header').offsetHeight + 10) {
   window.scrollTo({
     behavior: 'smooth',
     top:
