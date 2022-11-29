@@ -22,7 +22,7 @@ const footerItems = ref([
   { to: 'https://gnctv.org', name: 'GNC', external: true, i18n: false, hideOnLocale: ['de','en'] },
   { to: 'https://tbn-tv.com', name: 'TBN', external: true, i18n: false, hideOnLocale: ['de','en'] },
   { to: 'https://www.tbn.org', name: 'TBN', external: true, i18n: false, hideOnLocale: ['ru','ua'] },
-  { to: 'https://www.bibeltv.de', name: 'BibelTV', external: true, i18n: false, hideOnLocale: ['ru','ua'] },
+  { to: 'https://www.bibeltv.de', name: 'BibelTV', external: true, i18n: false, hideOnLocale: ['ru','ua','en'] },
   { to: '/imprint', name: 'menu.imprint' },
 ]);
 </script>
