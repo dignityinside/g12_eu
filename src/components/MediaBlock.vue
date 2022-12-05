@@ -18,7 +18,7 @@
   <div v-if="!image && content" class="content" v-html="content"></div>
 
   <div class="slot">
-    <slot></slot>
+    <slot />
   </div>
 </template>
 

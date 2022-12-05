@@ -1,5 +1,6 @@
 <script setup>
   import { ref } from 'vue';
+  import MediaBlock from '@components/MediaBlock.vue';
 
 const ministries = ref([
   { name: 'text.ministries.man', image:"man.jpg" },
