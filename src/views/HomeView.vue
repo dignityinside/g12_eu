@@ -10,9 +10,7 @@
       
       <media-block :title="$t('text.pastor.title')" :content="$t('text.pastor.text')" image="pastor.jpg" id="pastor" />
 
-      <media-block :title="$t('text.ministry.title')" :content="$t('text.ministry.text')" id="ministry">
-        <ministries-block />
-      </media-block>
+      <ministries-block />
 
       <media-block :title="$t('text.sermons.title')" :content="$t('text.sermons.text')" id="sermons" />
 
