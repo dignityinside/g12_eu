@@ -54,7 +54,7 @@ export default {
         },
         sermons: {
           title: 'Проповеди',
-          text: 'Проповеди пастора Вячеслава Шиллинг можно найти на нашем <a href="https://t.me/NeuesLebenPL" target="_blank">Telegram</a> или <a href="https://www.youtube.com/user/g12eu" target="_blank">YouTube</a> канале или получить аудио/видео запись после служения в церкви.'
+          text: 'Проповеди пастора Вячеслава Шиллинг можно найти на нашем <a href="https://t.me/NeuesLebenPL" target="_blank">Telegram</a> или <a href="https://www.youtube.com/user/g12eu" target="_blank">YouTube</a> канале или получить аудио/видео запись после служения в церкви.',
         },
         ministry: {
           title: 'Служения',
@@ -124,7 +124,7 @@ export default {
         },
         sermons: {
           title: 'Predigten',
-          text: 'Predigten von Pastor Vjacheslav Schilling kann man auf unserem <a href="https://t.me/NeuesLebenPL" target="_blank">Telegram</a> oder <a href="https://www.youtube.com/user/g12eu" target="_blank">YouTube</a> Kanal ansehen. Es besteht auch die Möglichkeit Predigten nach dem Gottesdienst in der Gemeinde zu bekommen.'
+          text: 'Predigten von Pastor Vjacheslav Schilling kann man auf unserem <a href="https://t.me/NeuesLebenPL" target="_blank">Telegram</a> oder <a href="https://www.youtube.com/user/g12eu" target="_blank">YouTube</a> Kanal ansehen. Es besteht auch die Möglichkeit Predigten nach dem Gottesdienst in der Gemeinde zu bekommen.',
         },
         ministry: {
           title: 'Gottesdienste',
@@ -194,7 +194,7 @@ export default {
         },
         sermons: {
           title: 'Sermons',
-          text: 'Sermons by Pastor Vjacheslav Schilling can be found on our <a href="https://t.me/NeuesLebenPL" target="_blank">Telegram</a> or <a href="https://www.youtube.com/user/g12eu" target="_blank">YouTube</a> Channel (Russian, German language). There is also the possibility to receive sermons in the church after the service.'
+          text: 'Sermons by Pastor Vjacheslav Schilling can be found on our <a href="https://t.me/NeuesLebenPL" target="_blank">Telegram</a> or <a href="https://www.youtube.com/user/g12eu" target="_blank">YouTube</a> Channel (Russian, German language). There is also the possibility to receive sermons in the church after the service.',
         },
         ministry: {
           title: 'Ministries',
@@ -210,7 +210,7 @@ export default {
           title: 'Error 404',
           text: 'Page not found.',
         },
-      }
+      },
     },
     // ukrain translation
     ua: {
@@ -256,19 +256,19 @@ export default {
         },
         welcome: {
           title: 'Ласкаво просимо в нове життя!',
-          text: 'Російськомовна християнська церква "Нове Життя" міста Плауен, Німеччина - це місце, де кожен охочий може почути проповідь Слова Божого, прийняти Ісуса Христа своїм Господом і Спасителем, отримати визволення, зцілення й навчитися будувати правильні стосунки з Господом та іншими людьми.<br><br>У церкві "Нове Життя" кожен має можливість розвиватися, духовно зростати, активно та плідно проводити свій час.<br><br>Наша церква відкрита для всіх спраглих.<br><br>Пасторами церкви є Вячеслав та Оксана Шилінг.',
+          text: 'Російськомовна християнська церква "Нове Життя" міста Плауен, Німеччина - це місце, де кожен охочий може почути проповідь Слова Божого, прийняти Ісуса Христа своїм Господом і Спасителем, отримати свободу, зцілення й навчитися будувати правильні стосунки з Господом та іншими людьми.<br><br>У церкві "Нове Життя" кожен має можливість розвиватися, духовно зростати, активно та плідно проводити свій час.<br><br>Наша церква відкрита для всіх спраглих.<br><br>Пасторами церкви є В\'ячеслав та Оксана Шилінг.',
         },
         pastor: {
           title: 'Пастор',
-          text: 'Вячеслав Шилінг є засновником і старшим пастором християнської церкви "Нове Життя" міста Плауен, Німеччина.<br><br>Вячеслав народився в місті Алмати, Казахстан. Приїхавши разом зі своєю сім\'єю в Німеччину, заснував у 2005 році російськомовну церкву "Нове Життя".<br><br>Відтоді активно трудиться на ниві Божій, навчаючи і проповідуючи істину Божу. Послідовне і чітке пояснення Слова Божого робить його вчення доступним для всіх.<br><br>Місія В\'ячеслава Шилінг - допомогти людині знайти спасіння через віру в Ісуса Христа і налагодити особисті взаємини з Богом.<br><br>Пастор В\'ячеслав є проповідником і спікером багатьох конференцій і семінарів. Будучи одним із провідних християнських лідерів у Німеччині, він прагне бачити пробудження, яке охопило б увесь регіон Фогтланд, усю Німеччину і весь світ.<br><br>Вячеслав Шіллінг живе в місті Плауен, Німеччина зі своєю сім\'єю і виховав двох дітей.',
+          text: "В'ячеслав Шилінг є засновником і старшим пастором християнської церкви \"Нове Життя\" міста Плауен, Німеччина.<br><br>В'ячеслав народився в місті Алмати, Казахстан. Приїхавши разом зі своєю сім'єю в Німеччину, заснував у 2005 році російськомовну церкву \"Нове Життя\".<br><br>Відтоді активно працює на ниві Божій, навчаючи і проповідуючи істину Божу. Послідовне і чітке пояснення Слова Божого робить його вчення доступним для всіх.<br><br>Місія В'ячеслава Шилінг - допомогти людині знайти спасіння через віру в Ісуса Христа і налагодити особисті взаємини з Богом.<br><br>Пастор В'ячеслав є проповідником і спікером багатьох конференцій і семінарів. Будучи одним із провідних християнських лідерів у Німеччині, він прагне бачити пробудження, яке охопило б увесь регіон Фогтланд, усю Німеччину і весь світ.<br><br>В'ячеслав Шиллінг живе в місті Плауен, Німеччина зі своєю сім'єю і виховав двох дітей.",
         },
         sermons: {
           title: 'Проповіді',
-          text: 'Проповіді пастора В\'ячеслава Шилінг можна знайти на нашому <a href="https://t.me/NeuesLebenPL" target="_blank">Telegram</a> або <a href="https://www.youtube.com/user/g12eu" target="_blank">YouTube</a> каналі, або отримати аудіо/відеозапис після служіння в церкві.'
+          text: 'Проповіді пастора В\'ячеслава Шилінг можна знайти в нашому <a href="https://t.me/NeuesLebenPL" target="_blank">Telegram</a> або <a href="https://www.youtube.com/user/g12eu" target="_blank">YouTube</a> каналі, чи отримати аудіо/відеозапис після служіння в церкві.',
         },
         ministry: {
           title: 'Служіння',
-          text: 'П\'ять разів на тиждень у нашій церкві відбуваються різні богослужіння, ми будемо раді бачити вас на одному з наших служінь.',
+          text: "П'ять разів на тиждень у нашій церкві відбуваються різні богослужіння, ми будемо раді бачити вас на одному з наших служінь.",
         },
         donate: {
           title: 'Пожертвувати',
@@ -281,6 +281,6 @@ export default {
           text: 'Сторінку не знайдено.',
         },
       },
-    }
-  }
-}
+    },
+  },
+};
