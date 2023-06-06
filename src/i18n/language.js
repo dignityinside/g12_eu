@@ -32,6 +32,7 @@ export default {
         phone: 'Тел. ',
         address: 'Офис и почтовый адрес церкви «Новая Жизнь»:',
         ministries: {
+          sundayLong: 'Воскресенье – 10:00 (c сурдопереводом на немецкий и английский язык).',
           address: 'Богослужения церкви «Новая Жизнь» проходят по адресу',
         },
         ministriesList: [
@@ -147,6 +148,7 @@ export default {
         phone: 'Tel. ',
         address: 'Büro und Adresse für Post:',
         ministries: {
+          sundayLong: 'Sonntag – 10:00 (mit Übersetzung auf Deutsch und Englisch).',
           address: 'Gottesdienst der Gemeinde "Neues Leben" finden hier statt',
         },
         ministriesList: [
@@ -262,6 +264,7 @@ export default {
         phone: 'Phone',
         address: 'Post office and address:',
         ministries: {
+          sundayLong: 'Sunday – 10:00 (with translation in English and German).',
           address: 'Sunday meeting of the New Life Church take place here',
         },
         ministriesList: [
@@ -377,6 +380,7 @@ export default {
         phone: 'Тел. ',
         address: 'Офіс і поштова адреса церкви "Нове Життя":',
         ministries: {
+          sundayLong: 'Неділя - 10:00 (із сурдоперекладом німецькою та англійською мовою).',
           address: 'Богослужіння церкви "Нове Життя" відбуваються за адресою',
         },
         ministriesList: [
