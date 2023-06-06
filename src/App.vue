@@ -1,28 +1,28 @@
 <script setup>
-import { RouterView } from 'vue-router'
+import { RouterView } from 'vue-router';
 import { ref } from 'vue';
-import Navigation from '@components/Navigation.vue'
+import Navigation from '@components/Navigation.vue';
 
 const mainMenuItems = ref([
   { id: 'welcome', name: 'menu.church' },
   { id: 'pastor', name: 'menu.pastor' },
-  { id: 'ministry', name:'menu.ministries' },
-  { id: 'sermons', name:'menu.sermons' },
-  { id: 'contacts', name:'menu.contacts' },
-  { id: 'donate', name:'menu.donate' }
+  { id: 'ministry', name: 'menu.ministries' },
+  { id: 'sermons', name: 'menu.sermons' },
+  { id: 'contacts', name: 'menu.contacts' },
+  { id: 'donate', name: 'menu.donate' },
 ]);
 
 const footerItems = ref([
   { to: 'https://t.me/NeuesLebenPL', name: 'Telegram', external: true, i18n: false },
   { to: 'https://www.youtube.com/user/g12eu', name: 'YouTube', external: true, i18n: false },
-  { to: 'https://www.instagram.com/g12eu/', name: 'Instagram', external: true, i18n: false },
-  { to: 'http://imbf.mobi', name: 'menu.bible', external: true, hideOnLocale: ['en','de'] },
-  { to: 'https://www.bibleserver.com', name: 'menu.bible', external: true, hideOnLocale: ['ru','ua','en'] },
+  { to: 'https://www.instagram.com/neuesleben.church/', name: 'Instagram', external: true, i18n: false },
+  { to: 'http://imbf.mobi', name: 'menu.bible', external: true, hideOnLocale: ['en', 'de'] },
+  { to: 'https://www.bibleserver.com', name: 'menu.bible', external: true, hideOnLocale: ['ru', 'ua', 'en'] },
   { to: 'http://www.ihopkc.org/prayerroom/', name: 'iHOP', external: true, i18n: false },
-  { to: 'https://gnctv.org', name: 'GNC', external: true, i18n: false, hideOnLocale: ['de','en'] },
-  { to: 'https://tbn-tv.com', name: 'TBN', external: true, i18n: false, hideOnLocale: ['de','en'] },
-  { to: 'https://www.tbn.org', name: 'TBN', external: true, i18n: false, hideOnLocale: ['ru','ua'] },
-  { to: 'https://www.bibeltv.de', name: 'BibelTV', external: true, i18n: false, hideOnLocale: ['ru','ua','en'] },
+  { to: 'https://gnctv.org', name: 'GNC', external: true, i18n: false, hideOnLocale: ['de', 'en'] },
+  { to: 'https://tbn-tv.com', name: 'TBN', external: true, i18n: false, hideOnLocale: ['de', 'en'] },
+  { to: 'https://www.tbn.org', name: 'TBN', external: true, i18n: false, hideOnLocale: ['ru', 'ua'] },
+  { to: 'https://www.bibeltv.de', name: 'BibelTV', external: true, i18n: false, hideOnLocale: ['ru', 'ua', 'en'] },
   { to: '/imprint', name: 'menu.imprint' },
 ]);
 </script>
@@ -46,16 +46,16 @@ const footerItems = ref([
 
     <RouterView />
 
-    <navigation :is-footer="true" :hide-language-select="true" :hide-back-link="true" :items="footerItems"  />
+    <navigation :is-footer="true" :hide-language-select="true" :hide-back-link="true" :items="footerItems" />
   </div>
 
   <footer class="copyright">
-    © 2005-{{ new Date().getFullYear() }} {{ $t('site.copyright') }}<br>{{ $t('site.powered') }}
+    © 2005-{{ new Date().getFullYear() }} {{ $t('site.copyright') }}<br />{{ $t('site.powered') }}
   </footer>
 </template>
 
 <style lang="scss">
-@import "@assets/scss/main.scss";
+@import '@assets/scss/main.scss';
 
 .container {
   background: $color-white;
@@ -90,7 +90,7 @@ const footerItems = ref([
 .logo__title {
   font-size: $size-20;
   color: $color-secondary;
-  text-transform: uppercase;  
+  text-transform: uppercase;
 }
 
 .logo__description {
