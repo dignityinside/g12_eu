@@ -1,4 +1,4 @@
-@import "breakpoints";
+@import 'breakpoints';
 
 // calcuation: body font size 16px (1rem), 5px/16px=0.312rem;
 
@@ -26,17 +26,18 @@ $max-width-25: 320px;
 
 $color-white: #ffffff;
 $color-black: #000000;
-$color-primary: rgba(76,29,149);
-$color-primarty-light: rgba(109,40,217);
+$color-grey: #dcdcdc;
+$color-primary: rgba(76, 29, 149);
+$color-primarty-light: rgba(109, 40, 217);
 $color-secondary: #f6ad55;
 
 // basic styles
 
 body {
   margin: 0;
-  background-color: rgba(229,231,235);
+  background-color: rgba(229, 231, 235);
   box-sizing: border-box;
-  font-family: Arial,sans-serif;
+  font-family: Arial, sans-serif;
   line-height: 1.5;
   font-size: 16px;
 }

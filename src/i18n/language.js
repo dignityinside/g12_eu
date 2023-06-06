@@ -32,18 +32,63 @@ export default {
         phone: 'Тел. ',
         address: 'Офис и почтовый адрес церкви «Новая Жизнь»:',
         ministries: {
-          man: 'Мужская домашняя группа, Вт. 17:00',
-          pray: 'Молитвенное собрание, Ср. 18:00',
-          woman: 'Женская домашняя группа, Чт. 18:00',
-          consulting: 'Консультации у пастора, Чт. 16:00',
-          main: 'Воскресное собрания, Вс. 10:00',
-          children: 'Детское служения, Вс. 10:00',
-          sundaySchool: 'Воскресная школа, Вс. 10:00',
-          bibleSchool: 'Библейская школа подготовки служителей',
-          internet: 'Интернет служения',
-          sundayLong: 'Воскресенье – 10:00 (c сурдопереводом на немецкий и английский язык).',
           address: 'Богослужения церкви «Новая Жизнь» проходят по адресу',
         },
+        ministriesList: [
+          {
+            day: 'Вторник',
+            ministries: [
+              {
+                name: 'Домашняя группа у семьи Буш',
+                time: '18:00',
+              },
+              {
+                name: 'Домашняя группа у семьи Логвиненко',
+                time: '18:00',
+              },
+            ],
+          },
+          {
+            day: 'Среда',
+            ministries: [
+              {
+                name: 'Вечер молитвы',
+                time: '18:00',
+              },
+            ],
+          },
+          {
+            day: 'Четверг',
+            ministries: [
+              {
+                name: 'Встречи по четвергам',
+                time: 'время варьируется',
+              },
+            ],
+          },
+          {
+            day: 'Пятница',
+            ministries: [
+              {
+                name: 'Молодёжные собрания',
+                time: '17:00',
+              },
+            ],
+          },
+          {
+            day: 'Воскресение',
+            ministries: [
+              {
+                name: 'Воскресное богослужение',
+                time: '10:00',
+              },
+              {
+                name: 'Воскресная школа',
+                time: '10:00',
+              },
+            ],
+          },
+        ],
         welcome: {
           title: 'Добро пожаловать в новую жизнь!',
           text: 'Русскоязычная христианская церковь «Новая Жизнь» города Плауэн, Германия - это место, где каждый желающий может услышать проповедь Слова Божьего, принять Иисуса Христа своим Господом и Спасителем, получить освобождение, исцеление и научиться строить правильные отношения с Господом и другими людьми.<br><br>В церкви «Новая Жизнь» каждый имеет возможность развиваться, духовно возрастать, активно и плодотворно проводить свое время.<br><br>Наша церковь открыта для всех жаждующих.<br><br>Пасторами церкви являются Вячеслав и Оксана Шиллинг.',
@@ -58,7 +103,7 @@ export default {
         },
         ministry: {
           title: 'Служения',
-          text: 'Пять раз в неделю, в нашей церкви проходят различные богослужения, мы будем рады видить вас на одном из наших служений.',
+          text: 'В нашей церкви проходят различные богослужения, мы будем рады видить вас на одном из наших служений.',
         },
         donate: {
           title: 'Пожертвовать',
@@ -102,18 +147,63 @@ export default {
         phone: 'Tel. ',
         address: 'Büro und Adresse für Post:',
         ministries: {
-          man: 'Männer Hauskreis, Di. 17:00',
-          pray: 'Gebetsstunde, Mi. 18:00',
-          woman: 'Frauen Hauskreis, Do. 18:00',
-          consulting: 'Beratung bei Pastor Do. 16:00',
-          main: 'Sonntagsgottesdienst, So. 10:00',
-          children: 'Kindergottesdienst, 10:00',
-          sundaySchool: 'Sonntagsschule, 10:00',
-          bibleSchool: 'Bibelschule für Leaders',
-          internet: 'Internet Gottesdienst',
-          sundayLong: 'Sonntag – 10:00 (mit Übersetzung auf Deutsch und Englisch).',
           address: 'Gottesdienst der Gemeinde "Neues Leben" finden hier statt',
         },
+        ministriesList: [
+          {
+            day: 'Dienstag',
+            ministries: [
+              {
+                name: 'Hauskreis bei Familie Bush',
+                time: '18:00',
+              },
+              {
+                name: 'Hauskreis bei Familie Logvinenko',
+                time: '18:00',
+              },
+            ],
+          },
+          {
+            day: 'Mittwoch',
+            ministries: [
+              {
+                name: 'Abend des Gebets',
+                time: '18:00',
+              },
+            ],
+          },
+          {
+            day: 'Donnerstag',
+            ministries: [
+              {
+                name: 'Treffen am Donnerstag',
+                time: 'Zeit variiert',
+              },
+            ],
+          },
+          {
+            day: 'Freitag',
+            ministries: [
+              {
+                name: 'Jugendtreffen',
+                time: '17:00',
+              },
+            ],
+          },
+          {
+            day: 'Sonntag',
+            ministries: [
+              {
+                name: 'Sonntagsgottesdienst',
+                time: '10:00',
+              },
+              {
+                name: 'Sonntagsschule',
+                time: '10:00',
+              },
+            ],
+          },
+        ],
         welcome: {
           title: 'Willkommen in neues Leben!',
           text: 'Wir sind christliche Gemeinde "Neues Leben" der Stadt Plauen, Deutschland.<br><br>In unsere Gemeinde ist jeder herzlich willkommen.<br><br>Pastoren der Gemeinde sind Vjaceslav und Oxana Schilling.',
@@ -128,7 +218,7 @@ export default {
         },
         ministry: {
           title: 'Gottesdienste',
-          text: 'Fünfmal pro Woche, findet in unsere Gemeinde ein Gottesdienst statt, wir freuen uns auf euren Besuch.',
+          text: 'Mehrmals pro Woche, findet in unsere Gemeinde ein Gottesdienst statt, wir freuen uns auf euren Besuch.',
         },
         donate: {
           title: 'Spenden',
@@ -172,18 +262,63 @@ export default {
         phone: 'Phone',
         address: 'Post office and address:',
         ministries: {
-          man: 'Men house group, Tu. 17:00',
-          pray: 'Prayer meeting, We. 18:00',
-          woman: 'Women house group, Th. 18:00',
-          consulting: 'Advice from pastor, Th. 16:00',
-          main: 'Sunday meeting, Su. 10:00',
-          children: 'Childrens meeting, 10:00',
-          sundaySchool: 'Sunday school, 10:00',
-          bibleSchool: 'Bible school for leaders',
-          internet: 'Internet Ministries',
-          sundayLong: 'Sunday – 10:00 (with translation in English and German).',
           address: 'Sunday meeting of the New Life Church take place here',
         },
+        ministriesList: [
+          {
+            day: 'Tuesday',
+            ministries: [
+              {
+                name: 'Home group at Bush family',
+                time: '18:00',
+              },
+              {
+                name: 'Home group at Logvinenko family',
+                time: '18:00',
+              },
+            ],
+          },
+          {
+            day: 'Wednesday',
+            ministries: [
+              {
+                name: 'Evening of Pray',
+                time: '18:00',
+              },
+            ],
+          },
+          {
+            day: 'Thursday',
+            ministries: [
+              {
+                name: 'Meetings on Thursdays',
+                time: 'time varies',
+              },
+            ],
+          },
+          {
+            day: 'Friday',
+            ministries: [
+              {
+                name: 'Youth meeting',
+                time: '17:00',
+              },
+            ],
+          },
+          {
+            day: 'Sunday',
+            ministries: [
+              {
+                name: 'Sunday Service',
+                time: '10:00',
+              },
+              {
+                name: 'Sunday School',
+                time: '10:00',
+              },
+            ],
+          },
+        ],
         welcome: {
           title: 'Welcome to New Life!',
           text: 'We are Christian Church "New Life" ("Neues Leben e.V.") of the city Plauen in Germany.<br><br>Everyone is welcome in our Church.<br><br>Pastors of the Church are Vjaceslav and Oxana Schilling.',
@@ -198,7 +333,7 @@ export default {
         },
         ministry: {
           title: 'Ministries',
-          text: 'There is a service in our church five times a week. We look forward to your visit.',
+          text: 'There is many ministries in our church, we look forward to your visit.',
         },
         donate: {
           title: 'Donations',
@@ -242,18 +377,63 @@ export default {
         phone: 'Тел. ',
         address: 'Офіс і поштова адреса церкви "Нове Життя":',
         ministries: {
-          man: 'Чоловіча домашня група, Вт. 17:00',
-          pray: 'Молитовне зібрання, ср. 18:00',
-          woman: 'Жіноча домашня група, чт. 18:00',
-          consulting: 'Консультації у пастора, чт. 16:00',
-          main: 'Недільне зібрання, нед. 10:00',
-          children: 'Дитяче служіння, сб. 10:00',
-          sundaySchool: 'Недільна школа, нед. 10:00',
-          bibleSchool: 'Біблійна школа підготовки служителів',
-          internet: 'Інтернет служіння',
-          sundayLong: 'Неділя - 10:00 (із сурдоперекладом німецькою та англійською мовою).',
           address: 'Богослужіння церкви "Нове Життя" відбуваються за адресою',
         },
+        ministriesList: [
+          {
+            day: 'Вівторок',
+            ministries: [
+              {
+                name: "Домашня група у сім'ї Буш",
+                time: '18:00',
+              },
+              {
+                name: "Домашня група у сім'ї Логвиненко",
+                time: '18:00',
+              },
+            ],
+          },
+          {
+            day: 'Середа',
+            ministries: [
+              {
+                name: 'Вечір молитви',
+                time: '18:00',
+              },
+            ],
+          },
+          {
+            day: 'Четвер',
+            ministries: [
+              {
+                name: 'Зустрічі щочетверга',
+                time: 'час варіюється',
+              },
+            ],
+          },
+          {
+            day: "П'ятниця",
+            ministries: [
+              {
+                name: 'Молодіжні зібрання',
+                time: '17:00',
+              },
+            ],
+          },
+          {
+            day: 'Воскресіння',
+            ministries: [
+              {
+                name: 'Недільне зібрання',
+                time: '10:00',
+              },
+              {
+                name: 'Недільна школа',
+                time: '10:00',
+              },
+            ],
+          },
+        ],
         welcome: {
           title: 'Ласкаво просимо в нове життя!',
           text: 'Російськомовна християнська церква "Нове Життя" міста Плауен, Німеччина - це місце, де кожен охочий може почути проповідь Слова Божого, прийняти Ісуса Христа своїм Господом і Спасителем, отримати свободу, зцілення й навчитися будувати правильні стосунки з Господом та іншими людьми.<br><br>У церкві "Нове Життя" кожен має можливість розвиватися, духовно зростати, активно та плідно проводити свій час.<br><br>Наша церква відкрита для всіх спраглих.<br><br>Пасторами церкви є В\'ячеслав та Оксана Шилінг.',
@@ -268,7 +448,7 @@ export default {
         },
         ministry: {
           title: 'Служіння',
-          text: "П'ять разів на тиждень у нашій церкві відбуваються різні богослужіння, ми будемо раді бачити вас на одному з наших служінь.",
+          text: 'У нашій церкві відбуваються різні богослужіння, ми будемо раді бачити вас на одному з наших служінь.',
         },
         donate: {
           title: 'Пожертвувати',
