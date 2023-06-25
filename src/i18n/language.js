@@ -100,7 +100,7 @@ export default {
         },
         sermons: {
           title: 'Проповеди',
-          text: 'Проповеди пастора Вячеслава Шиллинг можно найти на нашем <a href="https://t.me/NeuesLebenPL" target="_blank">Telegram</a> или <a href="https://www.youtube.com/user/g12eu" target="_blank">YouTube</a> канале или получить аудио/видео запись после служения в церкви.',
+          text: 'Проповеди пастора Вячеслава Шиллинг можно найти на нашем <a href="https://t.me/NeuesLebenPL" target="_blank">Telegram</a> или <a href="https://www.youtube.com/user/neuesleben.church" target="_blank">YouTube</a> канале или получить аудио/видео запись после служения в церкви.',
         },
         ministry: {
           title: 'Служения',
@@ -216,7 +216,7 @@ export default {
         },
         sermons: {
           title: 'Predigten',
-          text: 'Predigten von Pastor Vjacheslav Schilling kann man auf unserem <a href="https://t.me/NeuesLebenPL" target="_blank">Telegram</a> oder <a href="https://www.youtube.com/user/g12eu" target="_blank">YouTube</a> Kanal ansehen. Es besteht auch die Möglichkeit Predigten nach dem Gottesdienst in der Gemeinde zu bekommen.',
+          text: 'Predigten von Pastor Vjacheslav Schilling kann man auf unserem <a href="https://t.me/NeuesLebenPL" target="_blank">Telegram</a> oder <a href="https://www.youtube.com/user/neuesleben.church" target="_blank">YouTube</a> Kanal ansehen. Es besteht auch die Möglichkeit Predigten nach dem Gottesdienst in der Gemeinde zu bekommen.',
         },
         ministry: {
           title: 'Gottesdienste',
@@ -332,7 +332,7 @@ export default {
         },
         sermons: {
           title: 'Sermons',
-          text: 'Sermons by Pastor Vjacheslav Schilling can be found on our <a href="https://t.me/NeuesLebenPL" target="_blank">Telegram</a> or <a href="https://www.youtube.com/user/g12eu" target="_blank">YouTube</a> Channel (Russian, German language). There is also the possibility to receive sermons in the church after the service.',
+          text: 'Sermons by Pastor Vjacheslav Schilling can be found on our <a href="https://t.me/NeuesLebenPL" target="_blank">Telegram</a> or <a href="https://www.youtube.com/user/neuesleben.church" target="_blank">YouTube</a> Channel (Russian, German language). There is also the possibility to receive sermons in the church after the service.',
         },
         ministry: {
           title: 'Ministries',
@@ -448,7 +448,7 @@ export default {
         },
         sermons: {
           title: 'Проповіді',
-          text: 'Проповіді пастора В\'ячеслава Шилінг можна знайти в нашому <a href="https://t.me/NeuesLebenPL" target="_blank">Telegram</a> або <a href="https://www.youtube.com/user/g12eu" target="_blank">YouTube</a> каналі, чи отримати аудіо/відеозапис після служіння в церкві.',
+          text: 'Проповіді пастора В\'ячеслава Шилінг можна знайти в нашому <a href="https://t.me/NeuesLebenPL" target="_blank">Telegram</a> або <a href="https://www.youtube.com/user/neuesleben.church" target="_blank">YouTube</a> каналі, чи отримати аудіо/відеозапис після служіння в церкві.',
         },
         ministry: {
           title: 'Служіння',

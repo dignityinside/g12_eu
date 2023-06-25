@@ -14,7 +14,7 @@ const mainMenuItems = ref([
 
 const footerItems = ref([
   { to: 'https://t.me/NeuesLebenPL', name: 'Telegram', external: true, i18n: false },
-  { to: 'https://www.youtube.com/user/g12eu', name: 'YouTube', external: true, i18n: false },
+  { to: 'https://www.youtube.com/user/neuesleben.church', name: 'YouTube', external: true, i18n: false },
   { to: 'https://www.instagram.com/neuesleben.church/', name: 'Instagram', external: true, i18n: false },
   { to: 'http://imbf.mobi', name: 'menu.bible', external: true, hideOnLocale: ['en', 'de'] },
   { to: 'https://www.bibleserver.com', name: 'menu.bible', external: true, hideOnLocale: ['ru', 'ua', 'en'] },
