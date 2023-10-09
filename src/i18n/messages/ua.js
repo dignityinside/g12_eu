@@ -95,7 +95,7 @@ export default {
     },
     sermons: {
       title: 'Проповіді',
-      text: 'Проповіді пастора В\'ячеслава Шилінг можна знайти в нашому <a href="https://t.me/NeuesLebenPL" target="_blank">Telegram</a> або <a href="https://www.youtube.com/@neuesleben.church" target="_blank">YouTube</a> каналі, чи отримати аудіо/відеозапис після служіння в церкві.',
+      text: 'Проповіді пастора В\'ячеслава Шилінг можна знайти в нашому <a href="https://t.me/NeuesLebenPL" target="_blank">Telegram</a> або <a href="https://www.youtube.com/channel/UCgECrFqV9vn-yxOGARqHoVw" target="_blank">YouTube</a> каналі, чи отримати аудіо/відеозапис після служіння в церкві.',
     },
     ministry: {
       title: 'Служіння',

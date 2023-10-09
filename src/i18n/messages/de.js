@@ -95,7 +95,7 @@ export default {
     },
     sermons: {
       title: 'Predigten',
-      text: 'Predigten von Pastor Vjacheslav Schilling kann man auf unserem <a href="https://t.me/NeuesLebenPL" target="_blank">Telegram</a> oder <a href="https://www.youtube.com/@neuesleben.church" target="_blank">YouTube</a> Kanal ansehen. Es besteht auch die Möglichkeit Predigten nach dem Gottesdienst in der Gemeinde zu bekommen.',
+      text: 'Predigten von Pastor Vjacheslav Schilling kann man auf unserem <a href="https://t.me/NeuesLebenPL" target="_blank">Telegram</a> oder <a href="https://www.youtube.com/channel/UCgECrFqV9vn-yxOGARqHoVw" target="_blank">YouTube</a> Kanal ansehen. Es besteht auch die Möglichkeit Predigten nach dem Gottesdienst in der Gemeinde zu bekommen.',
     },
     ministry: {
       title: 'Gottesdienste',

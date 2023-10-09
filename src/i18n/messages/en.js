@@ -95,7 +95,7 @@ export default {
     },
     sermons: {
       title: 'Sermons',
-      text: 'Sermons by Pastor Vjacheslav Schilling can be found on our <a href="https://t.me/NeuesLebenPL" target="_blank">Telegram</a> or <a href="https://www.youtube.com/@neuesleben.church" target="_blank">YouTube</a> Channel (Russian, German language). There is also the possibility to receive sermons in the church after the service.',
+      text: 'Sermons by Pastor Vjacheslav Schilling can be found on our <a href="https://t.me/NeuesLebenPL" target="_blank">Telegram</a> or <a href="https://www.youtube.com/channel/UCgECrFqV9vn-yxOGARqHoVw" target="_blank">YouTube</a> Channel (Russian, German language). There is also the possibility to receive sermons in the church after the service.',
     },
     ministry: {
       title: 'Ministries',
