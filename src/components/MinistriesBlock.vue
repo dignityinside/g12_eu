@@ -1,6 +1,6 @@
 <script setup>
 import MediaBlock from '@components/MediaBlock.vue';
-import language from '@i18n/language';
+import { language } from '@i18n';
 </script>
 
 <template>
