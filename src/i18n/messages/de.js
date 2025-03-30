@@ -35,11 +35,7 @@ export default {
         day: 'Dienstag',
         ministries: [
           {
-            name: 'Hauskreis bei Familie Bush',
-            time: '18:00',
-          },
-          {
-            name: 'Hauskreis bei Familie Logvinenko',
+            name: 'Hauskreis',
             time: '18:00',
           },
         ],

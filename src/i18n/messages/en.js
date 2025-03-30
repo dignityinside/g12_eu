@@ -35,11 +35,7 @@ export default {
         day: 'Tuesday',
         ministries: [
           {
-            name: 'Home group at Bush family',
-            time: '18:00',
-          },
-          {
-            name: 'Home group at Logvinenko family',
+            name: 'Home group',
             time: '18:00',
           },
         ],
