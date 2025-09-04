@@ -1,0 +1,1 @@
+import{o as t,c as r,a as o,b as a,M as n}from"./index.4a324628.js";const s={class:"error404"},_={__name:"ErrorView",setup(c){return(e,l)=>(t(),r("main",null,[o("div",s,[a(n,{title:e.$t("text.error404.title"),content:e.$t("text.error404.text"),id:"error404"},null,8,["title","content"])])]))}};export{_ as default};
