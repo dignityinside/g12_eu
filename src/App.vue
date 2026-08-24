@@ -1,9 +1,11 @@
 <script setup>
 import { RouterView, useRoute } from 'vue-router';
-import { computed, ref } from 'vue';
+import { computed, ref, watchEffect } from 'vue';
+import { useI18n } from 'vue-i18n';
 import Navigation from '@components/Navigation.vue';
 
 const route = useRoute();
+const { t, locale } = useI18n();
 const isHome = computed(() => route.path === '/');
 
 const mainMenuItems = ref([
@@ -20,21 +22,43 @@ const footerItems = ref([
   { to: 'https://www.youtube.com/channel/UCgECrFqV9vn-yxOGARqHoVw', name: 'YouTube', external: true, i18n: false },
   { to: 'https://www.instagram.com/neuesleben.church/', name: 'Instagram', external: true, i18n: false },
   { to: 'http://imbf.mobi', name: 'menu.bible', external: true, hideOnLocale: ['en', 'de'] },
-  { to: 'https://www.bibleserver.com', name: 'menu.bible', external: true, hideOnLocale: ['ru', 'ua', 'en'] },
+  { to: 'https://www.bibleserver.com', name: 'menu.bible', external: true, hideOnLocale: ['ru', 'uk', 'en'] },
   { to: 'http://www.ihopkc.org/prayerroom/', name: 'iHOP', external: true, i18n: false },
   { to: 'https://gnctv.org', name: 'GNC', external: true, i18n: false, hideOnLocale: ['de', 'en'] },
   { to: 'https://tbn-tv.com', name: 'TBN', external: true, i18n: false, hideOnLocale: ['de', 'en'] },
-  { to: 'https://www.tbn.org', name: 'TBN', external: true, i18n: false, hideOnLocale: ['ru', 'ua'] },
-  { to: 'https://www.bibeltv.de', name: 'BibelTV', external: true, i18n: false, hideOnLocale: ['ru', 'ua', 'en'] },
+  { to: 'https://www.tbn.org', name: 'TBN', external: true, i18n: false, hideOnLocale: ['ru', 'uk'] },
+  { to: 'https://www.bibeltv.de', name: 'BibelTV', external: true, i18n: false, hideOnLocale: ['ru', 'uk', 'en'] },
   { to: '/imprint', name: 'menu.imprint' },
 ]);
 
 function scrollToSection(id) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 }
+
+watchEffect(() => {
+  const routeTitle = route.name === 'imprint'
+    ? t('menu.imprint')
+    : route.name === 'Error404'
+      ? t('text.error404.title')
+      : t('site.name');
+  const fullTitle = route.name === 'home' ? `${routeTitle} · Plauen` : `${routeTitle} · ${t('site.name')}`;
+  const description = t('site.metaDescription');
+  const canonicalUrl = `https://g12.eu${route.path}`;
+
+  document.documentElement.lang = locale.value;
+  document.title = fullTitle;
+  document.querySelector('meta[name="description"]')?.setAttribute('content', description);
+  document.querySelector('meta[property="og:title"]')?.setAttribute('content', fullTitle);
+  document.querySelector('meta[property="og:description"]')?.setAttribute('content', description);
+  document.querySelector('meta[property="og:locale"]')?.setAttribute('content', locale.value);
+  document.querySelector('meta[property="og:url"]')?.setAttribute('content', canonicalUrl);
+  document.querySelector('link[rel="canonical"]')?.setAttribute('href', canonicalUrl);
+});
 </script>
 
 <template>
+  <a class="skip-link" href="#main-content">{{ $t('menu.skipContent') }}</a>
+
   <header class="header">
     <div class="header__inner">
       <router-link to="/" class="brand" aria-label="Neues Leben Startseite">
@@ -49,7 +73,11 @@ function scrollToSection(id) {
   </header>
 
   <div v-if="isHome" class="hero">
-    <img src="/img/header.jpg" :alt="$t('site.name')" class="hero__image" />
+    <picture class="hero__media">
+      <source srcset="/img/header.avif" type="image/avif" />
+      <source srcset="/img/header.webp" type="image/webp" />
+      <img src="/img/header.jpg" :alt="$t('site.name')" class="hero__image" width="1707" height="921" fetchpriority="high" decoding="async" />
+    </picture>
     <div class="hero__shade"></div>
     <div class="hero__content">
       <div class="hero__eyebrow">Plauen · {{ $t('site.description') }}</div>
@@ -62,7 +90,7 @@ function scrollToSection(id) {
     </div>
   </div>
 
-  <div class="page-shell" :class="{ 'page-shell--subpage': !isHome }">
+  <div id="main-content" class="page-shell" :class="{ 'page-shell--subpage': !isHome }" tabindex="-1">
     <RouterView />
   </div>
 
@@ -79,9 +107,11 @@ function scrollToSection(id) {
 </template>
 
 <style lang="scss">
-@import '@assets/scss/main.scss';
+@use '@assets/scss/main.scss' as *;
 
 .header { position: sticky; top: 0; z-index: 10; background: rgba(35, 14, 57, .95); border-bottom: 1px solid rgba(255,255,255,.1); backdrop-filter: blur(16px); }
+.skip-link { position: fixed; top: .75rem; left: .75rem; z-index: 100; padding: .7rem 1rem; border-radius: 10px; background: $color-secondary; color: #281137; font-weight: 800; text-decoration: none; transform: translateY(-150%); transition: transform .2s ease; }
+.skip-link:focus { transform: translateY(0); }
 .header__inner { max-width: $max-width-100; min-height: 78px; margin: 0 auto; padding: 0 $spacing-20; display: flex; align-items: center; justify-content: space-between; gap: $spacing-20; }
 .brand { display: flex; align-items: center; gap: .8rem; color: $color-white; text-decoration: none; flex-shrink: 0; }
 .brand__mark { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 13px; background: $color-secondary; color: #301048; font-size: .82rem; font-weight: 900; letter-spacing: -.03em; box-shadow: 0 8px 28px rgba(0,0,0,.18); }
@@ -91,7 +121,8 @@ function scrollToSection(id) {
 .brand__description { margin-top: .25rem; color: rgba(255,255,255,.68); font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; }
 
 .hero { position: relative; min-height: min(680px, calc(100vh - 78px)); display: flex; align-items: flex-end; overflow: hidden; background: $color-primary; }
-.hero__image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 48%; }
+.hero__media { position: absolute; inset: 0; }
+.hero__image { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 48%; }
 .hero__shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(28,10,45,.92) 0%, rgba(43,16,68,.66) 45%, rgba(26,10,39,.15) 100%), linear-gradient(0deg, rgba(26,10,39,.6), transparent 55%); }
 .hero__content { position: relative; width: 100%; max-width: $max-width-100; margin: 0 auto; padding: clamp(4rem, 10vw, 8rem) $spacing-20; color: $color-white; }
 .hero__eyebrow { margin-bottom: 1.1rem; color: $color-secondary; font-size: .82rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }

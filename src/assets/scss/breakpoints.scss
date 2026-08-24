@@ -1,5 +1,8 @@
 // https://davidhellmann.com/blog/development/sass-breakpoint-mixin
 
+@use 'sass:map';
+@use 'sass:math';
+
 // min / max — default: min (mobile first)
 $media-direction: min;
 
@@ -13,13 +16,13 @@ $breakpoints: (
 );
 
 @mixin breakpoint($breakpoint, $direction: $media-direction) {
-  @if map-has-key($breakpoints, $breakpoint) {
-    @media (#{$direction}-width: #{map-get($breakpoints, $breakpoint)}) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media (#{$direction}-width: #{map.get($breakpoints, $breakpoint)}) {
       @content;
     }
   }
 
-  @else if unitless($breakpoint) {
+  @else if math.is-unitless($breakpoint) {
     $breakpoint: $breakpoint (+0px);
 
     @media (#{$direction}-width: $breakpoint) {

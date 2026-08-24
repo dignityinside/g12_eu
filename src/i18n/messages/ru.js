@@ -2,6 +2,7 @@ export default {
   site: {
     name: 'НОВАЯ ЖИЗНЬ',
     description: 'христианская церковь',
+    metaDescription: 'Христианская церковь «Новая Жизнь» в Плауэне. Воскресное богослужение в 10:00 с переводом на немецкий и английский языки.',
     copyright: 'Церковь Новая Жизнь',
     powered: 'Дизайн и разработка: Александр Шиллинг',
     donation: {
@@ -22,6 +23,9 @@ export default {
     imprint: 'Impressum',
     bible: 'Библия',
     back: 'На главную',
+    skipContent: 'Перейти к содержимому',
+    openNavigation: 'Открыть навигацию',
+    closeNavigation: 'Закрыть навигацию',
   },
   text: {
     phone: 'Тел. ',
@@ -102,6 +106,9 @@ export default {
     },
     contacts: {
       title: 'Контакты',
+      showMap: 'Загрузить карту',
+      mapHint: 'Карта Google загрузится только после вашего согласия.',
+      openRoute: 'Открыть маршрут',
     },
     error404: {
       title: 'Ошибка 404',

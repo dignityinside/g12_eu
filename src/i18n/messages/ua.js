@@ -2,6 +2,7 @@ export default {
   site: {
     name: 'НОВЕ ЖИТТЯ',
     description: 'християнська церква',
+    metaDescription: 'Християнська церква «Нове Життя» у Плауені. Недільне богослужіння о 10:00 з перекладом німецькою та англійською мовами.',
     copyright: 'Церква Нове Життя',
     powered: 'Дизайн і розробка: Олександр Шилінг',
     donation: {
@@ -22,6 +23,9 @@ export default {
     imprint: 'Imprint',
     bible: 'Біблія',
     back: 'На головну сторінку',
+    skipContent: 'Перейти до вмісту',
+    openNavigation: 'Відкрити навігацію',
+    closeNavigation: 'Закрити навігацію',
   },
   text: {
     phone: 'Тел. ',
@@ -102,6 +106,9 @@ export default {
     },
     contacts: {
       title: 'Контакти',
+      showMap: 'Завантажити карту',
+      mapHint: 'Карта Google завантажиться лише після вашої згоди.',
+      openRoute: 'Відкрити маршрут',
     },
     error404: {
       title: 'Помилка 404',

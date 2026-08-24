@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, nextTick, onBeforeUnmount } from 'vue';
 import { useRoute } from 'vue-router';
 import LanguageSelect from '@components/LanguageSelect.vue';
 
@@ -23,13 +23,57 @@ const props = defineProps({
 });
 
 const isOpen = ref(false);
+const navigationWrapper = ref(null);
 const route = useRoute();
 const path = computed(() => route.path);
 const navigationId = computed(() => props.isFooter ? 'footer-navigation' : 'main-navigation');
 
 watch(path, () => {
-  isOpen.value = false;
+  closeMenu();
 });
+
+watch(isOpen, async (open) => {
+  if (props.isFooter) return;
+  document.body.classList.toggle('navigation-open', open);
+  if (open) {
+    await nextTick();
+    navigationWrapper.value?.querySelector('.navigation__items .navigation__item')?.focus();
+  }
+});
+
+onBeforeUnmount(() => document.body.classList.remove('navigation-open'));
+
+function toggleMenu() {
+  isOpen.value = !isOpen.value;
+}
+
+function closeMenu(returnFocus = false) {
+  isOpen.value = false;
+  if (returnFocus) {
+    nextTick(() => navigationWrapper.value?.querySelector('.navigation__toggle')?.focus());
+  }
+}
+
+function handleKeydown(event) {
+  if (!isOpen.value) return;
+  if (event.key === 'Escape') {
+    closeMenu(true);
+    return;
+  }
+  if (event.key !== 'Tab') return;
+
+  const focusable = [...navigationWrapper.value.querySelectorAll('button, a, select')]
+    .filter((element) => !element.disabled && element.offsetParent !== null);
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  }
+}
 
 function scrollTo(id, offset = document.querySelector('.header').offsetHeight + 10) {
   window.scrollTo({
@@ -39,21 +83,21 @@ function scrollTo(id, offset = document.querySelector('.header').offsetHeight + 
       document.body.getBoundingClientRect().top -
       offset,
   });
-  isOpen.value = false;
+  closeMenu();
 }
 </script>
 
 <template>
   <div class="navigation" :class="isFooter ? 'navigation--footer' : ''">
-    <nav class="navigation__wrapper" @keydown.esc="isOpen = false">
+    <nav ref="navigationWrapper" class="navigation__wrapper" @keydown="handleKeydown">
       <button
         v-if="!isFooter"
         class="navigation__toggle"
         type="button"
         :aria-expanded="isOpen"
         :aria-controls="navigationId"
-        :aria-label="isOpen ? 'Menü schließen' : 'Menü öffnen'"
-        @click="isOpen = !isOpen"
+        :aria-label="isOpen ? $t('menu.closeNavigation') : $t('menu.openNavigation')"
+        @click="toggleMenu"
       >
         <font-awesome-icon :icon="isOpen ? 'fa-solid fa-x' : 'fa-solid fa-bars'" />
       </button>
@@ -87,7 +131,7 @@ function scrollTo(id, offset = document.querySelector('.header').offsetHeight + 
 </template>
 
 <style lang="scss" scoped>
-@import "@assets/scss/main.scss";
+@use "@assets/scss/main.scss" as *;
 
 .navigation { padding: 0; }
 

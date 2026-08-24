@@ -1,12 +1,15 @@
 <script setup>
+import { ref } from 'vue';
 import MediaBlock from '../components/MediaBlock.vue';
 import MinistriesBlock from '../components/MinistriesBlock.vue';
+
+const showMap = ref(false);
 </script>
 
 <template>
   <main>
     <media-block :title="$t('text.welcome.title')" :content="$t('text.welcome.text')" id="welcome" />
-    <media-block :title="$t('text.pastor.title')" :content="$t('text.pastor.text')" image="pastor.jpg" id="pastor" />
+    <media-block :title="$t('text.pastor.title')" :content="$t('text.pastor.text')" image="pastor.jpg" :image-width="330" :image-height="389" id="pastor" />
     <ministries-block />
     <media-block :title="$t('text.sermons.title')" :content="$t('text.sermons.text')" id="sermons" />
 
@@ -31,7 +34,15 @@ import MinistriesBlock from '../components/MinistriesBlock.vue';
         </div>
       </div>
 
-      <iframe
+      <div v-if="!showMap" class="map-placeholder">
+        <p>{{ $t('text.contacts.mapHint') }}</p>
+        <div class="map-placeholder__actions">
+          <button type="button" class="map-button" @click="showMap = true">{{ $t('text.contacts.showMap') }}</button>
+          <a class="route-link" href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen" target="_blank" rel="noopener">{{ $t('text.contacts.openRoute') }}</a>
+        </div>
+      </div>
+
+      <iframe v-else
         class="map"
         allowfullscreen
         loading="lazy"
@@ -53,7 +64,7 @@ import MinistriesBlock from '../components/MinistriesBlock.vue';
 </template>
 
 <style scoped lang="scss">
-@import '@assets/scss/main.scss';
+@use '@assets/scss/main.scss' as *;
 
 .contact-grid { display: grid; gap: .8rem; }
 .contact-card { padding: 1.25rem; border-radius: 18px; background: $color-background; overflow: hidden; }
@@ -62,6 +73,12 @@ import MinistriesBlock from '../components/MinistriesBlock.vue';
 .contact-card p { color: $color-muted; font-size: .92rem; }
 .contact-card a { font-weight: 750; }
 .map { display: block; width: 100%; height: 420px; margin-top: 1rem; border: 0; border-radius: 20px; filter: saturate(.78) contrast(.96); }
+.map-placeholder { display: grid; place-items: center; min-height: 280px; margin-top: 1rem; padding: 2rem; border-radius: 20px; background: linear-gradient(135deg, rgba($color-primary,.09), rgba($color-secondary,.18)); text-align: center; }
+.map-placeholder p { max-width: 470px; color: $color-muted; }
+.map-placeholder__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; }
+.map-button, .route-link { display: inline-flex; align-items: center; justify-content: center; padding: .75rem 1.1rem; border-radius: 999px; font-weight: 800; text-decoration: none; cursor: pointer; }
+.map-button { border: 0; background: $color-primary; color: $color-white; }
+.route-link { border: 1px solid rgba($color-primary,.2); background: rgba(255,255,255,.7); color: $color-primary; }
 .donation { display: grid; gap: .55rem; padding: 1.25rem; border-radius: 18px; background: $color-background; color: $color-muted; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .9rem; overflow-wrap: anywhere; }
 
 @include breakpoint('s') { .contact-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }

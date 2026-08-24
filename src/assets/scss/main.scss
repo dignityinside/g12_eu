@@ -1,4 +1,5 @@
-@import 'breakpoints';
+@forward 'breakpoints';
+@use 'breakpoints' as *;
 
 $spacing-5: 0.313rem;
 $spacing-10: 0.625rem;
@@ -37,3 +38,15 @@ body {
 a { color: $color-primary; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 button, select { font: inherit; }
 ::selection { background: rgba($color-secondary, 0.45); }
+
+body.navigation-open { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}

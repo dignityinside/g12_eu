@@ -4,15 +4,29 @@ import de from '@i18n/messages/de';
 import en from '@i18n/messages/en';
 import ua from '@i18n/messages/ua';
 
+const supportedLocales = ['de', 'en', 'ru', 'uk'];
+const storedLocale = localStorage.getItem('locale');
+const normalizedStoredLocale = storedLocale === 'ua' ? 'uk' : storedLocale;
+const browserLocale = navigator.language?.split('-')[0];
+const initialLocale = supportedLocales.includes(normalizedStoredLocale)
+  ? normalizedStoredLocale
+  : supportedLocales.includes(browserLocale)
+    ? browserLocale
+    : 'de';
+
+if (storedLocale === 'ua') {
+  localStorage.setItem('locale', 'uk');
+}
+
 export const language = {
   legacy: false,
-  locale: 'ru',
+  locale: initialLocale,
   fallbackLocale: 'de',
   messages: {
     ru,
     de,
     en,
-    ua,
+    uk: ua,
   },
 };
 

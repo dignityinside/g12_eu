@@ -5,7 +5,7 @@
 <template>
   <main>
     <div class="error404">
-      <media-block :title="$t('text.error404.title')" :content="$t('text.error404.text')" id="error404" />
+      <media-block :title="$t('text.error404.title')" :content="$t('text.error404.text')" id="error404" is-page-title />
     </div>
   </main>
 </template>

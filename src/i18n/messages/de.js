@@ -2,6 +2,7 @@ export default {
   site: {
     name: 'NEUES LEBEN',
     description: 'christliche gemeinde',
+    metaDescription: 'Christliche Gemeinde Neues Leben in Plauen. Gottesdienst sonntags um 10 Uhr mit Übersetzung auf Deutsch und Englisch.',
     copyright: 'Gemeinde Neues Leben e.V.',
     powered: 'Design und Programmierung: Alexander Schilling',
     donation: {
@@ -22,6 +23,9 @@ export default {
     imprint: 'Impressum',
     bible: 'Bibel',
     back: 'Zur startseite',
+    skipContent: 'Zum Inhalt springen',
+    openNavigation: 'Navigation öffnen',
+    closeNavigation: 'Navigation schließen',
   },
   text: {
     phone: 'Tel. ',
@@ -102,6 +106,9 @@ export default {
     },
     contacts: {
       title: 'Kontakt',
+      showMap: 'Karte laden',
+      mapHint: 'Die Karte wird erst nach Ihrer Zustimmung von Google geladen.',
+      openRoute: 'Route öffnen',
     },
     error404: {
       title: 'Fehler 404',

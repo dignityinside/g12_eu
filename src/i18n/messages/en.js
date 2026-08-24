@@ -2,6 +2,7 @@ export default {
   site: {
     name: 'NEW LIFE',
     description: 'christian church',
+    metaDescription: 'New Life Christian Church in Plauen. Sunday service at 10:00 with German and English interpretation.',
     copyright: 'Gemeinde Neues Leben e.V.',
     powered: 'Design and development: Alexander Schilling',
     donation: {
@@ -22,6 +23,9 @@ export default {
     imprint: 'Imprint',
     bible: 'Bibel',
     back: 'Back to main page',
+    skipContent: 'Skip to content',
+    openNavigation: 'Open navigation',
+    closeNavigation: 'Close navigation',
   },
   text: {
     phone: 'Phone',
@@ -102,6 +106,9 @@ export default {
     },
     contacts: {
       title: 'Contact',
+      showMap: 'Load map',
+      mapHint: 'The Google map will only load after you give consent.',
+      openRoute: 'Open directions',
     },
     error404: {
       title: 'Error 404',

@@ -1,28 +1,39 @@
 <script setup>
-defineProps({
+import { computed } from 'vue';
+
+const props = defineProps({
   title: String,
   content: String,
   image: String,
   id: String,
+  isPageTitle: Boolean,
+  imageWidth: Number,
+  imageHeight: Number,
 });
+
+const imageBase = computed(() => props.image?.replace(/\.[^.]+$/, ''));
 </script>
 
 <template>
   <section :id="id" class="section" :class="{ 'section--image': image }">
     <div class="section__copy">
       <div class="section__label">{{ $t('site.name') }}</div>
-      <h2 class="headline">{{ title }}</h2>
+      <component :is="isPageTitle ? 'h1' : 'h2'" class="headline">{{ title }}</component>
       <div v-if="content" class="content" v-html="content"></div>
       <div class="slot"><slot /></div>
     </div>
     <div v-if="image" class="image-wrap">
-      <img :src="`/img/${image}`" :alt="title" />
+      <picture>
+        <source :srcset="`/img/${imageBase}.avif`" type="image/avif" />
+        <source :srcset="`/img/${imageBase}.webp`" type="image/webp" />
+        <img :src="`/img/${image}`" :alt="title" :width="imageWidth" :height="imageHeight" loading="lazy" decoding="async" />
+      </picture>
     </div>
   </section>
 </template>
 
 <style scoped lang="scss">
-@import "@assets/scss/main.scss";
+@use "@assets/scss/main.scss" as *;
 
 .section {
   margin-bottom: clamp(1.25rem, 3vw, 2.5rem);
@@ -45,6 +56,7 @@ defineProps({
 .section--image { display: grid; gap: 2rem; padding: 0; overflow: hidden; }
 .section--image .section__copy { padding: clamp(1.6rem, 4vw, 3.25rem); }
 .image-wrap { min-height: 360px; }
+.image-wrap picture { display: block; width: 100%; height: 100%; }
 .image-wrap img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 
 @include breakpoint('s') {

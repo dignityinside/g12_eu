@@ -21,7 +21,7 @@ import { language } from '@i18n';
 </template>
 
 <style scoped lang="scss">
-@import '@assets/scss/main.scss';
+@use '@assets/scss/main.scss' as *;
 .item {
   display: flex;
   justify-content: space-between;

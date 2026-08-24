@@ -5,7 +5,7 @@
 <template>
   <main>
     <div class="imprint">
-      <media-block :title="$t('text.contacts.title')" id="imprint">
+      <media-block :title="$t('menu.imprint')" id="imprint" is-page-title>
       <p>Gemeinde Neues Leben e.V.<br>Karlstr. 5-7<br>Germany, 08523 Plauen</p>
 
       <p>{{ $t('text.phone') }}: +49 (176) 61-54-85-30<br>E-Mail: info@g12.eu</p>
