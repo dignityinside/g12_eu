@@ -107,7 +107,7 @@ function scrollTo(id, offset = document.querySelector('.header').offsetHeight + 
 
         <template v-for="item in items" :key="item.name">
           <template v-if="item.id">
-            <button v-if="path === '/'" type="button" @click="scrollTo(item.id)" class="navigation__item">{{ $t(item.name) }}</button>
+            <button v-if="path === '/'" type="button" @click="scrollTo(item.id)" class="navigation__item" :class="{ 'navigation__item--accent': item.accent }">{{ $t(item.name) }}</button>
           </template>
 
           <template v-else>
@@ -133,13 +133,11 @@ function scrollTo(id, offset = document.querySelector('.header').offsetHeight + 
 <style lang="scss" scoped>
 @use "@assets/scss/main.scss" as *;
 
-.navigation { padding: 0; }
+.navigation { flex-shrink: 0; padding: 0; }
 
 .navigation--footer { padding: 0; }
 
 .navigation__wrapper {
-  max-width: $max-width-100;
-  margin: 0 auto;
   display: flex;
   align-items: center;
 }
@@ -151,37 +149,38 @@ function scrollTo(id, offset = document.querySelector('.header').offsetHeight + 
   height: 44px;
   align-items: center;
   color: $color-white;
-  background: transparent;
-  border: 0;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
   padding: 0;
-  border-radius: 12px;
-  font-size: $size-20;
+  border-radius: 14px;
+  font-size: 1.05rem;
   cursor: pointer;
   transition: background .2s ease;
 }
 
-.navigation__toggle:hover { background: rgba(255,255,255,.1); }
+.navigation__toggle:hover { background: rgba(255,255,255,.15); }
 
 .navigation__items {
   display: none;
   flex-direction: column;
 
   .navigation__item {
-    margin: 0.1rem;
-    padding: .55rem .65rem;
+    margin: 0;
+    padding: .58rem .72rem;
     border: 0;
     background-color: transparent;
     color: rgba(255,255,255,.8);
     text-decoration: none;
-    font-size: .83rem;
-    font-weight: 650;
+    border-radius: 999px;
+    font-size: .8rem;
+    font-weight: 700;
     white-space: nowrap;
-    transition: color .2s ease, background .2s ease;
+    transition: color .2s ease, background-color .2s ease, transform .2s ease;
 
     &:hover {
       background-color: rgba(255,255,255,.1);
       color: $color-white;
-      border-radius: 999px;
+      transform: translateY(-1px);
       cursor: pointer;
     }
   }
@@ -192,7 +191,25 @@ function scrollTo(id, offset = document.querySelector('.header').offsetHeight + 
     cursor: pointer;
   }
 
+  .navigation__item--accent {
+    padding-inline: .9rem;
+    background: $color-secondary;
+    color: #311143;
+    box-shadow: 0 5px 16px rgba($color-secondary, .18);
+
+    &:hover {
+      background-color: #ffd16d;
+      color: #25102f;
+    }
+  }
+
   .navigation__item--language {
+    align-self: center;
+    display: grid;
+    place-items: center;
+    min-width: 5.25rem;
+    height: 2.4rem;
+    padding: 0;
     background-color: rgba(255,255,255,.1);
     border: 1px solid rgba(255,255,255,.15);
     border-radius: 999px;
@@ -208,28 +225,48 @@ function scrollTo(id, offset = document.querySelector('.header').offsetHeight + 
 @media (max-width: 1023px) {
   .navigation:not(.navigation--footer) .navigation__items {
     position: absolute;
-    top: 78px;
-    left: 0;
-    right: 0;
-    max-height: calc(100vh - 78px);
-    padding: .85rem $spacing-20 1.25rem;
-    background: rgba(35,14,57,.98);
-    border-top: 1px solid rgba(255,255,255,.08);
-    box-shadow: 0 20px 35px rgba(25,7,38,.28);
+    top: calc(100% - 1px);
+    left: 1rem;
+    right: 1rem;
+    max-height: calc(100svh - 80px);
+    margin-top: 0;
+    padding: .65rem;
+    background: rgba(31,11,48,.98);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 20px;
+    box-shadow: 0 24px 60px rgba(17,5,28,.42), inset 0 1px 0 rgba(255,255,255,.05);
+    backdrop-filter: blur(20px);
     overflow-y: auto;
   }
   .navigation:not(.navigation--footer) .navigation__items .navigation__item {
     width: 100%;
-    margin: .08rem 0;
-    padding: .75rem .8rem;
+    margin: 0;
+    padding: .78rem .9rem;
     text-align: left;
-    border-radius: 10px;
+    border-radius: 13px;
+    font-size: .88rem;
+  }
+  .navigation:not(.navigation--footer) .navigation__items .navigation__item--language {
+    width: 100%;
+    height: 2.75rem;
+    margin-bottom: .35rem;
+    padding: 0;
+    background: rgba(255,255,255,.08);
+  }
+  .navigation:not(.navigation--footer) .navigation__items .navigation__item--accent {
+    margin-top: .35rem;
+    text-align: center;
   }
   .navigation--footer .navigation__item { width: auto; }
 }
 
 @media (min-width: 1024px) {
   .navigation__toggle { display: none; }
-  .navigation:not(.navigation--footer) .navigation__items { display: flex; flex-direction: row; align-items: center; }
+  .navigation:not(.navigation--footer) .navigation__items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .08rem;
+  }
 }
 </style>

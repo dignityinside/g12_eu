@@ -14,7 +14,7 @@ const mainMenuItems = ref([
   { id: 'ministry', name: 'menu.ministries' },
   { id: 'sermons', name: 'menu.sermons' },
   { id: 'contacts', name: 'menu.contacts' },
-  { id: 'donate', name: 'menu.donate' },
+  { id: 'donate', name: 'menu.donate', accent: true },
 ]);
 
 const footerItems = ref([
@@ -109,18 +109,36 @@ watchEffect(() => {
 <style lang="scss">
 @use '@assets/scss/main.scss' as *;
 
-.header { position: sticky; top: 0; z-index: 10; background: rgba(35, 14, 57, .95); border-bottom: 1px solid rgba(255,255,255,.1); backdrop-filter: blur(16px); }
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(31, 11, 48, .96);
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  box-shadow: 0 8px 28px rgba(21, 7, 33, .16);
+  backdrop-filter: blur(18px) saturate(130%);
+}
 .skip-link { position: fixed; top: .75rem; left: .75rem; z-index: 100; padding: .7rem 1rem; border-radius: 10px; background: $color-secondary; color: #281137; font-weight: 800; text-decoration: none; transform: translateY(-150%); transition: transform .2s ease; }
 .skip-link:focus { transform: translateY(0); }
-.header__inner { max-width: $max-width-100; min-height: 78px; margin: 0 auto; padding: 0 $spacing-20; display: flex; align-items: center; justify-content: space-between; gap: $spacing-20; }
-.brand { display: flex; align-items: center; gap: .8rem; color: $color-white; text-decoration: none; flex-shrink: 0; }
-.brand__mark { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 13px; background: $color-secondary; color: #301048; font-size: .82rem; font-weight: 900; letter-spacing: -.03em; box-shadow: 0 8px 28px rgba(0,0,0,.18); }
-.brand__mark--small { width: 38px; height: 38px; }
-.brand__copy { display: flex; flex-direction: column; line-height: 1.15; }
-.brand__title { font-size: .95rem; font-weight: 800; letter-spacing: .08em; }
-.brand__description { margin-top: .25rem; color: rgba(255,255,255,.68); font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; }
+.header__inner {
+  width: 100%;
+  max-width: $max-width-100;
+  min-height: 72px;
+  margin: 0 auto;
+  padding: 0 $spacing-20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.brand { display: flex; align-items: center; gap: .72rem; min-width: 0; color: $color-white; text-decoration: none; flex-shrink: 1; }
+.brand__mark { width: 42px; height: 42px; display: grid; place-items: center; flex: 0 0 42px; border: 1px solid rgba(255,255,255,.35); border-radius: 14px; background: linear-gradient(145deg, #ffd878, $color-secondary); color: #301048; font-size: .78rem; font-weight: 900; letter-spacing: -.03em; box-shadow: 0 8px 24px rgba(242,184,75,.2), inset 0 1px 0 rgba(255,255,255,.65); }
+.brand__mark--small { width: 38px; height: 38px; flex-basis: 38px; }
+.brand__copy { display: flex; min-width: 0; flex-direction: column; line-height: 1.1; }
+.brand__title { overflow: hidden; font-size: .88rem; font-weight: 850; letter-spacing: .075em; text-overflow: ellipsis; white-space: nowrap; }
+.brand__description { margin-top: .28rem; overflow: hidden; color: rgba(255,255,255,.56); font-size: .62rem; font-weight: 650; text-transform: uppercase; letter-spacing: .11em; text-overflow: ellipsis; white-space: nowrap; }
 
-.hero { position: relative; min-height: min(680px, calc(100vh - 78px)); display: flex; align-items: flex-end; overflow: hidden; background: $color-primary; }
+.hero { position: relative; min-height: min(680px, calc(100svh - 72px)); display: flex; align-items: flex-end; overflow: hidden; background: $color-primary; }
 .hero__media { position: absolute; inset: 0; }
 .hero__image { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 48%; }
 .hero__shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(28,10,45,.92) 0%, rgba(43,16,68,.66) 45%, rgba(26,10,39,.15) 100%), linear-gradient(0deg, rgba(26,10,39,.6), transparent 55%); }
@@ -143,5 +161,12 @@ watchEffect(() => {
 .copyright { border-top: 1px solid rgba(255,255,255,.1); padding: 1.2rem $spacing-20; text-align: center; font-size: .78rem; color: rgba(255,255,255,.48); }
 
 @include breakpoint('s') { .footer__inner { flex-direction: row; align-items: center; justify-content: space-between; } }
-@media (max-width: 420px) { .brand__description { display: none; } .hero { min-height: 590px; } }
+@media (min-width: 1024px) {
+  .header__inner { min-height: 76px; }
+  .brand { gap: .8rem; flex-shrink: 0; }
+  .brand__title { font-size: .93rem; }
+  .brand__description { font-size: .64rem; }
+  .hero { min-height: min(680px, calc(100svh - 76px)); }
+}
+@media (max-width: 360px) { .brand__description { display: none; } .hero { min-height: 590px; } }
 </style>
