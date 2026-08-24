@@ -1,50 +1,76 @@
 <script setup>
-  import MediaBlock from '../components/MediaBlock.vue';
+import MediaBlock from '../components/MediaBlock.vue';
 </script>
 
 <template>
   <main>
     <div class="imprint">
       <media-block :title="$t('menu.imprint')" id="imprint" is-page-title>
-      <p>Gemeinde Neues Leben e.V.<br>Karlstr. 5-7<br>Germany, 08523 Plauen</p>
+        <p class="imprint__updated">Stand: August 2026</p>
 
-      <p>{{ $t('text.phone') }}: +49 (176) 61-54-85-30<br>E-Mail: info@g12.eu</p>
+        <section>
+          <h2>Angaben gemäß § 5 DDG und § 18 MStV</h2>
+          <address>
+            <strong>Gemeinde Neues Leben e.V.</strong><br>
+            Karlstraße 5–7<br>
+            08523 Plauen<br>
+            Deutschland
+          </address>
 
-      <h3>Haftung f&uuml;r Inhalte</h3>
+          <p>
+            Vertreten durch den Vorstand<br>
+            Ansprechpartner: Vjaceslav Schilling
+          </p>
 
-      <p>Als Diensteanbieter sind wir gem&auml;&szlig; &sect; 7 Abs.1 TMG f&uuml;r eigene Inhalte auf diesen Seiten nach
-        den allgemeinen Gesetzen verantwortlich. Nach &sect;&sect; 8 bis 10 TMG sind wir als Diensteanbieter jedoch
-        nicht verpflichtet, &uuml;bermittelte oder gespeicherte fremde Informationen zu &uuml;berwachen oder nach Umst&auml;nden
-        zu forschen, die auf eine rechtswidrige T&auml;tigkeit hinweisen.</p>
-      <p>Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen
-        bleiben hiervon unber&uuml;hrt. Eine diesbez&uuml;gliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis
-        einer konkreten Rechtsverletzung m&ouml;glich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden
-        wir diese Inhalte umgehend entfernen.</p>
+          <p>
+            Vereinsregister: Amtsgericht Chemnitz<br>
+            Mitglied im Bund Freikirchlicher Pfingstgemeinden KdöR (BFP)
+          </p>
+        </section>
 
-      <h3>Haftung f&uuml;r Links</h3>
+        <section>
+          <h2>Kontakt</h2>
+          <p>
+            Telefon: <a href="tel:+4917624113132">+49 176 241 13 132</a><br>
+            Telefon: <a href="tel:+4917661548530">+49 176 615 48 530</a><br>
+            E-Mail: <a href="mailto:info@g12.eu">info@g12.eu</a>
+          </p>
+        </section>
 
-      <p>Unser Angebot enth&auml;lt Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben.
-        Deshalb k&ouml;nnen wir f&uuml;r diese fremden Inhalte auch keine Gew&auml;hr &uuml;bernehmen. F&uuml;r die
-        Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die
-        verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf m&ouml;gliche Rechtsverst&ouml;&szlig;e &uuml;berpr&uuml;ft.
-        Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar.</p>
-      <p>Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer
-        Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend
-        entfernen.</p>
+        <section>
+          <h2>Verantwortung für Inhalte</h2>
+          <p>Wir erstellen und pflegen die Inhalte dieser Website mit größtmöglicher Sorgfalt. Eine Gewähr für die Vollständigkeit, Richtigkeit und jederzeitige Aktualität der bereitgestellten Informationen können wir dennoch nicht übernehmen. Gesetzliche Verpflichtungen zur Entfernung oder Sperrung von Informationen bleiben unberührt. Wenn uns eine konkrete Rechtsverletzung bekannt wird, entfernen wir die betreffenden Inhalte unverzüglich.</p>
+        </section>
 
-      <h3>Urheberrecht</h3>
+        <section>
+          <h2>Externe Links</h2>
+          <p>Diese Website enthält Links zu externen Websites, auf deren Inhalte wir keinen Einfluss haben. Für die Inhalte der verlinkten Seiten ist der jeweilige Anbieter verantwortlich. Zum Zeitpunkt der Verlinkung waren für uns keine Rechtsverstöße erkennbar. Wenn uns eine Rechtsverletzung bekannt wird, entfernen wir den betreffenden Link unverzüglich.</p>
+        </section>
 
-      <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen
-        Urheberrecht. Die Vervielf&auml;ltigung, Bearbeitung, Verbreitung und jede Art der Verwertung au&szlig;erhalb
-        der Grenzen des Urheberrechtes bed&uuml;rfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
-        Downloads und Kopien dieser Seite sind nur f&uuml;r den privaten, nicht kommerziellen Gebrauch gestattet.</p>
-      <p>Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter
-        beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine
-        Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von
-        Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</p>
+        <section>
+          <h2>Urheberrecht</h2>
+          <p>Die von uns erstellten Inhalte und Werke auf dieser Website unterliegen dem deutschen Urheberrecht. Jede Verwertung außerhalb der gesetzlichen Grenzen des Urheberrechts bedarf der vorherigen Zustimmung des jeweiligen Rechteinhabers. Soweit Inhalte nicht von uns erstellt wurden, beachten wir die Rechte Dritter und kennzeichnen solche Inhalte entsprechend. Hinweise auf mögliche Urheberrechtsverletzungen nehmen wir unter der oben genannten E-Mail-Adresse entgegen.</p>
+        </section>
 
-      <p>Quelle: <a href="https://www.e-recht24.de" rel="nofollow">e-recht24.de</a></p>
+        <section>
+          <h2>Verbraucherstreitbeilegung</h2>
+          <p>Wir sind weder verpflichtet noch bereit, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+        </section>
+
       </media-block>
     </div>
   </main>
 </template>
+
+<style scoped lang="scss">
+@use '@assets/scss/main.scss' as *;
+
+.imprint { max-width: 900px; margin: 0 auto; }
+.imprint__updated { width: fit-content; margin: 0 0 1.5rem; padding: .35rem .65rem; border-radius: 999px; background: rgba($color-secondary,.2); color: $color-primary; font-size: .76rem; font-weight: 800; }
+.imprint section + section { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba($color-primary,.1); }
+.imprint h2 { margin: 0 0 .75rem; color: $color-primary; font-size: clamp(1.15rem,3vw,1.45rem); line-height: 1.25; }
+.imprint p { color: $color-muted; }
+.imprint address { color: $color-muted; font-style: normal; }
+.imprint address strong { color: $color-primary; }
+.imprint a { font-weight: 750; }
+</style>
