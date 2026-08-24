@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch, nextTick, onBeforeUnmount } from 'vue';
+import { ref, computed, watch, nextTick, onMounted, onBeforeUnmount } from 'vue';
 import { useRoute } from 'vue-router';
 import LanguageSelect from '@components/LanguageSelect.vue';
 
@@ -23,13 +23,22 @@ const props = defineProps({
 });
 
 const isOpen = ref(false);
+const activeId = ref(null);
 const navigationWrapper = ref(null);
 const route = useRoute();
 const path = computed(() => route.path);
 const navigationId = computed(() => props.isFooter ? 'footer-navigation' : 'main-navigation');
 
-watch(path, () => {
+let sectionObserver;
+
+watch(path, async (newPath) => {
   closeMenu();
+  activeId.value = null;
+  sectionObserver?.disconnect();
+  if (newPath === '/') {
+    await nextTick();
+    observeSections();
+  }
 });
 
 watch(isOpen, async (open) => {
@@ -41,7 +50,31 @@ watch(isOpen, async (open) => {
   }
 });
 
-onBeforeUnmount(() => document.body.classList.remove('navigation-open'));
+onMounted(() => {
+  document.addEventListener('pointerdown', handleOutsideClick);
+  observeSections();
+});
+
+onBeforeUnmount(() => {
+  document.body.classList.remove('navigation-open');
+  document.removeEventListener('pointerdown', handleOutsideClick);
+  sectionObserver?.disconnect();
+});
+
+function observeSections() {
+  if (props.isFooter || path.value !== '/') return;
+  const sections = props.items.filter((item) => item.id).map((item) => document.getElementById(item.id)).filter(Boolean);
+  sectionObserver?.disconnect();
+  sectionObserver = new IntersectionObserver((entries) => {
+    const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+    if (visible[0]) activeId.value = visible[0].target.id;
+  }, { rootMargin: '-25% 0px -60% 0px', threshold: [0, .1, .25, .5] });
+  sections.forEach((section) => sectionObserver.observe(section));
+}
+
+function handleOutsideClick(event) {
+  if (isOpen.value && !navigationWrapper.value?.contains(event.target)) closeMenu();
+}
 
 function toggleMenu() {
   isOpen.value = !isOpen.value;
@@ -76,6 +109,7 @@ function handleKeydown(event) {
 }
 
 function scrollTo(id, offset = document.querySelector('.header').offsetHeight + 10) {
+  activeId.value = id;
   window.scrollTo({
     behavior: 'smooth',
     top:
@@ -107,7 +141,7 @@ function scrollTo(id, offset = document.querySelector('.header').offsetHeight + 
 
         <template v-for="item in items" :key="item.name">
           <template v-if="item.id">
-            <button v-if="path === '/'" type="button" @click="scrollTo(item.id)" class="navigation__item" :class="{ 'navigation__item--accent': item.accent }">{{ $t(item.name) }}</button>
+            <button v-if="path === '/'" type="button" @click="scrollTo(item.id)" class="navigation__item" :class="{ 'navigation__item--accent': item.accent, 'navigation__item--active': activeId === item.id }">{{ $t(item.name) }}</button>
           </template>
 
           <template v-else>
