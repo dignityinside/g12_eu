@@ -56,11 +56,6 @@ async function copyIban() {
           <h3>{{ $t('landing.worshipTitle') }}</h3>
           <p>{{ $t('landing.worshipText') }}</p>
         </article>
-        <article>
-          <span>03</span>
-          <h3>{{ $t('landing.translationTitle') }}</h3>
-          <p>{{ $t('landing.translationText') }}</p>
-        </article>
       </div>
     </section>
 
@@ -70,13 +65,18 @@ async function copyIban() {
 
     <media-block
       :title="$t('text.pastor.title')"
-      :content="$t('text.pastor.team') + '<br><br>' + $t('text.pastor.text')"
+      :content="$t('text.pastor.team') + '<br><br>' + $t('text.pastor.summary')"
       image="pastor.jpg"
       :image-alt="$t('text.pastor.imageAlt')"
       :image-width="1155"
       :image-height="1362"
       id="pastor"
-    />
+    >
+      <details class="pastor-details">
+        <summary>{{ $t('text.pastor.more') }}</summary>
+        <div v-html="$t('text.pastor.text')"></div>
+      </details>
+    </media-block>
 
     <history-block />
 
@@ -96,17 +96,16 @@ async function copyIban() {
 
     <support-block />
 
-    <section id="contacts" class="visit-section">
-      <span class="section-eyebrow">{{ $t('landing.visitEyebrow') }}</span>
-      <h2>{{ $t('landing.visitTitle') }}</h2>
-      <p>{{ $t('landing.visitText') }}</p>
-      <div class="visit-section__actions">
-        <a class="landing-button landing-button--primary" href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen" target="_blank" rel="noopener">{{ $t('text.contacts.openRoute') }}</a>
-        <a class="landing-button landing-button--secondary" href="mailto:info@g12.eu">{{ $t('landing.contactUs') }}</a>
+    <section id="contacts" class="contact-section">
+      <div class="contact-section__intro">
+        <span class="section-eyebrow">{{ $t('landing.visitEyebrow') }}</span>
+        <h2>{{ $t('landing.visitTitle') }}</h2>
+        <p>{{ $t('landing.visitText') }}</p>
+        <div class="contact-section__actions">
+          <a class="landing-button landing-button--primary" href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen" target="_blank" rel="noopener">{{ $t('text.contacts.openRoute') }}</a>
+          <a class="landing-button landing-button--secondary" href="mailto:info@g12.eu">{{ $t('landing.contactUs') }}</a>
+        </div>
       </div>
-    </section>
-
-    <section class="contact-section">
       <header class="section-heading section-heading--left">
         <span>{{ $t('site.name') }}</span>
         <h2>{{ $t('text.contacts.title') }}</h2>
@@ -116,7 +115,6 @@ async function copyIban() {
           <span class="contact-card__icon">01</span>
           <strong>{{ $t('text.ministries.address') }}</strong>
           <p>Karlstr. 5–7<br />08523 Plauen, Germany</p>
-          <p>{{ $t('text.ministries.sundayLong') }}</p>
         </div>
         <div class="contact-card">
           <span class="contact-card__icon">02</span>
@@ -192,7 +190,7 @@ async function copyIban() {
 @use '@assets/scss/main.scss' as *;
 
 .landing-page { position: relative; }
-.quick-facts { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; margin-top: -1.5rem; margin-bottom: clamp(4rem, 8vw, 7rem); padding: .7rem; border: 1px solid rgba($color-primary,.09); border-radius: 24px; background: rgba(255,255,255,.94); box-shadow: 0 24px 65px rgba(41,17,59,.14); backdrop-filter: blur(16px); }
+.quick-facts { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr; gap: .65rem; margin-top: -1.5rem; margin-bottom: clamp(4rem, 8vw, 7rem); padding: .7rem; border: 1px solid rgba($color-primary,.09); border-radius: 24px; background: rgba(255,255,255,.94); box-shadow: 0 24px 65px rgba(41,17,59,.14); backdrop-filter: blur(16px); }
 .quick-fact { display: flex; align-items: flex-start; gap: .75rem; min-width: 0; padding: 1rem; border-radius: 17px; background: $color-background; }
 .quick-fact__number { display: grid; place-items: center; flex: 0 0 1.9rem; width: 1.9rem; height: 1.9rem; border-radius: 50%; background: rgba($color-secondary,.28); color: $color-primary; font-size: .64rem; font-weight: 900; }
 .quick-fact div { min-width: 0; }
@@ -202,7 +200,7 @@ async function copyIban() {
 .welcome-section { padding: 0 0 clamp(4rem,8vw,7rem); scroll-margin-top: 95px; }
 .section-heading { max-width: 760px; margin: 0 auto 2.25rem; text-align: center; }
 .section-heading > span, .section-eyebrow { color: $color-primarty-light; font-size: .72rem; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; }
-.section-heading h2, .visit-section h2 { margin: .65rem 0 1rem; color: $color-primary; font-size: clamp(2rem,5vw,3.35rem); line-height: 1.04; letter-spacing: -.045em; }
+.section-heading h2, .contact-section__intro h2 { margin: .65rem 0 1rem; color: $color-primary; font-size: clamp(2rem,5vw,3.35rem); line-height: 1.04; letter-spacing: -.045em; }
 .section-heading p { margin: 0; color: $color-muted; font-size: 1.03rem; }
 .section-heading--left { margin-inline: 0; text-align: left; }
 .expectations { display: grid; gap: 1rem; }
@@ -211,30 +209,37 @@ async function copyIban() {
 .expectations h3 { margin: 1.3rem 0 .55rem; color: $color-primary; font-size: 1.2rem; }
 .expectations p { margin: 0; color: $color-muted; font-size: .92rem; }
 
-.sermon-section { margin-bottom: clamp(1.25rem,3vw,2.5rem); padding: clamp(1.7rem,5vw,3.5rem); border-radius: 28px; background: linear-gradient(135deg,#2b103f,#4b1d69); color: $color-white; box-shadow: 0 24px 60px rgba(41,16,59,.18); scroll-margin-top: 95px; }
-.section-eyebrow--gold { color: $color-secondary; }
-.sermon-section h2 { margin: .65rem 0 1rem; font-size: clamp(2rem,5vw,3.2rem); line-height: 1.05; letter-spacing: -.04em; }
+.pastor-details { margin-top: 1rem; }
+.pastor-details summary { width: fit-content; padding: .65rem .9rem; border: 1px solid rgba($color-primary,.14); border-radius: 999px; color: $color-primary; font-size: .82rem; font-weight: 800; cursor: pointer; list-style: none; }
+.pastor-details summary::-webkit-details-marker { display: none; }
+.pastor-details[open] summary { display: none; }
+.pastor-details div { color: $color-muted; }
+
+.sermon-section { margin-bottom: clamp(1.25rem,3vw,2.5rem); padding: clamp(1.5rem,4vw,2.4rem); border: 1px solid rgba($color-primary,.08); border-radius: 22px; background: linear-gradient(135deg,rgba(255,255,255,.9),rgba($color-secondary,.13)); box-shadow: 0 16px 45px rgba(41,16,59,.07); scroll-margin-top: 95px; }
+.section-eyebrow--gold { color: $color-primarty-light; }
+.sermon-section h2 { margin: .55rem 0 .7rem; color: $color-primary; font-size: clamp(1.75rem,4vw,2.5rem); line-height: 1.05; letter-spacing: -.04em; }
 .sermon-section__header { display: grid; gap: 1.5rem; align-items: end; }
 .sermon-section__copy { max-width: 760px; }
-.sermon-section__text { max-width: 680px; margin: 0; color: rgba(255,255,255,.7); }
+.sermon-section__text { max-width: 680px; margin: 0; color: $color-muted; }
 .sermon-section__actions { display: grid; gap: .65rem; }
-.sermon-link { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 50px; padding: .8rem 1rem; border: 1px solid rgba(255,255,255,.15); border-radius: 14px; background: rgba(255,255,255,.08); color: $color-white; font-size: .82rem; font-weight: 750; text-decoration: none; transition: border-color .2s ease, background-color .2s ease, transform .2s ease; }
-.sermon-link span { color: $color-secondary; font-size: 1rem; }
-.sermon-link--primary { border-color: rgba(247,217,143,.45); background: $color-secondary; color: $color-primary; }
-.sermon-link--primary span { color: $color-primary; }
-.sermon-link:hover { border-color: rgba(255,255,255,.32); background: rgba(255,255,255,.14); transform: translateY(-2px); }
-.sermon-link--primary:hover { border-color: $color-secondary; background: #fbe4ad; }
+.sermon-link { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 48px; padding: .75rem .95rem; border: 1px solid rgba($color-primary,.12); border-radius: 13px; background: rgba(255,255,255,.78); color: $color-primary; font-size: .8rem; font-weight: 750; text-decoration: none; transition: border-color .2s ease, background-color .2s ease, transform .2s ease; }
+.sermon-link span { color: $color-primarty-light; font-size: 1rem; }
+.sermon-link--primary { border-color: $color-primary; background: $color-primary; color: $color-white; }
+.sermon-link--primary span { color: $color-secondary; }
+.sermon-link:hover { border-color: rgba($color-primary,.3); background: $color-white; transform: translateY(-2px); }
+.sermon-link--primary:hover { border-color: $color-primarty-light; background: $color-primarty-light; }
 .sermon-link:focus-visible { outline: 3px solid $color-secondary; outline-offset: 3px; }
 
-.visit-section { margin-bottom: clamp(1.25rem,3vw,2.5rem); padding: clamp(2rem,6vw,4.5rem); border-radius: 28px; background: linear-gradient(135deg,#f7d98f,$color-secondary); text-align: center; scroll-margin-top: 95px; }
-.visit-section h2 { max-width: 760px; margin-inline: auto; }
-.visit-section p { max-width: 660px; margin: 0 auto; color: rgba(49,17,67,.72); font-size: 1.03rem; }
-.visit-section__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; margin-top: 1.6rem; }
 .landing-button { display: inline-flex; align-items: center; justify-content: center; padding: .82rem 1.2rem; border-radius: 999px; font-weight: 800; text-decoration: none; }
 .landing-button--primary { background: $color-primary; color: $color-white; }
 .landing-button--secondary { border: 1px solid rgba($color-primary,.2); background: rgba(255,255,255,.52); color: $color-primary; }
 
-.contact-section { margin-bottom: clamp(1.25rem,3vw,2.5rem); padding: clamp(1.6rem,4vw,3.25rem); border: 1px solid rgba($color-primary,.08); border-radius: 28px; background: $color-white; box-shadow: 0 18px 55px rgba(45,20,65,.07); }
+.contact-section { margin-bottom: clamp(1.25rem,3vw,2.5rem); padding: clamp(1rem,2vw,1.4rem); border: 1px solid rgba($color-primary,.08); border-radius: 28px; background: $color-white; box-shadow: 0 18px 55px rgba(45,20,65,.07); scroll-margin-top: 95px; }
+.contact-section__intro { padding: clamp(1.7rem,5vw,3.5rem); border-radius: 21px; background: linear-gradient(135deg,#f7d98f,$color-secondary); text-align: center; }
+.contact-section__intro h2 { max-width: 760px; margin-inline: auto; }
+.contact-section__intro p { max-width: 660px; margin: 0 auto; color: rgba(49,17,67,.72); font-size: 1.03rem; }
+.contact-section__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; margin-top: 1.6rem; }
+.contact-section > .section-heading { margin-top: clamp(2rem,5vw,3.25rem); padding-inline: clamp(.6rem,2vw,1.85rem); }
 .contact-grid { display: grid; gap: .8rem; }
 .contact-card { padding: 1.25rem; border-radius: 18px; background: $color-background; overflow: hidden; }
 .contact-card__icon { display: inline-grid; place-items: center; width: 2rem; height: 2rem; margin-bottom: .8rem; border-radius: 50%; background: rgba($color-secondary,.32); color: $color-primary; font-size: .7rem; font-weight: 900; }
@@ -273,7 +278,8 @@ async function copyIban() {
 .copy-button { width: fit-content; margin-top: .55rem; padding: .65rem .85rem; border: 0; border-radius: 10px; background: $color-primary; color: $color-white; font-family: inherit; font-weight: 800; cursor: pointer; }
 
 @media (min-width: 667px) {
-  .expectations { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .quick-facts { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .expectations { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .contact-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
   .social-links { grid-template-columns: repeat(3,minmax(0,1fr)); }
 }
@@ -286,13 +292,8 @@ async function copyIban() {
   .sermon-section__header { grid-template-columns: minmax(0,1fr) minmax(220px,280px); }
 }
 
-@media (min-width: 900px) {
-  .quick-facts { grid-template-columns: repeat(3,minmax(0,1fr)); gap: .4rem; }
-}
-
 @media (max-width: 420px) {
-  .quick-facts { grid-template-columns: 1fr; }
-  .visit-section__actions, .map-placeholder__actions { flex-direction: column; }
+  .contact-section__actions, .map-placeholder__actions { flex-direction: column; }
   .landing-button, .map-button, .route-link { width: 100%; }
   .sermon-link { width: 100%; }
 }

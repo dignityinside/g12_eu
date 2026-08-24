@@ -37,7 +37,7 @@ export default {
     serviceValue: 'Sonntag · 10:00 Uhr',
     locationLabel: 'Mitten in Plauen',
     locationValue: 'Karlstraße 5–7',
-    languagesLabel: 'Übersetzung',
+    languagesLabel: 'Sprachen',
     languagesValue: 'Deutsch · Russisch',
     expectEyebrow: 'Willkommen bei uns',
     expectTitle: 'Du bist willkommen – genau so, wie du bist',
@@ -46,8 +46,6 @@ export default {
     communityText: 'Begegne Menschen aus verschiedenen Generationen, Kulturen und Lebensgeschichten.',
     worshipTitle: 'Glaube im Alltag',
     worshipText: 'Gemeinsamer Lobpreis, Gebet und eine verständliche Predigt für dein tägliches Leben.',
-    translationTitle: 'Übersetzung',
-    translationText: 'Der Sonntagsgottesdienst findet auf Deutsch und Russisch statt.',
     beliefsEyebrow: 'Unser Fundament',
     beliefsTitle: 'Woran wir glauben',
     beliefsIntro: 'Unser Glaube gründet sich auf die Bibel und auf Jesus Christus. Als pfingstliche Freikirche rechnen wir mit dem Wirken des Heiligen Geistes – auch heute.',
@@ -100,7 +98,6 @@ export default {
     phone: 'Tel. ',
     address: 'Büro und Adresse für Post:',
     ministries: {
-      sundayLong: 'Sonntag – 10:00 (Deutsch und Russisch).',
       address: 'Die Gottesdienste der Gemeinde „Neues Leben“ finden hier statt',
     },
     ministriesList: [
@@ -161,6 +158,8 @@ export default {
     pastor: {
       title: 'Pastoren',
       team: 'Vjacheslav und Oxana Schilling sind die Pastoren der christlichen Gemeinde „Neues Leben“ in Plauen.',
+      summary: 'Gemeinsam leiten und begleiten sie die Gemeinde. Vjacheslav ist ihr Gründer und leitender Pastor.',
+      more: 'Mehr lesen',
       imageAlt: 'Pastor Vjacheslav Schilling',
       text: 'Vjacheslav Schilling ist Gründer und leitender Pastor der christlichen Gemeinde "Neues Leben" der Stadt Plauen.<br><br>Vjacheslav wurde in Almaty, Kasachstan geboren. Nach der Ankunft mit seiner Familie in Deutschland, gründet er im Jahr 2005 eine russisch-sprachige Gemeinde "Neues Leben".<br><br>Pastor Vjacheslav ist Prediger und Speaker auf vielen Konferenzen und Seminaren.<br><br>Vjacheslav Schilling lebt mit seiner Familie in Stadt Plauen und hat zwei Kinder.',
     },

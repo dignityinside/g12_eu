@@ -37,7 +37,7 @@ export default {
     serviceValue: 'Sunday · 10:00',
     locationLabel: 'In central Plauen',
     locationValue: 'Karlstraße 5–7',
-    languagesLabel: 'Interpretation',
+    languagesLabel: 'Languages',
     languagesValue: 'German · Russian',
     expectEyebrow: 'Welcome to our church',
     expectTitle: 'You are welcome just as you are',
@@ -46,8 +46,6 @@ export default {
     communityText: 'Meet people from different generations, cultures and walks of life.',
     worshipTitle: 'Faith for everyday life',
     worshipText: 'Worship, prayer and a clear message that connects with your daily life.',
-    translationTitle: 'Interpretation',
-    translationText: 'The Sunday service is held in German and Russian.',
     beliefsEyebrow: 'Our foundation',
     beliefsTitle: 'What we believe',
     beliefsIntro: 'Our faith is grounded in the Bible and in Jesus Christ. As a Pentecostal free church, we believe the Holy Spirit is still at work today.',
@@ -100,7 +98,6 @@ export default {
     phone: 'Phone',
     address: 'Post office and address:',
     ministries: {
-      sundayLong: 'Sunday – 10:00 (German and Russian).',
       address: 'Sunday meeting of the New Life Church take place here',
     },
     ministriesList: [
@@ -161,6 +158,8 @@ export default {
     pastor: {
       title: 'Pastors',
       team: 'Vjacheslav and Oxana Schilling are the pastors of New Life Christian Church in Plauen.',
+      summary: 'Together they lead and care for the church. Vjacheslav is its founder and lead pastor.',
+      more: 'Read more',
       imageAlt: 'Pastor Vjacheslav Schilling',
       text: 'Vjacheslav Schilling is the founder and pastor of the Christian Church "New Life" in the city of Plauen.<br><br>Vjacheslav was born in Almaty, Kazakhstan. After arriving in Germany with his family, he founded a Russian-speaking Church "New Life" in 2005.<br><br>Pastor Vjacheslav is a preacher and speaker at many conferences and seminars.<br><br>Vjacheslav Schilling lives with his family in the city of Plauen and has two children.',
     },
