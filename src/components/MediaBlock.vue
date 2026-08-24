@@ -1,56 +1,53 @@
 <script setup>
-  const props = defineProps({
-    title: String,
-    content: String,
-    image: String,
-    id: String,
-  })
+defineProps({
+  title: String,
+  content: String,
+  image: String,
+  id: String,
+});
 </script>
 
 <template>
-  <h3 :id="id" class="headline">{{ title }}</h3>
-  
-  <div v-if="image" class="image">
-    <div class="content" v-html="content"></div>
-    <img :src="`/img/${image}`" alt="" />
-  </div>
-
-  <div v-if="!image && content" class="content" v-html="content"></div>
-
-  <div class="slot">
-    <slot />
-  </div>
+  <section :id="id" class="section" :class="{ 'section--image': image }">
+    <div class="section__copy">
+      <div class="section__label">{{ $t('site.name') }}</div>
+      <h2 class="headline">{{ title }}</h2>
+      <div v-if="content" class="content" v-html="content"></div>
+      <div class="slot"><slot /></div>
+    </div>
+    <div v-if="image" class="image-wrap">
+      <img :src="`/img/${image}`" :alt="title" />
+    </div>
+  </section>
 </template>
 
 <style scoped lang="scss">
-  @import "@assets/scss/main.scss";
+@import "@assets/scss/main.scss";
 
-  .headline {
-    padding: 0;
-    margin: 0;
-    padding: 0 $spacing-20;
-    color: $color-primary;
-  }
+.section {
+  margin-bottom: clamp(1.25rem, 3vw, 2.5rem);
+  padding: clamp(1.6rem, 4vw, 3.25rem);
+  border: 1px solid rgba($color-primary, .08);
+  border-radius: 28px;
+  background: rgba(255,255,255,.86);
+  box-shadow: 0 18px 55px rgba(45, 20, 65, .07);
+  scroll-margin-top: 100px;
+}
 
-  .image {
-    padding-right: $spacing-20;
+.section__label { margin-bottom: .55rem; color: $color-primarty-light; font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.headline { margin: 0; color: $color-primary; font-size: clamp(1.75rem, 4vw, 2.65rem); line-height: 1.08; letter-spacing: -.035em; }
+.content { max-width: 760px; margin-top: 1.25rem; color: $color-muted; }
+.content :deep(p:first-child) { margin-top: 0; }
+.content :deep(a) { font-weight: 700; }
+.slot:not(:empty) { margin-top: 1.4rem; }
+.slot :deep(p) { margin: .45rem 0; }
 
-    @include breakpoint('s') {
-      display: flex;
-    }
+.section--image { display: grid; gap: 2rem; padding: 0; overflow: hidden; }
+.section--image .section__copy { padding: clamp(1.6rem, 4vw, 3.25rem); }
+.image-wrap { min-height: 360px; }
+.image-wrap img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 
-    img {
-      height: 100%;
-      max-width: 100%;
-      padding: $spacing-20;
-    }
-  }
-
-  .content {
-    padding: $spacing-20;
-  }
-
-  .slot {
-    padding: 0 $spacing-20 $spacing-20;
-  }
+@include breakpoint('s') {
+  .section--image { grid-template-columns: 1.15fr .85fr; align-items: stretch; }
+}
 </style>

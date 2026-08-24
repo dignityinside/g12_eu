@@ -1,6 +1,6 @@
 <script setup>
-import { ref, computed } from 'vue';
-import { RouterLink, useRoute } from 'vue-router'
+import { ref, computed, watch } from 'vue';
+import { useRoute } from 'vue-router';
 import LanguageSelect from '@components/LanguageSelect.vue';
 
 const props = defineProps({
@@ -20,11 +20,16 @@ const props = defineProps({
   hideOnLocale: {
     type:    Array,
   }
-})
+});
 
 const isOpen = ref(false);
 const route = useRoute();
 const path = computed(() => route.path);
+const navigationId = computed(() => props.isFooter ? 'footer-navigation' : 'main-navigation');
+
+watch(path, () => {
+  isOpen.value = false;
+});
 
 function scrollTo(id, offset = document.querySelector('.header').offsetHeight + 10) {
   window.scrollTo({
@@ -33,23 +38,32 @@ function scrollTo(id, offset = document.querySelector('.header').offsetHeight + 
       document.getElementById(id).getBoundingClientRect().top -
       document.body.getBoundingClientRect().top -
       offset,
-  })
+  });
+  isOpen.value = false;
 }
 </script>
 
 <template>
   <div class="navigation" :class="isFooter ? 'navigation--footer' : ''">
-    <nav class="navigation__wrapper">
-      <div class="navigation__toggle" @click="isOpen = !isOpen">
-        <font-awesome-icon v-show="!isOpen" icon="fa-solid fa-bars" />
-      </div>
+    <nav class="navigation__wrapper" @keydown.esc="isOpen = false">
+      <button
+        v-if="!isFooter"
+        class="navigation__toggle"
+        type="button"
+        :aria-expanded="isOpen"
+        :aria-controls="navigationId"
+        :aria-label="isOpen ? 'Menü schließen' : 'Menü öffnen'"
+        @click="isOpen = !isOpen"
+      >
+        <font-awesome-icon :icon="isOpen ? 'fa-solid fa-x' : 'fa-solid fa-bars'" />
+      </button>
 
-      <div class="navigation__items" :class="{ 'navigation__items--hidden': !isOpen }">
+      <div :id="navigationId" class="navigation__items" :class="{ 'navigation__items--open': isOpen }">
         <language-select v-if="!hideLanguageSelect" class="navigation__item navigation__item--language" />
 
         <template v-for="item in items" :key="item.name">
           <template v-if="item.id">
-            <span v-if="path === '/'" @click="scrollTo(item.id)" class="navigation__item">{{ $t(item.name) }}</span>
+            <button v-if="path === '/'" type="button" @click="scrollTo(item.id)" class="navigation__item">{{ $t(item.name) }}</button>
           </template>
 
           <template v-else>
@@ -58,7 +72,7 @@ function scrollTo(id, offset = document.querySelector('.header').offsetHeight + 
               <template v-else>{{ item.name }}</template>
             </router-link>
 
-            <a v-if="(item.to && item.external === true && (item.hideOnLocale && !item.hideOnLocale.includes($i18n.locale) || item.hideOnLocale == undefined))" :href="item.to" ref="nofollow" target="_blank" class="navigation__item">
+            <a v-if="(item.to && item.external === true && (item.hideOnLocale && !item.hideOnLocale.includes($i18n.locale) || item.hideOnLocale == undefined))" :href="item.to" rel="nofollow noopener" target="_blank" class="navigation__item">
               <template v-if="(item.i18n === undefined)">{{ $t(item.name) }}</template>
               <template v-else>{{ item.name }}</template>
             </a>
@@ -68,9 +82,6 @@ function scrollTo(id, offset = document.querySelector('.header').offsetHeight + 
         <router-link v-if="!hideBackLink && path !== '/'" to="/" class="navigation__item">{{ $t('menu.back') }}</router-link>
       </div>
 
-      <div v-show="isOpen" class="navigation__toggle" @click="isOpen = !isOpen">
-        <font-awesome-icon icon="fa-solid fa-x" />
-      </div>
     </nav>
   </div>
 </template>
@@ -78,94 +89,103 @@ function scrollTo(id, offset = document.querySelector('.header').offsetHeight + 
 <style lang="scss" scoped>
 @import "@assets/scss/main.scss";
 
-.navigation {
-  background-color: $color-primary;
-  padding: 0;
+.navigation { padding: 0; }
 
-  @include breakpoint('s') {
-    padding: $spacing-5;
-  }
-}
-
-.navigation--footer {
-  border-bottom-left-radius: $spacing-10;
-  border-bottom-right-radius: $spacing-10;
-  padding: $spacing-5;
-
-  @include breakpoint('s') {
-    padding: 0;
-  }
-}
+.navigation--footer { padding: 0; }
 
 .navigation__wrapper {
   max-width: $max-width-100;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
 }
 
 .navigation__toggle {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
   align-items: center;
   color: $color-white;
-  padding: $spacing-10;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  border-radius: 12px;
   font-size: $size-20;
-
-  @include breakpoint('s') {
-    display: none;
-  }
+  cursor: pointer;
+  transition: background .2s ease;
 }
 
+.navigation__toggle:hover { background: rgba(255,255,255,.1); }
+
 .navigation__items {
-  display: flex;
+  display: none;
   flex-direction: column;
 
-  @include breakpoint('s') {
-    flex-direction: row;
-  }
-
-  a {
-    color: $color-white;
-    text-decoration: none;
-    font-size: $size-15;
-
-    &:hover {
-      background: $color-primarty-light;
-      border-radius: $spacing-5;
-      cursor: pointer;
-    }
-  }
-
   .navigation__item {
-    margin: $spacing-5;
-    padding: $spacing-10;
-    color: $color-white;
+    margin: 0.1rem;
+    padding: .55rem .65rem;
+    border: 0;
+    background-color: transparent;
+    color: rgba(255,255,255,.8);
+    text-decoration: none;
+    font-size: .83rem;
+    font-weight: 650;
+    white-space: nowrap;
+    transition: color .2s ease, background .2s ease;
 
     &:hover {
-      background: $color-primarty-light;
-      border-radius: $spacing-5;
+      background-color: rgba(255,255,255,.1);
+      color: $color-white;
+      border-radius: 999px;
       cursor: pointer;
     }
   }
 
   .navigation__item--active {
-    background: $color-primarty-light;
-    border-radius: $spacing-5;
+    background: rgba(255,255,255,.12);
+    border-radius: 999px;
     cursor: pointer;
   }
 
   .navigation__item--language {
-    background: $color-primarty-light;
-    border: none;
-    border-radius: $spacing-5;
+    background-color: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 999px;
     color: $color-white;
   }
 }
 
-.navigation__items--hidden {
-  display: none;
+.navigation__items--open { display: flex; }
 
-  @include breakpoint('s') {
-    display: flex;
+.navigation--footer .navigation__items { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-end; }
+.navigation--footer .navigation__item { color: rgba(255,255,255,.62); font-size: .78rem; }
+
+@media (max-width: 1023px) {
+  .navigation:not(.navigation--footer) .navigation__items {
+    position: absolute;
+    top: 78px;
+    left: 0;
+    right: 0;
+    max-height: calc(100vh - 78px);
+    padding: .85rem $spacing-20 1.25rem;
+    background: rgba(35,14,57,.98);
+    border-top: 1px solid rgba(255,255,255,.08);
+    box-shadow: 0 20px 35px rgba(25,7,38,.28);
+    overflow-y: auto;
   }
+  .navigation:not(.navigation--footer) .navigation__items .navigation__item {
+    width: 100%;
+    margin: .08rem 0;
+    padding: .75rem .8rem;
+    text-align: left;
+    border-radius: 10px;
+  }
+  .navigation--footer .navigation__item { width: auto; }
+}
+
+@media (min-width: 1024px) {
+  .navigation__toggle { display: none; }
+  .navigation:not(.navigation--footer) .navigation__items { display: flex; flex-direction: row; align-items: center; }
 }
 </style>

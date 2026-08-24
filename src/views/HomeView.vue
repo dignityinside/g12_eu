@@ -5,45 +5,64 @@ import MinistriesBlock from '../components/MinistriesBlock.vue';
 
 <template>
   <main>
-    <div class="home">
-      <media-block :title="$t('text.welcome.title')" :content="$t('text.welcome.text')" id="welcome" />
+    <media-block :title="$t('text.welcome.title')" :content="$t('text.welcome.text')" id="welcome" />
+    <media-block :title="$t('text.pastor.title')" :content="$t('text.pastor.text')" image="pastor.jpg" id="pastor" />
+    <ministries-block />
+    <media-block :title="$t('text.sermons.title')" :content="$t('text.sermons.text')" id="sermons" />
 
-      <media-block :title="$t('text.pastor.title')" :content="$t('text.pastor.text')" image="pastor.jpg" id="pastor" />
-
-      <ministries-block />
-
-      <media-block :title="$t('text.sermons.title')" :content="$t('text.sermons.text')" id="sermons" />
-
-      <media-block :title="$t('text.contacts.title')" id="contacts">
-        <p>
-          <strong>{{ $t('text.ministries.address') }}:</strong>
-        </p>
-        <p>Germany, 08523 Plauen, Karlstr. 5-7, Gemeinde Neues Leben e.V.</p>
-        <p>{{ $t('text.ministries.sundayLong') }}</p>
-        <p>
+    <media-block :title="$t('text.contacts.title')" id="contacts">
+      <div class="contact-grid">
+        <div class="contact-card">
+          <span class="contact-card__icon">01</span>
+          <strong>{{ $t('text.ministries.address') }}</strong>
+          <p>Karlstr. 5–7<br />08523 Plauen, Germany</p>
+          <p>{{ $t('text.ministries.sundayLong') }}</p>
+        </div>
+        <div class="contact-card">
+          <span class="contact-card__icon">02</span>
           <strong>{{ $t('text.address') }}</strong>
-        </p>
-        <p>Germany, 08523 Plauen, Karlstr. 5-7, Gemeinde Neues Leben e.V.</p>
-        <p>{{ $t('text.phone') }} +4917624113132, +4917661548530</p>
-        <p>E-mail: info@g12.eu</p>
+          <p>Karlstr. 5–7<br />08523 Plauen, Germany</p>
+        </div>
+        <div class="contact-card">
+          <span class="contact-card__icon">03</span>
+          <strong>{{ $t('menu.contacts') }}</strong>
+          <p><a href="tel:+4917624113132">+49 176 241 13 132</a><br /><a href="tel:+4917661548530">+49 176 615 48 530</a></p>
+          <a href="mailto:info@g12.eu">info@g12.eu</a>
+        </div>
+      </div>
 
-        <iframe
-          allowfullscreen
-          height="450"
-          style="width: 100%; border: none"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1268.8888418942242!2d12.133819957783263!3d50.501095282215616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a1268a354f79c3%3A0x2b667815f5e3d45d!2sKarlstra%C3%9Fe+7%2C+08523+Plauen!5e0!3m2!1sde!2sde!4v1492103663904"
-        />
-      </media-block>
+      <iframe
+        class="map"
+        allowfullscreen
+        loading="lazy"
+        :title="$t('text.contacts.title')"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1268.8888418942242!2d12.133819957783263!3d50.501095282215616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a1268a354f79c3%3A0x2b667815f5e3d45d!2sKarlstra%C3%9Fe+7%2C+08523+Plauen!5e0!3m2!1sde!2sde!4v1492103663904"
+      />
+    </media-block>
 
-      <media-block :title="$t('text.donate.title')" id="donate">
-        <p>
-          {{ $t('site.donation.receiver') }}<br />
-          {{ $t('site.donation.iban') }}<br />
-          {{ $t('site.donation.bic') }}<br />
-          {{ $t('site.donation.bank') }}<br />
-          {{ $t('site.donation.purpose') }}
-        </p>
-      </media-block>
-    </div>
+    <media-block :title="$t('text.donate.title')" id="donate">
+      <div class="donation">
+        <div>{{ $t('site.donation.receiver') }}</div>
+        <div>{{ $t('site.donation.iban') }}</div>
+        <div>{{ $t('site.donation.bic') }}</div>
+        <div>{{ $t('site.donation.bank') }}</div>
+        <div>{{ $t('site.donation.purpose') }}</div>
+      </div>
+    </media-block>
   </main>
 </template>
+
+<style scoped lang="scss">
+@import '@assets/scss/main.scss';
+
+.contact-grid { display: grid; gap: .8rem; }
+.contact-card { padding: 1.25rem; border-radius: 18px; background: $color-background; overflow: hidden; }
+.contact-card__icon { display: inline-grid; place-items: center; width: 2rem; height: 2rem; margin-bottom: .8rem; border-radius: 50%; background: rgba($color-secondary,.32); color: $color-primary; font-size: .7rem; font-weight: 900; }
+.contact-card strong { display: block; color: $color-primary; }
+.contact-card p { color: $color-muted; font-size: .92rem; }
+.contact-card a { font-weight: 750; }
+.map { display: block; width: 100%; height: 420px; margin-top: 1rem; border: 0; border-radius: 20px; filter: saturate(.78) contrast(.96); }
+.donation { display: grid; gap: .55rem; padding: 1.25rem; border-radius: 18px; background: $color-background; color: $color-muted; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .9rem; overflow-wrap: anywhere; }
+
+@include breakpoint('s') { .contact-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+</style>

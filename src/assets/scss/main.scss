@@ -1,43 +1,39 @@
 @import 'breakpoints';
 
-// calcuation: body font size 16px (1rem), 5px/16px=0.312rem;
-
 $spacing-5: 0.313rem;
 $spacing-10: 0.625rem;
 $spacing-15: 0.937rem;
 $spacing-20: 1.25rem;
 $spacing-25: 1.565rem;
 $spacing-30: 1.878rem;
-
-// sizes
-
 $size-10: 0.625rem;
 $size-15: 0.937rem;
 $size-20: 1.25rem;
-
-// max width
-
-$max-width-100: 1024px;
+$max-width-100: 1180px;
 $max-width-75: 960px;
 $max-width-50: 640px;
 $max-width-25: 320px;
-
-// colors
-
 $color-white: #ffffff;
-$color-black: #000000;
-$color-grey: #dcdcdc;
-$color-primary: rgba(76, 29, 149);
-$color-primarty-light: rgba(109, 40, 217);
-$color-secondary: #f6ad55;
+$color-black: #17131f;
+$color-grey: #ded8e8;
+$color-primary: #3d176d;
+$color-primarty-light: #5f2a93;
+$color-secondary: #f2b84b;
+$color-background: #f7f5fa;
+$color-muted: #6d6875;
+$color-surface: #ffffff;
 
-// basic styles
-
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 7rem; }
 body {
   margin: 0;
-  background-color: rgba(229, 231, 235);
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-  line-height: 1.5;
+  background: $color-background;
+  color: $color-black;
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
 }
+a { color: $color-primary; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+button, select { font: inherit; }
+::selection { background: rgba($color-secondary, 0.45); }
