@@ -26,6 +26,7 @@ export default {
     skipContent: 'Zum Inhalt springen',
     openNavigation: 'Navigation öffnen',
     closeNavigation: 'Navigation schließen',
+    language: 'Sprache',
   },
   landing: {
     heroEyebrow: 'Christliche Gemeinde · Plauen',

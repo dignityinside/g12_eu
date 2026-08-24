@@ -26,6 +26,7 @@ export default {
     skipContent: 'Перейти до вмісту',
     openNavigation: 'Відкрити навігацію',
     closeNavigation: 'Закрити навігацію',
+    language: 'Мова',
   },
   landing: {
     heroEyebrow: 'Християнська церква · Плауен',

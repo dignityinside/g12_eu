@@ -10,11 +10,12 @@ function languageChanged() {
 
 <template>
   <label class="language-select">
+    <span class="language-select__label">{{ $t('menu.language') }}</span>
     <span class="language-select__value" aria-hidden="true">{{ locale.toUpperCase() }}</span>
     <svg class="language-select__arrow" aria-hidden="true" width="12" height="8" viewBox="0 0 12 8">
       <path d="m1 1 5 5 5-5" />
     </svg>
-    <select v-model="locale" :aria-label="$t('site.description')" @change="languageChanged">
+    <select v-model="locale" :aria-label="$t('menu.language')" @change="languageChanged">
       <option v-for="language in availableLocales" :key="language" :value="language">
         {{ language.toUpperCase() }}
       </option>
@@ -52,6 +53,8 @@ function languageChanged() {
   letter-spacing: .06em;
   pointer-events: none;
 }
+
+.language-select__label { display: none; }
 
 .language-select__arrow {
   position: absolute;

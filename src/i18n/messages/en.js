@@ -26,6 +26,7 @@ export default {
     skipContent: 'Skip to content',
     openNavigation: 'Open navigation',
     closeNavigation: 'Close navigation',
+    language: 'Language',
   },
   landing: {
     heroEyebrow: 'Christian church · Plauen',

@@ -46,7 +46,7 @@ watch(isOpen, async (open) => {
   document.body.classList.toggle('navigation-open', open);
   if (open) {
     await nextTick();
-    navigationWrapper.value?.querySelector('.navigation__items .navigation__item')?.focus();
+    navigationWrapper.value?.querySelector('.navigation__items button.navigation__item, .navigation__items a.navigation__item')?.focus();
   }
 });
 
@@ -137,7 +137,7 @@ function scrollTo(id, offset = document.querySelector('.header').offsetHeight + 
       </button>
 
       <div :id="navigationId" class="navigation__items" :class="{ 'navigation__items--open': isOpen }">
-        <language-select v-if="!hideLanguageSelect" class="navigation__item navigation__item--language" />
+        <language-select v-if="!hideLanguageSelect" class="navigation__item navigation__item--language" @change="closeMenu" />
 
         <template v-for="item in items" :key="item.name">
           <template v-if="item.id">
@@ -193,6 +193,7 @@ function scrollTo(id, offset = document.querySelector('.header').offsetHeight + 
 }
 
 .navigation__toggle:hover { background: rgba(255,255,255,.15); }
+.navigation__toggle[aria-expanded='true'] { border-color: $color-secondary; background: $color-secondary; color: $color-primary; }
 
 .navigation__items {
   display: none;
@@ -258,40 +259,87 @@ function scrollTo(id, offset = document.querySelector('.header').offsetHeight + 
 
 @media (max-width: 1023px) {
   .navigation:not(.navigation--footer) .navigation__items {
-    position: absolute;
-    top: calc(100% - 1px);
-    left: 1rem;
+    position: fixed;
+    top: 80px;
     right: 1rem;
-    max-height: calc(100svh - 80px);
-    margin-top: 0;
-    padding: .65rem;
-    background: rgba(31,11,48,.98);
+    display: flex;
+    width: min(360px, calc(100vw - 2rem));
+    max-height: calc(100svh - 96px);
+    padding: .75rem;
+    background: rgba(31,11,48,.985);
     border: 1px solid rgba(255,255,255,.12);
-    border-radius: 20px;
-    box-shadow: 0 24px 60px rgba(17,5,28,.42), inset 0 1px 0 rgba(255,255,255,.05);
+    border-radius: 18px;
+    box-shadow: 0 24px 60px rgba(17,5,28,.48), inset 0 1px 0 rgba(255,255,255,.05);
     backdrop-filter: blur(20px);
     overflow-y: auto;
+    overscroll-behavior: contain;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px) scale(.985);
+    transform-origin: top right;
+    transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
+  }
+  .navigation:not(.navigation--footer) .navigation__items--open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+    box-shadow: 0 0 0 100vmax rgba(17,5,28,.38), 0 24px 60px rgba(17,5,28,.48), inset 0 1px 0 rgba(255,255,255,.05);
   }
   .navigation:not(.navigation--footer) .navigation__items .navigation__item {
     width: 100%;
     margin: 0;
-    padding: .78rem .9rem;
+    padding: .82rem .9rem;
     text-align: left;
-    border-radius: 13px;
-    font-size: .88rem;
+    border-radius: 11px;
+    font-size: .9rem;
+    transform: none;
+  }
+  .navigation:not(.navigation--footer) .navigation__items .navigation__item:hover {
+    transform: none;
+  }
+  .navigation:not(.navigation--footer) .navigation__items .navigation__item--active {
+    padding-left: .75rem;
+    border-left: 3px solid $color-secondary;
+    background: rgba(255,255,255,.1);
+    color: $color-white;
   }
   .navigation:not(.navigation--footer) .navigation__items .navigation__item--language {
+    order: 2;
+    grid-template-columns: minmax(0,1fr) auto;
+    place-items: center stretch;
     width: 100%;
     height: 2.75rem;
-    margin-bottom: .35rem;
-    padding: 0;
+    margin-top: .45rem;
+    padding: 0 .9rem;
+    border-top: 1px solid rgba(255,255,255,.06);
     background: rgba(255,255,255,.08);
+  }
+  .navigation:not(.navigation--footer) .navigation__item--language :deep(.language-select__label) {
+    display: block;
+    color: rgba(255,255,255,.66);
+    font-size: .76rem;
+    font-weight: 700;
+  }
+  .navigation:not(.navigation--footer) .navigation__item--language :deep(.language-select__value) {
+    justify-self: end;
+    margin-right: 1.4rem;
   }
   .navigation:not(.navigation--footer) .navigation__items .navigation__item--accent {
     margin-top: .35rem;
     text-align: center;
   }
   .navigation--footer .navigation__item { width: auto; }
+}
+
+@media (max-width: 480px) {
+  .navigation:not(.navigation--footer) .navigation__items {
+    top: 76px;
+    right: .65rem;
+    width: calc(100vw - 1.3rem);
+    max-height: calc(100svh - 88px);
+  }
 }
 
 @media (min-width: 1024px) {
