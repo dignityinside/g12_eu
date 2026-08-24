@@ -9,7 +9,7 @@ const showMap = ref(false);
 <template>
   <main>
     <media-block :title="$t('text.welcome.title')" :content="$t('text.welcome.text')" id="welcome" />
-    <media-block :title="$t('text.pastor.title')" :content="$t('text.pastor.text')" image="pastor.jpg" :image-width="330" :image-height="389" id="pastor" />
+    <media-block :title="$t('text.pastor.title')" :content="$t('text.pastor.text')" image="pastor.jpg" :image-width="1155" :image-height="1362" id="pastor" />
     <ministries-block />
     <media-block :title="$t('text.sermons.title')" :content="$t('text.sermons.text')" id="sermons" />
 
