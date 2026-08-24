@@ -11,9 +11,9 @@ const isHome = computed(() => route.path === '/');
 const mainMenuItems = ref([
   { id: 'welcome', name: 'menu.church' },
   { id: 'ministry', name: 'menu.ministries' },
+  { id: 'contacts', name: 'menu.contacts' },
   { id: 'pastor', name: 'menu.pastor' },
   { id: 'sermons', name: 'menu.sermons' },
-  { id: 'contacts', name: 'menu.contacts' },
   { id: 'donate', name: 'menu.donate', accent: true },
 ]);
 

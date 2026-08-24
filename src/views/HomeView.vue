@@ -62,61 +62,18 @@ async function copyIban() {
 
     <first-visit-block />
 
-    <beliefs-block />
-
     <ministries-block />
-
-    <media-block
-      :title="$t('text.pastor.title')"
-      :content="$t('text.pastor.team') + '<br><br>' + $t('text.pastor.summary')"
-      image="pastor.jpg"
-      :image-alt="$t('text.pastor.imageAlt')"
-      :image-width="1155"
-      :image-height="1362"
-      id="pastor"
-    >
-      <details class="pastor-details">
-        <summary>{{ $t('text.pastor.more') }}</summary>
-        <div v-html="$t('text.pastor.text')"></div>
-      </details>
-    </media-block>
-
-    <history-block />
-
-    <section id="sermons" class="sermon-section">
-      <div class="sermon-section__header">
-        <div class="sermon-section__copy">
-          <span class="section-eyebrow section-eyebrow--gold">{{ $t('landing.sermonEyebrow') }}</span>
-          <h2>{{ $t('text.sermons.title') }}</h2>
-          <p class="sermon-section__text">{{ $t('landing.sermonIntro') }}</p>
-        </div>
-        <div class="sermon-section__actions">
-          <a class="sermon-link sermon-link--primary" href="https://www.youtube.com/channel/UCgECrFqV9vn-yxOGARqHoVw" target="_blank" rel="noopener">{{ $t('landing.youtube') }} <span>↗</span></a>
-          <a class="sermon-link" href="https://t.me/NeuesLebenPL" target="_blank" rel="noopener">{{ $t('landing.telegram') }} <span>↗</span></a>
-        </div>
-      </div>
-    </section>
-
-    <support-block />
 
     <section id="contacts" class="contact-section">
       <div class="contact-section__intro">
         <span class="section-eyebrow">{{ $t('landing.visitEyebrow') }}</span>
         <h2>{{ $t('landing.visitTitle') }}</h2>
         <p>{{ $t('landing.visitText') }}</p>
-        <div class="contact-section__actions">
-          <a class="landing-button landing-button--primary" href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen" target="_blank" rel="noopener">{{ $t('text.contacts.openRoute') }}</a>
-          <a class="landing-button landing-button--secondary" href="mailto:info@g12.eu">{{ $t('landing.contactUs') }}</a>
-        </div>
       </div>
-      <header class="section-heading section-heading--left">
-        <span>{{ $t('site.name') }}</span>
-        <h2>{{ $t('text.contacts.title') }}</h2>
-      </header>
       <div class="contact-grid">
         <div class="contact-card">
           <span class="contact-card__icon">01</span>
-          <strong>{{ $t('text.ministries.address') }}</strong>
+          <strong>{{ $t('landing.scheduleLocation') }}</strong>
           <p>Karlstr. 5–7<br />08523 Plauen, Germany</p>
         </div>
         <div class="contact-card">
@@ -132,6 +89,23 @@ async function copyIban() {
           <a href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen" target="_blank" rel="noopener">{{ $t('text.contacts.openRoute') }} ↗</a>
         </div>
       </div>
+
+      <div v-if="!showMap" class="map-placeholder">
+        <p>{{ $t('text.contacts.mapHint') }}</p>
+        <div class="map-placeholder__actions">
+          <button type="button" class="map-button" @click="showMap = true">{{ $t('text.contacts.showMap') }}</button>
+          <a class="route-link" href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen" target="_blank" rel="noopener">{{ $t('text.contacts.openRoute') }}</a>
+        </div>
+      </div>
+
+      <iframe
+        v-else
+        class="map"
+        allowfullscreen
+        loading="lazy"
+        :title="$t('text.contacts.title')"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1268.8888418942242!2d12.133819957783263!3d50.501095282215616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a1268a354f79c3%3A0x2b667815f5e3d45d!2sKarlstra%C3%9Fe+7%2C+08523+Plauen!5e0!3m2!1sde!2sde!4v1492103663904"
+      />
 
       <div class="social-section">
         <div class="social-section__copy">
@@ -153,24 +127,42 @@ async function copyIban() {
           </a>
         </div>
       </div>
+    </section>
 
-      <div v-if="!showMap" class="map-placeholder">
-        <p>{{ $t('text.contacts.mapHint') }}</p>
-        <div class="map-placeholder__actions">
-          <button type="button" class="map-button" @click="showMap = true">{{ $t('text.contacts.showMap') }}</button>
-          <a class="route-link" href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen" target="_blank" rel="noopener">{{ $t('text.contacts.openRoute') }}</a>
+    <beliefs-block />
+
+    <media-block
+      :title="$t('text.pastor.title')"
+      :content="$t('text.pastor.team') + '<br><br>' + $t('text.pastor.summary')"
+      image="pastor.jpg"
+      :image-alt="$t('text.pastor.imageAlt')"
+      :image-width="1155"
+      :image-height="1362"
+      id="pastor"
+    >
+      <details class="pastor-details">
+        <summary>{{ $t('text.pastor.more') }}</summary>
+        <div v-html="$t('text.pastor.text')"></div>
+      </details>
+    </media-block>
+
+    <section id="sermons" class="sermon-section">
+      <div class="sermon-section__header">
+        <div class="sermon-section__copy">
+          <span class="section-eyebrow section-eyebrow--gold">{{ $t('landing.sermonEyebrow') }}</span>
+          <h2>{{ $t('text.sermons.title') }}</h2>
+          <p class="sermon-section__text">{{ $t('landing.sermonIntro') }}</p>
+        </div>
+        <div class="sermon-section__actions">
+          <a class="sermon-link sermon-link--primary" href="https://www.youtube.com/channel/UCgECrFqV9vn-yxOGARqHoVw" target="_blank" rel="noopener">{{ $t('landing.youtube') }} <span>↗</span></a>
+          <a class="sermon-link" href="https://t.me/NeuesLebenPL" target="_blank" rel="noopener">{{ $t('landing.telegram') }} <span>↗</span></a>
         </div>
       </div>
-
-      <iframe
-        v-else
-        class="map"
-        allowfullscreen
-        loading="lazy"
-        :title="$t('text.contacts.title')"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1268.8888418942242!2d12.133819957783263!3d50.501095282215616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a1268a354f79c3%3A0x2b667815f5e3d45d!2sKarlstra%C3%9Fe+7%2C+08523+Plauen!5e0!3m2!1sde!2sde!4v1492103663904"
-      />
     </section>
+
+    <support-block />
+
+    <history-block />
 
     <media-block :title="$t('text.donate.title')" id="donate">
       <p class="donation-intro">{{ $t('landing.donationIntro') }}</p>
@@ -233,22 +225,16 @@ async function copyIban() {
 .sermon-link--primary:hover { border-color: $color-primarty-light; background: $color-primarty-light; }
 .sermon-link:focus-visible { outline: 3px solid $color-secondary; outline-offset: 3px; }
 
-.landing-button { display: inline-flex; align-items: center; justify-content: center; padding: .82rem 1.2rem; border-radius: 999px; font-weight: 800; text-decoration: none; }
-.landing-button--primary { background: $color-primary; color: $color-white; }
-.landing-button--secondary { border: 1px solid rgba($color-primary,.2); background: rgba(255,255,255,.52); color: $color-primary; }
-
 .contact-section { margin-bottom: clamp(1.25rem,3vw,2.5rem); padding: clamp(1rem,2vw,1.4rem); border: 1px solid rgba($color-primary,.08); border-radius: 28px; background: $color-white; box-shadow: 0 18px 55px rgba(45,20,65,.07); scroll-margin-top: 95px; }
 .contact-section__intro { padding: clamp(1.7rem,5vw,3.5rem); border-radius: 21px; background: linear-gradient(135deg,#f7d98f,$color-secondary); text-align: center; }
 .contact-section__intro h2 { max-width: 760px; margin-inline: auto; }
 .contact-section__intro p { max-width: 660px; margin: 0 auto; color: rgba(49,17,67,.72); font-size: 1.03rem; }
-.contact-section__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; margin-top: 1.6rem; }
-.contact-section > .section-heading { margin-top: clamp(2rem,5vw,3.25rem); padding-inline: clamp(.6rem,2vw,1.85rem); }
-.contact-grid { display: grid; gap: .8rem; }
-.contact-card { padding: 1.25rem; border-radius: 18px; background: $color-background; overflow: hidden; }
+.contact-grid { display: grid; gap: .8rem; margin-top: 1rem; }
+.contact-card { min-width: 0; padding: 1.25rem; border: 1px solid rgba($color-primary,.06); border-radius: 18px; background: $color-background; overflow: hidden; }
 .contact-card__icon { display: inline-grid; place-items: center; width: 2rem; height: 2rem; margin-bottom: .8rem; border-radius: 50%; background: rgba($color-secondary,.32); color: $color-primary; font-size: .7rem; font-weight: 900; }
 .contact-card strong { display: block; color: $color-primary; }
-.contact-card p { color: $color-muted; font-size: .92rem; }
-.contact-card a { font-weight: 750; }
+.contact-card p { margin: .55rem 0; color: $color-muted; font-size: .92rem; line-height: 1.55; }
+.contact-card a { color: $color-primarty-light; font-weight: 800; overflow-wrap: anywhere; }
 .social-section { display: grid; gap: 1.1rem; margin-top: 1rem; padding: 1.25rem; border: 1px solid rgba($color-primary,.08); border-radius: 20px; background: linear-gradient(135deg,rgba($color-primary,.035),rgba($color-secondary,.12)); }
 .social-section__copy { display: grid; gap: .25rem; }
 .social-section__copy > span { color: $color-muted; font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
@@ -265,8 +251,8 @@ async function copyIban() {
 .social-link__copy strong { color: $color-primary; font-size: .88rem; }
 .social-link__copy small { overflow: hidden; color: $color-muted; font-size: .73rem; text-overflow: ellipsis; white-space: nowrap; }
 .social-link__arrow { color: $color-primarty-light; font-weight: 900; }
-.map { display: block; width: 100%; height: 420px; margin-top: 1rem; border: 0; border-radius: 20px; filter: saturate(.78) contrast(.96); }
-.map-placeholder { display: grid; place-items: center; min-height: 280px; margin-top: 1rem; padding: 2rem; border-radius: 20px; background: linear-gradient(135deg, rgba($color-primary,.09), rgba($color-secondary,.18)); text-align: center; }
+.map { display: block; width: 100%; height: 360px; margin-top: 1rem; border: 0; border-radius: 20px; filter: saturate(.78) contrast(.96); }
+.map-placeholder { display: grid; place-items: center; min-height: 220px; margin-top: 1rem; padding: 2rem; border-radius: 20px; background: linear-gradient(135deg, rgba($color-primary,.09), rgba($color-secondary,.18)); text-align: center; }
 .map-placeholder p { max-width: 470px; color: $color-muted; }
 .map-placeholder__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; }
 .map-button, .route-link { display: inline-flex; align-items: center; justify-content: center; padding: .75rem 1.1rem; border-radius: 999px; font-weight: 800; text-decoration: none; cursor: pointer; }
@@ -296,8 +282,8 @@ async function copyIban() {
 }
 
 @media (max-width: 420px) {
-  .contact-section__actions, .map-placeholder__actions { flex-direction: column; }
-  .landing-button, .map-button, .route-link { width: 100%; }
+  .map-placeholder__actions { flex-direction: column; }
+  .map-button, .route-link { width: 100%; }
   .sermon-link { width: 100%; }
 }
 </style>

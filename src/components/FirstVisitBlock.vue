@@ -1,14 +1,14 @@
 <script setup>
 const questions = [
+  'preparation',
   'duration',
   'expectations',
+  'language',
   'children',
   'parking',
   'accessibility',
-  'language',
   'registration',
   'everyone',
-  'preparation',
   'clothing',
 ];
 </script>
