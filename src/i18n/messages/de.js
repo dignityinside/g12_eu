@@ -2,7 +2,7 @@ export default {
   site: {
     name: 'NEUES LEBEN',
     description: 'christliche gemeinde',
-    metaDescription: 'Christliche Gemeinde Neues Leben in Plauen. Gottesdienst sonntags um 10 Uhr mit Übersetzung auf Deutsch und Englisch.',
+    metaDescription: 'Christliche Gemeinde Neues Leben in Plauen. Gottesdienst sonntags um 10 Uhr auf Deutsch und Russisch.',
     copyright: 'Gemeinde Neues Leben e.V.',
     powered: 'Design und Programmierung: Alexander Schilling',
     donation: {
@@ -15,7 +15,7 @@ export default {
   },
   menu: {
     church: 'Gemeinde',
-    pastor: 'Pastor',
+    pastor: 'Pastoren',
     ministries: 'Gottesdienste',
     sermons: 'Predigten',
     contacts: 'Kontakt',
@@ -38,9 +38,7 @@ export default {
     locationLabel: 'Mitten in Plauen',
     locationValue: 'Karlstraße 5–7',
     languagesLabel: 'Übersetzung',
-    languagesValue: 'Deutsch · Englisch · Russisch',
-    familiesLabel: 'Für Familien',
-    familiesValue: 'Kinder sind willkommen',
+    languagesValue: 'Deutsch · Russisch',
     expectEyebrow: 'Willkommen bei uns',
     expectTitle: 'Du bist willkommen – genau so, wie du bist',
     expectText: 'Unsere Türen stehen allen offen. Gemeinsam möchten wir Gott begegnen, im Glauben wachsen und füreinander da sein.',
@@ -49,13 +47,12 @@ export default {
     worshipTitle: 'Glaube im Alltag',
     worshipText: 'Gemeinsamer Lobpreis, Gebet und eine verständliche Predigt für dein tägliches Leben.',
     translationTitle: 'Übersetzung',
-    translationText: 'Der Sonntagsgottesdienst wird auf Deutsch und Englisch übersetzt.',
+    translationText: 'Der Sonntagsgottesdienst findet auf Deutsch und Russisch statt.',
     scheduleEyebrow: 'Unsere Woche',
     scheduleLocation: 'Treffpunkt',
-    scheduleNote: 'Der Sonntagsgottesdienst wird auf Deutsch und Englisch übersetzt.',
+    scheduleNote: 'Der Sonntagsgottesdienst findet auf Deutsch und Russisch statt.',
     sermonEyebrow: 'Impulse für deinen Alltag',
     sermonIntro: 'Höre aktuelle Predigten aus unserer Gemeinde und entdecke weitere Botschaften auf unseren Kanälen.',
-    latestSermon: 'Aktuelle Predigt',
     youtube: 'Alle Predigten auf YouTube',
     telegram: 'Weitere Inhalte auf Telegram',
     visitEyebrow: 'Komm vorbei',
@@ -75,7 +72,7 @@ export default {
     phone: 'Tel. ',
     address: 'Büro und Adresse für Post:',
     ministries: {
-      sundayLong: 'Sonntag – 10:00 (mit Übersetzung auf Deutsch und Englisch).',
+      sundayLong: 'Sonntag – 10:00 (Deutsch und Russisch).',
       address: 'Die Gottesdienste der Gemeinde „Neues Leben“ finden hier statt',
     },
     ministriesList: [
@@ -134,7 +131,9 @@ export default {
       text: 'Wir sind christliche Gemeinde "Neues Leben" der Stadt Plauen, Deutschland.<br><br>In unsere Gemeinde ist jeder herzlich willkommen.<br><br>Pastoren der Gemeinde sind Vjaceslav und Oxana Schilling.',
     },
     pastor: {
-      title: 'Pastor',
+      title: 'Pastoren',
+      team: 'Vjacheslav und Oxana Schilling sind die Pastoren der christlichen Gemeinde „Neues Leben“ in Plauen.',
+      imageAlt: 'Pastor Vjacheslav Schilling',
       text: 'Vjacheslav Schilling ist Gründer und leitender Pastor der christlichen Gemeinde "Neues Leben" der Stadt Plauen.<br><br>Vjacheslav wurde in Almaty, Kasachstan geboren. Nach der Ankunft mit seiner Familie in Deutschland, gründet er im Jahr 2005 eine russisch-sprachige Gemeinde "Neues Leben".<br><br>Pastor Vjacheslav ist Prediger und Speaker auf vielen Konferenzen und Seminaren.<br><br>Vjacheslav Schilling lebt mit seiner Familie in Stadt Plauen und hat zwei Kinder.',
     },
     sermons: {

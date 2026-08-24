@@ -6,11 +6,6 @@ import MinistriesBlock from '../components/MinistriesBlock.vue';
 const showMap = ref(false);
 const ibanCopied = ref(false);
 const iban = 'DE19870958245028779013';
-const latestSermons = [
-  { id: 'G_uzVpI6wRE', title: '«Научающая благодать» — пастор Слава', date: '23.08.2026' },
-  { id: 'W84DfwB3fs8', title: '«Явилась благодать» — пастор Слава', date: '16.08.2026' },
-  { id: 'TC7x27yEV78', title: '«Жизнь по благодати» — пастор Слава', date: '09.08.2026' },
-];
 const socialChannels = [
   { name: 'Instagram', handle: '@neuesleben.church', short: 'IG', className: 'instagram', url: 'https://www.instagram.com/neuesleben.church/' },
   { name: 'YouTube', handle: 'Neues Leben Plauen', short: 'YT', className: 'youtube', url: 'https://www.youtube.com/channel/UCgECrFqV9vn-yxOGARqHoVw' },
@@ -38,10 +33,6 @@ async function copyIban() {
       <article class="quick-fact">
         <span class="quick-fact__number">03</span>
         <div><span>{{ $t('landing.languagesLabel') }}</span><strong>{{ $t('landing.languagesValue') }}</strong></div>
-      </article>
-      <article class="quick-fact">
-        <span class="quick-fact__number">04</span>
-        <div><span>{{ $t('landing.familiesLabel') }}</span><strong>{{ $t('landing.familiesValue') }}</strong></div>
       </article>
     </section>
 
@@ -74,8 +65,9 @@ async function copyIban() {
 
     <media-block
       :title="$t('text.pastor.title')"
-      :content="$t('text.pastor.text')"
+      :content="$t('text.pastor.team') + '<br><br>' + $t('text.pastor.text')"
       image="pastor.jpg"
+      :image-alt="$t('text.pastor.imageAlt')"
       :image-width="1155"
       :image-height="1362"
       id="pastor"
@@ -92,27 +84,6 @@ async function copyIban() {
           <a class="sermon-link sermon-link--primary" href="https://www.youtube.com/channel/UCgECrFqV9vn-yxOGARqHoVw" target="_blank" rel="noopener">{{ $t('landing.youtube') }} <span>↗</span></a>
           <a class="sermon-link" href="https://t.me/NeuesLebenPL" target="_blank" rel="noopener">{{ $t('landing.telegram') }} <span>↗</span></a>
         </div>
-      </div>
-      <div class="sermon-videos">
-        <article v-for="(sermon, index) in latestSermons" :key="sermon.id" class="sermon-card">
-          <div class="sermon-card__topline">
-            <span>{{ $t('landing.latestSermon') }}</span>
-            <span>0{{ index + 1 }}</span>
-          </div>
-          <iframe
-            class="sermon-video"
-            :src="`https://www.youtube-nocookie.com/embed/${sermon.id}`"
-            :title="sermon.title"
-            loading="lazy"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          />
-          <div class="sermon-card__content">
-            <h3>{{ sermon.title }}</h3>
-            <time :datetime="sermon.date.split('.').reverse().join('-')">{{ sermon.date }}</time>
-          </div>
-        </article>
       </div>
     </section>
 
@@ -234,18 +205,9 @@ async function copyIban() {
 .sermon-section { margin-bottom: clamp(1.25rem,3vw,2.5rem); padding: clamp(1.7rem,5vw,3.5rem); border-radius: 28px; background: linear-gradient(135deg,#2b103f,#4b1d69); color: $color-white; box-shadow: 0 24px 60px rgba(41,16,59,.18); scroll-margin-top: 95px; }
 .section-eyebrow--gold { color: $color-secondary; }
 .sermon-section h2 { margin: .65rem 0 1rem; font-size: clamp(2rem,5vw,3.2rem); line-height: 1.05; letter-spacing: -.04em; }
-.sermon-section__header { display: grid; gap: 1.5rem; align-items: end; margin-bottom: clamp(1.6rem,4vw,2.5rem); }
+.sermon-section__header { display: grid; gap: 1.5rem; align-items: end; }
 .sermon-section__copy { max-width: 760px; }
 .sermon-section__text { max-width: 680px; margin: 0; color: rgba(255,255,255,.7); }
-.sermon-videos { display: grid; gap: 1rem; }
-.sermon-card { min-width: 0; overflow: hidden; border: 1px solid rgba(255,255,255,.12); border-radius: 18px; background: rgba(255,255,255,.07); transition: border-color .2s ease, transform .2s ease, background-color .2s ease; }
-.sermon-card:hover { border-color: rgba(247,217,143,.42); background: rgba(255,255,255,.1); transform: translateY(-3px); }
-.sermon-card__topline { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .65rem 1rem; border-bottom: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.55); font-size: .66rem; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
-.sermon-card__topline span:last-child { color: $color-secondary; }
-.sermon-video { display: block; width: 100%; aspect-ratio: 16/9; border: 0; background: #160923; }
-.sermon-card__content { display: flex; min-height: 92px; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: .7rem; padding: 1rem; }
-.sermon-card h3 { margin: 0; color: $color-white; font-size: .92rem; line-height: 1.4; }
-.sermon-card time { color: rgba(255,255,255,.5); font-size: .76rem; }
 .sermon-section__actions { display: grid; gap: .65rem; }
 .sermon-link { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 50px; padding: .8rem 1rem; border: 1px solid rgba(255,255,255,.15); border-radius: 14px; background: rgba(255,255,255,.08); color: $color-white; font-size: .82rem; font-weight: 750; text-decoration: none; transition: border-color .2s ease, background-color .2s ease, transform .2s ease; }
 .sermon-link span { color: $color-secondary; font-size: 1rem; }
@@ -253,7 +215,7 @@ async function copyIban() {
 .sermon-link--primary span { color: $color-primary; }
 .sermon-link:hover { border-color: rgba(255,255,255,.32); background: rgba(255,255,255,.14); transform: translateY(-2px); }
 .sermon-link--primary:hover { border-color: $color-secondary; background: #fbe4ad; }
-.sermon-link:focus-visible, .sermon-video:focus-visible { outline: 3px solid $color-secondary; outline-offset: 3px; }
+.sermon-link:focus-visible { outline: 3px solid $color-secondary; outline-offset: 3px; }
 
 .visit-section { margin-bottom: clamp(1.25rem,3vw,2.5rem); padding: clamp(2rem,6vw,4.5rem); border-radius: 28px; background: linear-gradient(135deg,#f7d98f,$color-secondary); text-align: center; scroll-margin-top: 95px; }
 .visit-section h2 { max-width: 760px; margin-inline: auto; }
@@ -313,11 +275,10 @@ async function copyIban() {
 
 @media (min-width: 800px) {
   .sermon-section__header { grid-template-columns: minmax(0,1fr) minmax(220px,280px); }
-  .sermon-videos { grid-template-columns: repeat(3,minmax(0,1fr)); }
 }
 
 @media (min-width: 900px) {
-  .quick-facts { grid-template-columns: repeat(4,minmax(0,1fr)); gap: .4rem; }
+  .quick-facts { grid-template-columns: repeat(3,minmax(0,1fr)); gap: .4rem; }
 }
 
 @media (max-width: 420px) {

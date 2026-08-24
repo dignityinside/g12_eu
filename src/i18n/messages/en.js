@@ -2,7 +2,7 @@ export default {
   site: {
     name: 'NEW LIFE',
     description: 'christian church',
-    metaDescription: 'New Life Christian Church in Plauen. Sunday service at 10:00 with German and English interpretation.',
+    metaDescription: 'New Life Christian Church in Plauen. Sunday service at 10:00 in German and Russian.',
     copyright: 'Gemeinde Neues Leben e.V.',
     powered: 'Design and development: Alexander Schilling',
     donation: {
@@ -15,7 +15,7 @@ export default {
   },
   menu: {
     church: 'Church',
-    pastor: 'Pastor',
+    pastor: 'Pastors',
     ministries: 'Ministries',
     sermons: 'Sermons',
     contacts: 'Contact',
@@ -38,9 +38,7 @@ export default {
     locationLabel: 'In central Plauen',
     locationValue: 'Karlstraße 5–7',
     languagesLabel: 'Interpretation',
-    languagesValue: 'German · English · Russian',
-    familiesLabel: 'For families',
-    familiesValue: 'Children are welcome',
+    languagesValue: 'German · Russian',
     expectEyebrow: 'Welcome to our church',
     expectTitle: 'You are welcome just as you are',
     expectText: 'Our doors are open to everyone. Together we want to encounter God, grow in faith and care for one another.',
@@ -49,13 +47,12 @@ export default {
     worshipTitle: 'Faith for everyday life',
     worshipText: 'Worship, prayer and a clear message that connects with your daily life.',
     translationTitle: 'Interpretation',
-    translationText: 'The Sunday service is interpreted into German and English.',
+    translationText: 'The Sunday service is held in German and Russian.',
     scheduleEyebrow: 'Our week',
     scheduleLocation: 'Meeting point',
-    scheduleNote: 'The Sunday service is interpreted into German and English.',
+    scheduleNote: 'The Sunday service is held in German and Russian.',
     sermonEyebrow: 'Encouragement for your week',
     sermonIntro: 'Listen to recent sermons from our church and discover more messages on our channels.',
-    latestSermon: 'Latest sermon',
     youtube: 'All sermons on YouTube',
     telegram: 'More content on Telegram',
     visitEyebrow: 'Come and visit',
@@ -75,7 +72,7 @@ export default {
     phone: 'Phone',
     address: 'Post office and address:',
     ministries: {
-      sundayLong: 'Sunday – 10:00 (with translation in English and German).',
+      sundayLong: 'Sunday – 10:00 (German and Russian).',
       address: 'Sunday meeting of the New Life Church take place here',
     },
     ministriesList: [
@@ -134,7 +131,9 @@ export default {
       text: 'We are Christian Church "New Life" ("Neues Leben e.V.") of the city Plauen in Germany.<br><br>Everyone is welcome in our Church.<br><br>Pastors of the Church are Vjaceslav and Oxana Schilling.',
     },
     pastor: {
-      title: 'Pastor',
+      title: 'Pastors',
+      team: 'Vjacheslav and Oxana Schilling are the pastors of New Life Christian Church in Plauen.',
+      imageAlt: 'Pastor Vjacheslav Schilling',
       text: 'Vjacheslav Schilling is the founder and pastor of the Christian Church "New Life" in the city of Plauen.<br><br>Vjacheslav was born in Almaty, Kazakhstan. After arriving in Germany with his family, he founded a Russian-speaking Church "New Life" in 2005.<br><br>Pastor Vjacheslav is a preacher and speaker at many conferences and seminars.<br><br>Vjacheslav Schilling lives with his family in the city of Plauen and has two children.',
     },
     sermons: {

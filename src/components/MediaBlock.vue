@@ -5,6 +5,7 @@ const props = defineProps({
   title: String,
   content: String,
   image: String,
+  imageAlt: String,
   id: String,
   isPageTitle: Boolean,
   imageWidth: Number,
@@ -26,7 +27,7 @@ const imageBase = computed(() => props.image?.replace(/\.[^.]+$/, ''));
       <picture>
         <source :srcset="`/img/${imageBase}.avif`" type="image/avif" />
         <source :srcset="`/img/${imageBase}.webp`" type="image/webp" />
-        <img :src="`/img/${image}`" :alt="title" :width="imageWidth" :height="imageHeight" loading="lazy" decoding="async" />
+        <img :src="`/img/${image}`" :alt="imageAlt || title" :width="imageWidth" :height="imageHeight" loading="lazy" decoding="async" />
       </picture>
     </div>
   </section>
