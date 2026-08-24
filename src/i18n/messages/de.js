@@ -50,6 +50,9 @@ export default {
     worshipText: 'Gemeinsamer Lobpreis, Gebet und eine verständliche Predigt für dein tägliches Leben.',
     translationTitle: 'Übersetzung',
     translationText: 'Der Sonntagsgottesdienst wird auf Deutsch und Englisch übersetzt.',
+    scheduleEyebrow: 'Unsere Woche',
+    scheduleLocation: 'Treffpunkt',
+    scheduleNote: 'Der Sonntagsgottesdienst wird auf Deutsch und Englisch übersetzt.',
     sermonEyebrow: 'Impulse für deinen Alltag',
     sermonIntro: 'Höre aktuelle Predigten aus unserer Gemeinde und entdecke weitere Botschaften auf unseren Kanälen.',
     latestSermon: 'Aktuelle Predigt',
@@ -139,8 +142,8 @@ export default {
       text: 'Predigten von Pastor Vjacheslav Schilling kann man auf unserem <a href="https://t.me/NeuesLebenPL" target="_blank">Telegram</a> oder <a href="https://www.youtube.com/channel/UCgECrFqV9vn-yxOGARqHoVw" target="_blank">YouTube</a> Kanal ansehen. Es besteht auch die Möglichkeit Predigten nach dem Gottesdienst in der Gemeinde zu bekommen.',
     },
     ministry: {
-      title: 'Gottesdienste',
-      text: 'Mehrmals pro Woche finden in unserer Gemeinde Gottesdienste statt. Wir freuen uns auf euren Besuch.',
+      title: 'Gottesdienste & Treffen',
+      text: 'Neben unserem Gottesdienst am Sonntag treffen wir uns auch unter der Woche zu Gebet, Hauskreis und Angeboten für junge Menschen.',
     },
     donate: {
       title: 'Spenden',

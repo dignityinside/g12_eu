@@ -50,6 +50,9 @@ export default {
     worshipText: 'Worship, prayer and a clear message that connects with your daily life.',
     translationTitle: 'Interpretation',
     translationText: 'The Sunday service is interpreted into German and English.',
+    scheduleEyebrow: 'Our week',
+    scheduleLocation: 'Meeting point',
+    scheduleNote: 'The Sunday service is interpreted into German and English.',
     sermonEyebrow: 'Encouragement for your week',
     sermonIntro: 'Listen to recent sermons from our church and discover more messages on our channels.',
     latestSermon: 'Latest sermon',
@@ -139,8 +142,8 @@ export default {
       text: 'Sermons by Pastor Vjacheslav Schilling can be found on our <a href="https://t.me/NeuesLebenPL" target="_blank">Telegram</a> or <a href="https://www.youtube.com/channel/UCgECrFqV9vn-yxOGARqHoVw" target="_blank">YouTube</a> Channel (Russian, German language). There is also the possibility to receive sermons in the church after the service.',
     },
     ministry: {
-      title: 'Ministries',
-      text: 'Our church meets several times throughout the week. We look forward to welcoming you.',
+      title: 'Services & weekly gatherings',
+      text: 'Alongside our Sunday service, we meet during the week for prayer, home groups and gatherings for young people.',
     },
     donate: {
       title: 'Donations',
