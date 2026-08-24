@@ -41,7 +41,7 @@ export default {
     languagesLabel: 'Sprachen',
     languagesValue: 'Deutsch · Russisch',
     expectEyebrow: 'Willkommen bei uns',
-    expectTitle: 'Du bist willkommen – genau so, wie du bist',
+    expectTitle: 'Willkommen – hier bist du immer gern gesehen',
     expectText: 'Unsere Türen stehen allen offen. Gemeinsam möchten wir Gott begegnen, im Glauben wachsen und füreinander da sein.',
     communityTitle: 'Gemeinschaft erleben',
     communityText: 'Begegne Menschen aus verschiedenen Generationen, Kulturen und Lebensgeschichten.',
