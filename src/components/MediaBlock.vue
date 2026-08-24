@@ -53,13 +53,14 @@ const imageBase = computed(() => props.image?.replace(/\.[^.]+$/, ''));
 .slot:not(:empty) { margin-top: 1.4rem; }
 .slot :deep(p) { margin: .45rem 0; }
 
-.section--image { display: grid; gap: 2rem; padding: 0; overflow: hidden; }
+.section--image { display: grid; padding: 0; overflow: hidden; }
 .section--image .section__copy { padding: clamp(1.6rem, 4vw, 3.25rem); }
-.image-wrap { min-height: 360px; }
+.image-wrap { width: 100%; height: clamp(340px, 70vw, 430px); min-height: 0; }
 .image-wrap picture { display: block; width: 100%; height: 100%; }
 .image-wrap img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 
-@include breakpoint('s') {
-  .section--image { grid-template-columns: 1.15fr .85fr; align-items: stretch; }
+@include breakpoint('m') {
+  .section--image { grid-template-columns: minmax(0, 1.3fr) minmax(300px, .7fr); align-items: center; }
+  .image-wrap { width: calc(100% - 1.4rem); height: clamp(440px, 48vw, 540px); margin: 1.4rem 1.4rem 1.4rem 0; border-radius: 22px; overflow: hidden; }
 }
 </style>
