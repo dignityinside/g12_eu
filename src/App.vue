@@ -10,8 +10,8 @@ const isHome = computed(() => route.path === '/');
 
 const mainMenuItems = ref([
   { id: 'welcome', name: 'menu.church' },
-  { id: 'pastor', name: 'menu.pastor' },
   { id: 'ministry', name: 'menu.ministries' },
+  { id: 'pastor', name: 'menu.pastor' },
   { id: 'sermons', name: 'menu.sermons' },
   { id: 'contacts', name: 'menu.contacts' },
   { id: 'donate', name: 'menu.donate', accent: true },
@@ -43,7 +43,7 @@ watchEffect(() => {
       : t('site.name');
   const fullTitle = route.name === 'home' ? `${routeTitle} · Plauen` : `${routeTitle} · ${t('site.name')}`;
   const description = t('site.metaDescription');
-  const canonicalUrl = `https://g12.eu${route.path}`;
+  const canonicalUrl = `https://neuesleben.church${route.path}`;
 
   document.documentElement.lang = locale.value;
   document.title = fullTitle;
@@ -80,17 +80,17 @@ watchEffect(() => {
     </picture>
     <div class="hero__shade"></div>
     <div class="hero__content">
-      <div class="hero__eyebrow">Plauen · {{ $t('site.description') }}</div>
-      <h1>{{ $t('text.welcome.title') }}</h1>
-      <p>{{ $t('text.ministries.sundayLong') }}</p>
+      <div class="hero__eyebrow">{{ $t('landing.heroEyebrow') }}</div>
+      <h1>{{ $t('landing.heroTitle') }}</h1>
+      <p>{{ $t('landing.heroText') }}</p>
       <div class="hero__actions">
-        <button class="button button--primary" @click="scrollToSection('contacts')">{{ $t('menu.contacts') }}</button>
-        <button class="button button--ghost" @click="scrollToSection('ministry')">{{ $t('menu.ministries') }}</button>
+        <button class="button button--primary" @click="scrollToSection('contacts')">{{ $t('landing.visitService') }}</button>
+        <a class="button button--ghost" href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen" target="_blank" rel="noopener">{{ $t('text.contacts.openRoute') }}</a>
       </div>
     </div>
   </div>
 
-  <div id="main-content" class="page-shell" :class="{ 'page-shell--subpage': !isHome }" tabindex="-1">
+  <div id="main-content" class="page-shell" :class="{ 'page-shell--home': isHome, 'page-shell--subpage': !isHome }" tabindex="-1">
     <RouterView />
   </div>
 
@@ -147,12 +147,13 @@ watchEffect(() => {
 .hero h1 { max-width: 760px; margin: 0; font-size: clamp(2.6rem, 7vw, 5.5rem); line-height: .98; letter-spacing: -.055em; }
 .hero p { margin: 1.5rem 0 0; max-width: 560px; color: rgba(255,255,255,.82); font-size: clamp(1rem, 2vw, 1.2rem); }
 .hero__actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
-.button { border: 0; border-radius: 999px; padding: .85rem 1.3rem; font-weight: 750; cursor: pointer; transition: transform .2s ease, background .2s ease; }
+.button { display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 999px; padding: .85rem 1.3rem; font-weight: 750; text-decoration: none; cursor: pointer; transition: transform .2s ease, background .2s ease; }
 .button:hover { transform: translateY(-2px); }
 .button--primary { background: $color-secondary; color: #2d123e; }
 .button--ghost { background: rgba(255,255,255,.12); color: $color-white; border: 1px solid rgba(255,255,255,.3); backdrop-filter: blur(8px); }
 
 .page-shell { max-width: $max-width-100; margin: 0 auto; padding: clamp(3rem, 7vw, 6rem) $spacing-20; }
+.page-shell--home { padding-top: 0; }
 .page-shell--subpage { min-height: 65vh; padding-top: 4rem; }
 .footer { background: #21102e; color: rgba(255,255,255,.72); }
 .footer__inner { max-width: $max-width-100; margin: 0 auto; padding: 2.5rem $spacing-20 1.5rem; display: flex; flex-direction: column; gap: 2rem; }
