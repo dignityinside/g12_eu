@@ -2,6 +2,8 @@
 import { ref } from 'vue';
 import MediaBlock from '../components/MediaBlock.vue';
 import MinistriesBlock from '../components/MinistriesBlock.vue';
+import BeliefsBlock from '../components/BeliefsBlock.vue';
+import SupportBlock from '../components/SupportBlock.vue';
 
 const showMap = ref(false);
 const ibanCopied = ref(false);
@@ -61,6 +63,8 @@ async function copyIban() {
       </div>
     </section>
 
+    <beliefs-block />
+
     <ministries-block />
 
     <media-block
@@ -86,6 +90,8 @@ async function copyIban() {
         </div>
       </div>
     </section>
+
+    <support-block />
 
     <section id="contacts" class="visit-section">
       <span class="section-eyebrow">{{ $t('landing.visitEyebrow') }}</span>
