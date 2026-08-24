@@ -1,3 +1,7 @@
+<script setup>
+const beliefKeys = [5, 1, 2, 6, 3, 7, 8, 9, 4, 10];
+</script>
+
 <template>
   <section class="beliefs-section">
     <header class="beliefs-section__header">
@@ -9,10 +13,10 @@
     </header>
 
     <div class="beliefs-grid">
-      <article v-for="number in 4" :key="number">
-        <span>0{{ number }}</span>
-        <h3>{{ $t(`landing.belief${number}Title`) }}</h3>
-        <p>{{ $t(`landing.belief${number}Text`) }}</p>
+      <article v-for="(belief, index) in beliefKeys" :key="belief">
+        <span>{{ index < 9 ? `0${index + 1}` : index + 1 }}</span>
+        <h3>{{ $t(`landing.belief${belief}Title`) }}</h3>
+        <p>{{ $t(`landing.belief${belief}Text`) }}</p>
       </article>
     </div>
 
@@ -48,7 +52,7 @@
   .beliefs-section__affiliation { flex-direction: row; align-items: center; justify-content: space-between; }
 }
 
-@include breakpoint('m') {
-  .beliefs-grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
+@include breakpoint('l') {
+  .beliefs-grid { grid-template-columns: repeat(5,minmax(0,1fr)); }
 }
 </style>
