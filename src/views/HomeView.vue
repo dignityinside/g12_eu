@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import MediaBlock from '../components/MediaBlock.vue';
 import MinistriesBlock from '../components/MinistriesBlock.vue';
 import BeliefsBlock from '../components/BeliefsBlock.vue';
+import FirstVisitBlock from '../components/FirstVisitBlock.vue';
 import SupportBlock from '../components/SupportBlock.vue';
 import HistoryBlock from '../components/HistoryBlock.vue';
 
@@ -58,6 +59,8 @@ async function copyIban() {
         </article>
       </div>
     </section>
+
+    <first-visit-block />
 
     <beliefs-block />
 
