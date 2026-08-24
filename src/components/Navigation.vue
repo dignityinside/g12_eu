@@ -242,7 +242,7 @@ function scrollTo(id, offset = document.querySelector('.header').offsetHeight + 
     align-self: center;
     display: grid;
     place-items: center;
-    min-width: 5.25rem;
+    min-width: 5.75rem;
     height: 2.4rem;
     padding: 0;
     background-color: rgba(255,255,255,.1);
@@ -322,9 +322,9 @@ function scrollTo(id, offset = document.querySelector('.header').offsetHeight + 
     font-size: .76rem;
     font-weight: 700;
   }
-  .navigation:not(.navigation--footer) .navigation__item--language :deep(.language-select__value) {
+  .navigation:not(.navigation--footer) .navigation__item--language :deep(.language-select__current) {
     justify-self: end;
-    margin-right: 1.4rem;
+    margin-right: .65rem;
   }
   .navigation:not(.navigation--footer) .navigation__items .navigation__item--accent {
     margin-top: .35rem;
