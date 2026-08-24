@@ -7,6 +7,7 @@ const languageFlags = {
   en: '🇬🇧',
   ru: '🇷🇺',
   uk: '🇺🇦',
+  be: '🇧🇾',
 };
 
 function languageChanged() {

@@ -3,8 +3,9 @@ import ru from '@i18n/messages/ru';
 import de from '@i18n/messages/de';
 import en from '@i18n/messages/en';
 import ua from '@i18n/messages/ua';
+import be from '@i18n/messages/be';
 
-const supportedLocales = ['de', 'en', 'ru', 'uk'];
+const supportedLocales = ['de', 'en', 'ru', 'uk', 'be'];
 const storedLocale = localStorage.getItem('locale');
 const normalizedStoredLocale = storedLocale === 'ua' ? 'uk' : storedLocale;
 const browserLocale = navigator.language?.split('-')[0];
@@ -27,6 +28,7 @@ export const language = {
     de,
     en,
     uk: ua,
+    be,
   },
 };
 
