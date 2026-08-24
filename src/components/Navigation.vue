@@ -350,5 +350,8 @@ function scrollTo(id, offset = document.querySelector('.header').offsetHeight + 
     align-items: center;
     gap: .08rem;
   }
+  .navigation:not(.navigation--footer) .navigation__item--language {
+    margin-right: .45rem;
+  }
 }
 </style>
