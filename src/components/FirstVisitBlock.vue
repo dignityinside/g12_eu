@@ -9,6 +9,7 @@ const questions = [
   'registration',
   'everyone',
   'preparation',
+  'clothing',
 ];
 </script>
 
@@ -27,7 +28,7 @@ const questions = [
         <summary>
           <span>0{{ index + 1 }}</span>
           <strong>{{ $t(`landing.firstVisit.${question}Title`) }}</strong>
-          <span class="first-visit-faq__icon" aria-hidden="true">+</span>
+          <span class="first-visit-faq__icon" aria-hidden="true"></span>
         </summary>
         <p>{{ $t(`landing.firstVisit.${question}Text`) }}</p>
       </details>
@@ -57,8 +58,11 @@ const questions = [
 .first-visit-faq summary::-webkit-details-marker { display: none; }
 .first-visit-faq summary > span:first-child { color: $color-secondary; font-size: .66rem; font-weight: 900; letter-spacing: .08em; }
 .first-visit-faq summary strong { color: $color-white; font-size: .92rem; line-height: 1.4; }
-.first-visit-faq__icon { display: grid; place-items: center; width: 1.8rem; height: 1.8rem; border-radius: 50%; background: rgba(255,255,255,.1); color: $color-secondary; font-size: 1.2rem; transition: transform .2s ease, background-color .2s ease; }
-.first-visit-faq details[open] .first-visit-faq__icon { background: $color-secondary; color: $color-primary; transform: rotate(45deg); }
+.first-visit-faq__icon { position: relative; width: 1.8rem; height: 1.8rem; border-radius: 50%; background: rgba(255,255,255,.1); transition: transform .2s ease, background-color .2s ease; }
+.first-visit-faq__icon::before, .first-visit-faq__icon::after { position: absolute; top: 50%; left: 50%; width: .72rem; height: 2px; border-radius: 999px; background: $color-secondary; content: ''; transform: translate(-50%,-50%); }
+.first-visit-faq__icon::after { transform: translate(-50%,-50%) rotate(90deg); }
+.first-visit-faq details[open] .first-visit-faq__icon { background: $color-secondary; transform: rotate(45deg); }
+.first-visit-faq details[open] .first-visit-faq__icon::before, .first-visit-faq details[open] .first-visit-faq__icon::after { background: $color-primary; }
 .first-visit-faq details > p { margin: 0; padding: 0 1rem 1rem 3rem; color: rgba(255,255,255,.7); font-size: .86rem; line-height: 1.65; }
 .first-visit-faq summary:focus-visible { outline: 3px solid $color-secondary; outline-offset: 3px; border-radius: 16px; }
 .first-visit-section__footer { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; margin-top: 1rem; padding: 1rem 1.15rem; border-radius: 16px; background: rgba(255,255,255,.08); }
