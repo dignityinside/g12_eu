@@ -1,1 +1,0 @@
-import{a as e,n as t,o as n,r,t as i}from"./index-Ci_2uNpC.js";var a={class:`error404`},o={__name:`ErrorView`,setup(o){return(o,s)=>(n(),r(`main`,null,[t(`div`,a,[e(i,{title:o.$t(`text.error404.title`),content:o.$t(`text.error404.text`),id:`error404`,"is-page-title":``},null,8,[`title`,`content`])])]))}};export{o as default};
