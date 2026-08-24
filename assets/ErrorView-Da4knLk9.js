@@ -1,0 +1,1 @@
+import{i as e,o as t,r as n,s as r,t as i}from"./index-DQqfS32b.js";var a={class:`error404`},o={__name:`ErrorView`,setup(o){return(o,s)=>(r(),e(`main`,null,[n(`div`,a,[t(i,{title:o.$t(`text.error404.title`),content:o.$t(`text.error404.text`),id:`error404`,"is-page-title":``},null,8,[`title`,`content`])])]))}};export{o as default};
