@@ -4,6 +4,7 @@ import MediaBlock from '../components/MediaBlock.vue';
 import MinistriesBlock from '../components/MinistriesBlock.vue';
 import BeliefsBlock from '../components/BeliefsBlock.vue';
 import SupportBlock from '../components/SupportBlock.vue';
+import HistoryBlock from '../components/HistoryBlock.vue';
 
 const showMap = ref(false);
 const ibanCopied = ref(false);
@@ -76,6 +77,8 @@ async function copyIban() {
       :image-height="1362"
       id="pastor"
     />
+
+    <history-block />
 
     <section id="sermons" class="sermon-section">
       <div class="sermon-section__header">
