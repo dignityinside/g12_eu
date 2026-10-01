@@ -167,6 +167,13 @@ async function copyIban() {
     <media-block :title="$t('text.donate.title')" id="donate">
       <p class="donation-intro">{{ $t('landing.donationIntro') }}</p>
       <details class="donation-details">
+        <summary>{{ $t('landing.showPaypalDetails') }}</summary>
+        <div class="donation donation-paypal">
+          <div>PayPal: kontakt.neuesleben@gmail.com</div>
+          <a href="https://www.paypal.com/" target="_blank" rel="noopener noreferrer">PayPal ↗</a>
+        </div>
+      </details>
+      <details class="donation-details">
         <summary>{{ $t('landing.showBankDetails') }}</summary>
         <div class="donation">
           <div>{{ $t('site.donation.receiver') }}</div>
@@ -260,6 +267,7 @@ async function copyIban() {
 .route-link { border: 1px solid rgba($color-primary,.2); background: rgba(255,255,255,.7); color: $color-primary; }
 .donation { display: grid; gap: .55rem; padding: 1.25rem; border-radius: 18px; background: $color-background; color: $color-muted; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .9rem; overflow-wrap: anywhere; }
 .donation-intro { max-width: 720px; color: $color-muted; }
+.donation-paypal a { color: $color-primary; font-weight: 800; }
 .donation-details { margin-top: 1rem; }
 .donation-details summary { width: fit-content; padding: .7rem 1rem; border: 1px solid rgba($color-primary,.15); border-radius: 999px; color: $color-primary; font-weight: 800; cursor: pointer; list-style: none; }
 .donation-details summary::-webkit-details-marker { display: none; }

@@ -129,6 +129,7 @@ export default {
     socialTitle: 'Следите за нами в социальных сетях',
     donationIntro: 'Ваше пожертвование поддерживает работу и служения нашей церкви. Благодарим вас за помощь.',
     showBankDetails: 'Показать банковские реквизиты',
+    showPaypalDetails: 'Показать данные PayPal',
     copyIban: 'Скопировать IBAN',
     ibanCopied: 'IBAN скопирован',
   },

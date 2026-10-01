@@ -129,6 +129,7 @@ export default {
     socialTitle: 'Folge uns in den sozialen Netzwerken',
     donationIntro: 'Mit deiner Spende unterstützt du die Arbeit und die vielfältigen Angebote unserer Gemeinde. Vielen Dank für deine Hilfe.',
     showBankDetails: 'Bankverbindung anzeigen',
+    showPaypalDetails: 'PayPal-Daten anzeigen',
     copyIban: 'IBAN kopieren',
     ibanCopied: 'IBAN kopiert',
   },

@@ -129,6 +129,7 @@ export default {
     socialTitle: 'Follow us on social media',
     donationIntro: 'Your donation supports the work and ministries of our church. Thank you for your support.',
     showBankDetails: 'Show bank details',
+    showPaypalDetails: 'Show PayPal details',
     copyIban: 'Copy IBAN',
     ibanCopied: 'IBAN copied',
   },
