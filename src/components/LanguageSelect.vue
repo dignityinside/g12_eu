@@ -2,13 +2,6 @@
 import { useI18n } from 'vue-i18n';
 
 const { locale, availableLocales } = useI18n();
-const languageFlags = {
-  de: '🇩🇪',
-  en: '🇬🇧',
-  ru: '🇷🇺',
-  uk: '🇺🇦',
-  be: '🇧🇾',
-};
 
 function languageChanged() {
   localStorage.setItem('locale', locale.value);
@@ -19,7 +12,6 @@ function languageChanged() {
   <label class="language-select">
     <span class="language-select__label">{{ $t('menu.language') }}</span>
     <span class="language-select__current" aria-hidden="true">
-      <span class="language-select__flag">{{ languageFlags[locale] }}</span>
       <span class="language-select__value">{{ locale.toUpperCase() }}</span>
     </span>
     <svg class="language-select__arrow" aria-hidden="true" width="12" height="8" viewBox="0 0 12 8">
@@ -27,7 +19,7 @@ function languageChanged() {
     </svg>
     <select v-model="locale" :aria-label="$t('menu.language')" @change="languageChanged">
       <option v-for="language in availableLocales" :key="language" :value="language">
-        {{ languageFlags[language] }} {{ language.toUpperCase() }}
+        {{ language.toUpperCase() }}
       </option>
     </select>
   </label>
@@ -62,8 +54,6 @@ function languageChanged() {
   padding-right: .8rem;
   pointer-events: none;
 }
-
-.language-select__flag { font-size: 1rem; line-height: 1; }
 
 .language-select__value {
   color: #ffffff;
