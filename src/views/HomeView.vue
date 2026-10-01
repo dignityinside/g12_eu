@@ -80,7 +80,7 @@ async function copyIban() {
           <span class="contact-card__icon">02</span>
           <strong>{{ $t('menu.contacts') }}</strong>
           <p><a href="tel:+4917624113132">+49 176 241 13 132</a><br /><a href="tel:+4917661548530">+49 176 615 48 530</a></p>
-          <a href="mailto:info@g12.eu">info@g12.eu</a>
+          <a href="mailto:kontakt.neuesleben@gmail.com">kontakt.neuesleben@gmail.com</a>
         </div>
         <div class="contact-card">
           <span class="contact-card__icon">03</span>

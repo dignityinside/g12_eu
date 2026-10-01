@@ -8,9 +8,9 @@
     </div>
 
     <div class="support-section__actions">
-      <a href="mailto:info@g12.eu">
+      <a href="mailto:kontakt.neuesleben@gmail.com">
         <span class="support-section__number">01</span>
-        <span><strong>{{ $t('landing.prayerRequest') }}</strong><small>info@g12.eu</small></span>
+        <span><strong>{{ $t('landing.prayerRequest') }}</strong><small>kontakt.neuesleben@gmail.com</small></span>
         <span aria-hidden="true">↗</span>
       </a>
       <a href="tel:+4917624113132">

@@ -37,7 +37,7 @@ const questions = [
     <footer class="first-visit-section__footer">
       <p>{{ $t('landing.firstVisitQuestions') }}</p>
       <div>
-        <a class="first-visit-section__contact" href="mailto:info@g12.eu">{{ $t('landing.contactUs') }}</a>
+        <a class="first-visit-section__contact" href="mailto:kontakt.neuesleben@gmail.com">{{ $t('landing.contactUs') }}</a>
         <a class="first-visit-section__route" href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen" target="_blank" rel="noopener">{{ $t('text.contacts.openRoute') }} ↗</a>
       </div>
     </footer>

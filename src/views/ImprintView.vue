@@ -33,7 +33,7 @@ import MediaBlock from '../components/MediaBlock.vue';
           <p>
             Telefon: <a href="tel:+4917624113132">+49 176 241 13 132</a><br>
             Telefon: <a href="tel:+4917661548530">+49 176 615 48 530</a><br>
-            E-Mail: <a href="mailto:info@g12.eu">info@g12.eu</a>
+            E-Mail: <a href="mailto:kontakt.neuesleben@gmail.com">kontakt.neuesleben@gmail.com</a>
           </p>
         </section>
 
