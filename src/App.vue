@@ -21,7 +21,6 @@ const footerItems = ref([
   { to: 'https://t.me/NeuesLebenPL', name: 'Telegram', external: true, i18n: false },
   { to: 'https://www.youtube.com/channel/UCgECrFqV9vn-yxOGARqHoVw', name: 'YouTube', external: true, i18n: false },
   { to: 'https://www.instagram.com/neuesleben.church/', name: 'Instagram', external: true, i18n: false },
-  { to: 'http://imbf.mobi', name: 'menu.bible', external: true, hideOnLocale: ['en', 'de'] },
   { to: 'https://www.bibleserver.com', name: 'menu.bible', external: true, hideOnLocale: ['ru', 'uk', 'en'] },
   { to: 'http://www.ihopkc.org/prayerroom/', name: 'iHOP', external: true, i18n: false },
   { to: 'https://gnctv.org', name: 'GNC', external: true, i18n: false, hideOnLocale: ['de', 'en'] },
@@ -102,7 +101,7 @@ watchEffect(() => {
       </div>
       <navigation :is-footer="true" :hide-language-select="true" :hide-back-link="true" :items="footerItems" />
     </div>
-    <div class="copyright">© 2005-{{ new Date().getFullYear() }} {{ $t('site.copyright') }} · {{ $t('site.powered') }}</div>
+    <div class="copyright">© 2005-{{ new Date().getFullYear() }} {{ $t('site.copyright') }}</div>
   </footer>
 </template>
 

@@ -4,7 +4,6 @@ export default {
     description: 'christliche gemeinde',
     metaDescription: 'Christliche Gemeinde Neues Leben in Plauen. Gottesdienst sonntags um 10 Uhr auf Deutsch und Russisch.',
     copyright: 'Gemeinde Neues Leben e.V.',
-    powered: 'Design und Programmierung: Alexander Schilling',
     donation: {
       receiver: 'Empfänger: Neues Leben e.V.',
       iban: 'IBAN: DE19870958245028779013',

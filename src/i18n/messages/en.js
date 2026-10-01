@@ -4,7 +4,6 @@ export default {
     description: 'christian church',
     metaDescription: 'New Life Christian Church in Plauen. Sunday service at 10:00 in German and Russian.',
     copyright: 'Gemeinde Neues Leben e.V.',
-    powered: 'Design and development: Alexander Schilling',
     donation: {
       receiver: 'Receiver: Neues Leben e.V.',
       iban: 'IBAN: DE19870958245028779013',
