@@ -57,8 +57,9 @@ async function copyIban() {
       <div class="contact-grid">
         <div class="contact-card">
 
-          <strong>{{ $t('landing.scheduleLocation') }}</strong>
-          <p>Karlstr. 5–7<br />08523 Plauen, Germany</p>
+          <strong>{{ $t('landing.contactAddress') }}</strong>
+          <address>Karlstraße 5–7, 08523 Plauen</address>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen" target="_blank" rel="noopener">{{ $t('landing.directions') }}</a>
         </div>
         <div class="contact-card">
 
@@ -70,14 +71,12 @@ async function copyIban() {
 
           <strong>{{ $t('landing.arrivalTitle') }}</strong>
           <p>{{ $t('landing.arrivalText') }}</p>
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen" target="_blank" rel="noopener">{{ $t('text.contacts.openRoute') }} ↗</a>
         </div>
       </div>
       <div v-if="!showMap" class="map-placeholder">
         <p>{{ $t('text.contacts.mapHint') }}</p>
         <div class="map-placeholder__actions">
           <button type="button" class="map-button" @click="showMap = true">{{ $t('text.contacts.showMap') }}</button>
-          <a class="route-link" href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen" target="_blank" rel="noopener">{{ $t('text.contacts.openRoute') }}</a>
         </div>
       </div>
       <iframe
@@ -219,6 +218,7 @@ async function copyIban() {
 .contact-grid { display: grid; gap: .8rem; margin-top: 1rem; }
 .contact-card { min-width: 0; padding: 1.25rem; overflow-wrap: anywhere; }
 .contact-card strong { display: block; color: $color-primary; }
+.contact-card address { margin: .55rem 0; color: $color-muted; font-style: normal; font-size: .92rem; }
 .contact-card p { margin: .55rem 0; color: $color-muted; font-size: .92rem; line-height: 1.55; }
 .contact-card a { color: $color-primarty-light; font-weight: 800; overflow-wrap: anywhere; }
 .social-section { display: grid; gap: 1.1rem; margin-top: 1rem; padding: 1.25rem; border: 1px solid rgba($color-primary,.08); border-radius: 20px; background: linear-gradient(135deg,rgba($color-primary,.035),rgba($color-secondary,.12)); }
@@ -241,9 +241,8 @@ async function copyIban() {
 .map-placeholder { display: grid; place-items: center; min-height: 220px; margin-top: 1rem; padding: 2rem; border-radius: 20px; background: linear-gradient(135deg, rgba($color-primary,.09), rgba($color-secondary,.18)); text-align: center; }
 .map-placeholder p { max-width: 470px; color: $color-muted; }
 .map-placeholder__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; }
-.map-button, .route-link { display: inline-flex; align-items: center; justify-content: center; padding: .75rem 1.1rem; border-radius: 999px; font-weight: 800; text-decoration: none; cursor: pointer; }
+.map-button { display: inline-flex; align-items: center; justify-content: center; padding: .75rem 1.1rem; border-radius: 999px; font-weight: 800; text-decoration: none; cursor: pointer; }
 .map-button { border: 0; background: $color-primary; color: $color-white; }
-.route-link { border: 1px solid rgba($color-primary,.2); background: rgba(255,255,255,.7); color: $color-primary; }
 .donation { display: grid; gap: .55rem; padding: 1.25rem; border-radius: 18px; background: $color-background; color: $color-muted; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .9rem; overflow-wrap: anywhere; }
 .donation-intro { max-width: 720px; color: $color-muted; }
 .donation-paypal a { color: $color-primary; font-weight: 800; }
@@ -270,7 +269,7 @@ async function copyIban() {
 
 @media (max-width: 420px) {
   .map-placeholder__actions { flex-direction: column; }
-  .map-button, .route-link { width: 100%; }
+  .map-button { width: 100%; }
   .sermon-link { width: 100%; }
 }
 </style>
