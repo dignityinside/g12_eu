@@ -31,8 +31,8 @@
 .support-section__actions a:hover { border-color: rgba($color-primary,.25); box-shadow: 0 10px 28px rgba(45,20,65,.08); transform: translateY(-2px); }
 .support-section__actions a:focus-visible { outline: 3px solid $color-secondary; outline-offset: 3px; }
 .support-section__actions a > span:first-child { display: grid; min-width: 0; }
-.support-section__actions strong { font-size: .86rem; }
-.support-section__actions small { overflow: hidden; color: $color-muted; font-size: .72rem; text-overflow: ellipsis; white-space: nowrap; }
+.support-section__actions strong { font-size: 1rem; }
+.support-section__actions small { margin-top: .25rem; color: $color-muted; font-size: .9rem; overflow-wrap: anywhere; }
 
 @include breakpoint('s') {
   .support-section { grid-template-columns: minmax(0,1.2fr) minmax(270px,.8fr); }
