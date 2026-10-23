@@ -80,10 +80,11 @@ watchEffect(() => {
     <div class="hero__shade"></div>
     <div class="hero__content">
       <h1>{{ $t('landing.heroTitle') }}</h1>
+      <p class="hero__location">{{ $t('landing.heroLocation') }}</p>
       <p>{{ $t('landing.heroText') }}</p>
       <div class="hero__actions">
         <button class="button button--primary" @click="scrollToSection('ministry')">{{ $t('landing.visitService') }}</button>
-        <a class="button button--ghost" href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen" target="_blank" rel="noopener">{{ $t('text.contacts.openRoute') }}</a>
+        <a class="button button--ghost" href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen" target="_blank" rel="noopener">{{ $t('landing.directions') }}</a>
       </div>
     </div>
   </div>
@@ -139,10 +140,12 @@ watchEffect(() => {
 .hero { position: relative; min-height: min(680px, calc(100svh - 72px)); display: flex; align-items: flex-end; overflow: hidden; background: $color-primary; }
 .hero__media { position: absolute; inset: 0; }
 .hero__image { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 48%; }
-.hero__shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(28,10,45,.92) 0%, rgba(43,16,68,.66) 45%, rgba(26,10,39,.15) 100%), linear-gradient(0deg, rgba(26,10,39,.6), transparent 55%); }
+.hero__shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(28,10,45,.92) 0%, rgba(43,16,68,.58) 45%, rgba(26,10,39,.04) 100%), linear-gradient(0deg, rgba(26,10,39,.4), transparent 55%); }
 .hero__content { position: relative; width: 100%; max-width: $max-width-100; margin: 0 auto; padding: clamp(4rem, 10vw, 8rem) $spacing-20; color: $color-white; }
-.hero h1 { text-wrap: balance; max-width: 760px; margin: 0; font-size: clamp(2.6rem, 7vw, 5.5rem); line-height: .98; letter-spacing: -.03em; }
+.hero h1 { text-wrap: balance; max-width: 760px; margin: 0; font-size: clamp(2.4rem, 6vw, 4.75rem); line-height: .98; letter-spacing: -.03em; }
 .hero p { margin: 1.5rem 0 0; max-width: 560px; color: rgba(255,255,255,.82); font-size: clamp(1rem, 2vw, 1.2rem); }
+.hero p.hero__location { margin-top: 1rem; color: $color-white; font-size: clamp(1.05rem, 2vw, 1.3rem); font-weight: 650; }
+.hero__location + p { margin-top: .75rem; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
 .button { display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 10px; min-height: 48px; padding: .85rem 1.3rem; font-weight: 750; text-decoration: none; cursor: pointer; transition: transform .2s ease, background .2s ease; }
 .button:hover { transform: translateY(-2px); }
