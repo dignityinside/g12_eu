@@ -13,6 +13,7 @@ export default {
     },
   },
   menu: {
+    backToTop: 'Back to top',
     church: 'Church',
     pastor: 'Pastors',
     ministries: 'Ministries',

@@ -3,6 +3,7 @@ import { RouterView, useRoute } from 'vue-router';
 import { computed, ref, watchEffect } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Navigation from '@components/Navigation.vue';
+import BackToTop from '@components/BackToTop.vue';
 
 const route = useRoute();
 const { t, locale } = useI18n();
@@ -103,6 +104,7 @@ watchEffect(() => {
     </div>
     <div class="copyright">© 2005-{{ new Date().getFullYear() }} {{ $t('site.copyright') }}</div>
   </footer>
+  <BackToTop />
 </template>
 
 <style lang="scss">

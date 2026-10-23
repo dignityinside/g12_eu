@@ -13,6 +13,7 @@ export default {
     },
   },
   menu: {
+    backToTop: 'Nach oben',
     church: 'Gemeinde',
     pastor: 'Pastoren',
     ministries: 'Gottesdienste',

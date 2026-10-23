@@ -13,6 +13,7 @@ export default {
     },
   },
   menu: {
+    backToTop: 'Уверх',
     church: 'Царква',
     pastor: 'Пастары',
     ministries: 'Служэнні',
