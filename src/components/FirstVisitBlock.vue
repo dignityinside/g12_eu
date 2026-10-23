@@ -1,13 +1,10 @@
 <script setup>
 const questions = [
-  'preparation',
-  'duration',
   'expectations',
   'language',
   'children',
   'parking',
   'accessibility',
-  'registration',
   'everyone',
   'clothing',
 ];
@@ -21,6 +18,11 @@ const questions = [
       </div>
       <p>{{ $t('landing.firstVisitIntro') }}</p>
     </header>
+
+    <div class="first-visit-section__essentials">
+      <p>{{ $t('landing.firstVisit.registrationText') }}</p>
+      <p>{{ $t('landing.firstVisit.durationText') }}</p>
+    </div>
 
     <div class="first-visit-faq">
       <details v-for="question in questions" :key="question">
@@ -49,6 +51,8 @@ const questions = [
 .first-visit-section__header { display: grid; gap: 1rem; align-items: end; margin-bottom: clamp(1.5rem,4vw,2.3rem); }
 .first-visit-section h2 { margin: .55rem 0 0; font-size: clamp(1.9rem,4vw,2.75rem); line-height: 1.08; letter-spacing: -.04em; }
 .first-visit-section__header > p { max-width: 560px; margin: 0; color: rgba(255,255,255,.72); }
+.first-visit-section__essentials { display: grid; gap: .5rem; margin-bottom: 1.5rem; padding-block: 1.1rem; border-top: 1px solid rgba(255,255,255,.25); }
+.first-visit-section__essentials p { margin: 0; color: $color-white; font-size: 1rem; }
 .first-visit-faq { display: grid; column-gap: 2rem; }
 .first-visit-faq details { border-top: 1px solid rgba(255,255,255,.25); }
 .first-visit-faq summary { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: .85rem; min-height: 64px; padding: 1rem 0; cursor: pointer; list-style: none; }
@@ -59,7 +63,7 @@ const questions = [
 .first-visit-faq__icon::after { transform: translate(-50%,-50%) rotate(90deg); }
 .first-visit-faq details[open] .first-visit-faq__icon { background: $color-secondary; transform: rotate(45deg); }
 .first-visit-faq details[open] .first-visit-faq__icon::before, .first-visit-faq details[open] .first-visit-faq__icon::after { background: $color-primary; }
-.first-visit-faq details > p { margin: 0; padding: 0 2.7rem 1.25rem 0; color: rgba(255,255,255,.7); font-size: .86rem; line-height: 1.65; }
+.first-visit-faq details > p { margin: 0; padding: 0 2.7rem 1.25rem 0; color: rgba(255,255,255,.85); font-size: 1rem; line-height: 1.7; }
 .first-visit-faq summary:focus-visible { outline: 3px solid $color-secondary; outline-offset: 3px; border-radius: 16px; }
 .first-visit-section__footer { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; margin-top: 1rem; padding: 1rem 1.15rem; border-radius: 16px; background: rgba(255,255,255,.08); }
 .first-visit-section__footer p { margin: 0; color: rgba(255,255,255,.78); font-size: .87rem; }
