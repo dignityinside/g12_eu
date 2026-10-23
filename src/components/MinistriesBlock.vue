@@ -4,7 +4,10 @@ import { useI18n } from 'vue-i18n';
 import { language } from '@i18n';
 
 const { locale } = useI18n();
-const ministryDays = computed(() => language?.messages[locale.value]?.text?.ministriesList ?? []);
+const ministryDays = computed(() => {
+  const days = language.messages[locale.value]?.text?.ministriesList ?? [];
+  return [...days.filter(day => day.id === 'sunday'), ...days.filter(day => day.id !== 'sunday')];
+});
 </script>
 
 <template>
@@ -14,24 +17,14 @@ const ministryDays = computed(() => language?.messages[locale.value]?.text?.mini
         <h2>{{ $t('text.ministry.title') }}</h2>
         <p>{{ $t('text.ministry.text') }}</p>
       </div>
-      <a
-        class="service-section__route"
-        href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen"
-        target="_blank"
-        rel="noopener"
-      >
-        <span>{{ $t('landing.scheduleLocation') }}</span>
-        <strong>Karlstraße 5–7 · Plauen</strong>
-        <small>{{ $t('text.contacts.openRoute') }} ↗</small>
-      </a>
     </header>
 
     <div class="ministries">
       <article
-        v-for="(item, index) in ministryDays"
+        v-for="item in ministryDays"
         :key="item.day"
         class="ministry-day"
-        :class="{ 'ministry-day--featured': index === ministryDays.length - 1 }"
+        :class="{ 'ministry-day--featured': item.id === 'sunday' }"
       >
         <div class="ministry-day__header">
           <h3>{{ item.day }}</h3>
@@ -39,7 +32,8 @@ const ministryDays = computed(() => language?.messages[locale.value]?.text?.mini
         <div class="ministry-day__events">
           <div v-for="ministry in item.ministries" :key="ministry.name" class="item">
             <strong class="item__name">{{ ministry.name }}</strong>
-            <span class="item__time">{{ ministry.time }}</span>
+            <a v-if="ministry.timeUponRequest" class="item__time item__time--contact" href="mailto:kontakt.neuesleben@gmail.com">{{ ministry.time }}</a>
+            <span v-else class="item__time">{{ ministry.time }}</span>
           </div>
         </div>
       </article>
@@ -47,7 +41,11 @@ const ministryDays = computed(() => language?.messages[locale.value]?.text?.mini
 
     <footer class="service-section__note">
       <span aria-hidden="true">✓</span>
-      <p>{{ $t('landing.scheduleNote') }}</p>
+      <div class="service-section__visit">
+        <p>{{ $t('landing.scheduleNote') }}</p>
+        <address>Karlstraße 5–7, 08523 Plauen</address>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen" target="_blank" rel="noopener">{{ $t('landing.directions') }}</a>
+      </div>
     </footer>
   </section>
 </template>
@@ -59,12 +57,6 @@ const ministryDays = computed(() => language?.messages[locale.value]?.text?.mini
 .service-section__copy { max-width: 680px; }
 .service-section h2 { margin: .55rem 0 .8rem; color: $color-primary; font-size: clamp(1.9rem,4vw,2.75rem); line-height: 1.08; letter-spacing: -.04em; }
 .service-section__copy p { margin: 0; color: $color-muted; }
-.service-section__route { display: grid; gap: .08rem; padding: 1rem 1.1rem; border: 1px solid rgba($color-primary,.1); border-radius: 16px; background: $color-background; color: $color-primary; text-decoration: none; transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease; }
-.service-section__route:hover { border-color: rgba($color-primary,.24); box-shadow: 0 10px 28px rgba(45,20,65,.08); transform: translateY(-2px); }
-.service-section__route:focus-visible { outline: 3px solid $color-secondary; outline-offset: 3px; }
-.service-section__route span { color: $color-muted; font-size: .68rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-.service-section__route strong { font-size: .92rem; }
-.service-section__route small { margin-top: .4rem; color: $color-primarty-light; font-weight: 800; }
 .ministries { display: grid; gap: .75rem; }
 .ministry-day { min-width: 0; padding: 1.1rem; border: 1px solid rgba($color-primary,.07); border-radius: 12px; background: $color-background; }
 .ministry-day__header { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding-bottom: .8rem; border-bottom: 1px solid rgba($color-primary,.1); }
@@ -74,17 +66,21 @@ const ministryDays = computed(() => language?.messages[locale.value]?.text?.mini
 .item { display: grid; gap: .25rem; }
 .item__name { color: $color-black; font-size: .9rem; line-height: 1.35; }
 .item__time { width: fit-content; padding: .18rem .5rem; border-radius: 999px; background: rgba($color-primary,.08); color: $color-primarty-light; font-size: .85rem; font-weight: 750; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.item__time--contact { max-width: 100%; white-space: normal; overflow-wrap: anywhere; text-decoration: underline; }
+.item__time--contact:hover { background: rgba($color-primary,.15); }
 .ministry-day--featured { border-color: transparent; background: $color-primary; }
 .ministry-day--featured .ministry-day__header { border-color: rgba(255,255,255,.15); }
 .ministry-day--featured .ministry-day__header span { color: $color-secondary; }
 .ministry-day--featured h3, .ministry-day--featured .item__name { color: $color-white; }
 .ministry-day--featured .item__time { background: $color-secondary; color: $color-primary; }
-.service-section__note { display: flex; align-items: center; gap: .7rem; margin-top: 1rem; padding: .85rem 1rem; border-radius: 14px; background: rgba($color-secondary,.15); color: $color-primary; }
+.service-section__note { display: flex; align-items: flex-start; gap: .7rem; margin-top: 1rem; padding: .85rem 1rem; border-radius: 14px; background: rgba($color-secondary,.15); color: $color-primary; }
 .service-section__note > span { display: grid; flex: 0 0 auto; place-items: center; width: 1.55rem; height: 1.55rem; border-radius: 50%; background: $color-secondary; font-size: .72rem; font-weight: 900; }
+.service-section__visit { display: grid; gap: .35rem; min-width: 0; }
+.service-section__visit address { font-style: normal; overflow-wrap: anywhere; font-size: .92rem; }
+.service-section__visit a { width: fit-content; padding-block: .5rem; font-size: .9rem; font-weight: 750; }
 .service-section__note p { margin: 0; font-size: .82rem; font-weight: 700; }
 
 @include breakpoint('s') {
-  .service-section__header { grid-template-columns: minmax(0,1fr) minmax(225px,290px); }
   .ministries { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .ministry-day--featured { grid-column: 1 / -1; }
 }

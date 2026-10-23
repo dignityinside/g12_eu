@@ -157,7 +157,7 @@ export default {
         ministries: [
           {
             name: 'Treffen am Donnerstag',
-            time: 'Zeit variiert',
+            time: 'Uhrzeit bei uns erfragen', timeUponRequest: true,
           },
         ],
       },
@@ -166,11 +166,12 @@ export default {
         ministries: [
           {
             name: 'Jugendtreffen',
-            time: '17:00',
+            time: '18:00',
           },
         ],
       },
       {
+        id: 'sunday',
         day: 'Sonntag',
         ministries: [
           {
@@ -203,7 +204,7 @@ export default {
     },
     ministry: {
       title: 'Gottesdienste & Treffen',
-      text: 'Neben unserem Gottesdienst am Sonntag treffen wir uns auch unter der Woche zu Gebet, Hauskreis und Angeboten für junge Menschen.',
+      text: 'Komm zu unserem Sonntagsgottesdienst und unseren Treffen unter der Woche.',
     },
     donate: {
       title: 'Spenden',

@@ -157,7 +157,7 @@ export default {
         ministries: [
           {
             name: 'Meetings on Thursdays',
-            time: 'time varies',
+            time: 'Contact us for the time', timeUponRequest: true,
           },
         ],
       },
@@ -166,11 +166,12 @@ export default {
         ministries: [
           {
             name: 'Youth meeting',
-            time: '17:00',
+            time: '18:00',
           },
         ],
       },
       {
+        id: 'sunday',
         day: 'Sunday',
         ministries: [
           {
@@ -203,7 +204,7 @@ export default {
     },
     ministry: {
       title: 'Services & weekly gatherings',
-      text: 'Alongside our Sunday service, we meet during the week for prayer, home groups and gatherings for young people.',
+      text: 'Join our Sunday service and gatherings during the week.',
     },
     donate: {
       title: 'Donations',
