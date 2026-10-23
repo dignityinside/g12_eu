@@ -43,18 +43,6 @@ async function copyIban() {
         <h2>{{ $t('landing.expectTitle') }}</h2>
         <p>{{ $t('landing.expectText') }}</p>
       </header>
-      <div class="expectations">
-        <article>
-
-          <h3>{{ $t('landing.communityTitle') }}</h3>
-          <p>{{ $t('landing.communityText') }}</p>
-        </article>
-        <article>
-
-          <h3>{{ $t('landing.worshipTitle') }}</h3>
-          <p>{{ $t('landing.worshipText') }}</p>
-        </article>
-      </div>
     </section>
 
     <first-visit-block />
@@ -195,16 +183,13 @@ async function copyIban() {
 .quick-fact div > span { display: block; color: $color-muted; font-size: .82rem; }
 .quick-fact strong { display: block; margin-top: .3rem; color: $color-primary; font-size: clamp(1rem, 1.8vw, 1.2rem); line-height: 1.4; }
 
+.welcome-section .section-heading { margin: 0 auto; text-align: center; }
 .welcome-section { padding: 0 0 clamp(4rem,8vw,7rem); scroll-margin-top: 95px; }
 .section-heading { max-width: 760px; margin: 0 0 2.5rem; text-align: left; }
 .section-heading > span, .section-eyebrow { color: $color-primarty-light; font-size: .72rem; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; }
 .section-heading h2, .contact-section__intro h2 { margin: .65rem 0 1rem; color: $color-primary; font-size: clamp(2rem,5vw,3.35rem); line-height: 1.04; letter-spacing: -.03em; }
 .section-heading p { margin: 0; color: $color-muted; font-size: 1.03rem; }
 .section-heading--left { margin-inline: 0; text-align: left; }
-.expectations { display: grid; gap: 2rem; }
-.expectations article { padding: 1.5rem 0; border-top: 1px solid rgba($color-primary,.2); }
-.expectations h3 { margin: 0 0 .55rem; color: $color-primary; font-size: 1.2rem; }
-.expectations p { margin: 0; color: $color-muted; font-size: .92rem; }
 
 .pastor-details { margin-top: 1rem; }
 .pastor-details button { width: fit-content; padding: .65rem .9rem; border: 1px solid rgba($color-primary,.14); border-radius: 999px; color: $color-primary; font-size: .82rem; font-weight: 800; cursor: pointer; background: transparent; }
@@ -271,7 +256,6 @@ async function copyIban() {
 @media (min-width: 667px) {
   .quick-facts { grid-template-columns: repeat(3,minmax(0,1fr)); }
   .quick-fact + .quick-fact { border-left: 1px solid rgba($color-primary,.16); }
-  .expectations { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .contact-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
   .social-links { grid-template-columns: repeat(3,minmax(0,1fr)); }
 }
