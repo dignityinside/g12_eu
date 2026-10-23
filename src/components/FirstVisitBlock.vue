@@ -38,7 +38,6 @@ const questions = [
       <p>{{ $t('landing.firstVisitQuestions') }}</p>
       <div>
         <a class="first-visit-section__contact" href="mailto:kontakt.neuesleben@gmail.com">{{ $t('landing.contactUs') }}</a>
-        <a class="first-visit-section__route" href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen" target="_blank" rel="noopener">{{ $t('text.contacts.openRoute') }} ↗</a>
       </div>
     </footer>
   </section>
@@ -70,7 +69,6 @@ const questions = [
 .first-visit-section__footer > div { display: flex; flex-wrap: wrap; gap: .55rem; }
 .first-visit-section__footer a { display: inline-flex; align-items: center; justify-content: center; min-height: 42px; padding: .65rem .9rem; border-radius: 999px; font-size: .78rem; font-weight: 850; text-decoration: none; }
 .first-visit-section__contact { background: $color-secondary; color: $color-primary; }
-.first-visit-section__route { border: 1px solid rgba(255,255,255,.2); color: $color-white; }
 .first-visit-section__footer a:focus-visible { outline: 3px solid $color-secondary; outline-offset: 3px; }
 
 @include breakpoint('s') {
