@@ -1,15 +1,18 @@
 <script setup>
-import { ref } from 'vue';
+import { onBeforeUnmount, ref } from 'vue';
 import MediaBlock from '../components/MediaBlock.vue';
 import MinistriesBlock from '../components/MinistriesBlock.vue';
 import BeliefsBlock from '../components/BeliefsBlock.vue';
 import FirstVisitBlock from '../components/FirstVisitBlock.vue';
 import SupportBlock from '../components/SupportBlock.vue';
-import HistoryBlock from '../components/HistoryBlock.vue';
 
 const showMap = ref(false);
 const pastorExpanded = ref(false);
 const ibanCopied = ref(false);
+const ibanCopyFailed = ref(false);
+const ibanCopyPending = ref(false);
+let ibanResetTimer;
+onBeforeUnmount(() => window.clearTimeout(ibanResetTimer));
 const iban = 'DE19870958245028779013';
 const socialChannels = [
   { name: 'Instagram', handle: '@neuesleben.church', short: 'IG', className: 'instagram', url: 'https://www.instagram.com/neuesleben.church/' },
@@ -18,9 +21,20 @@ const socialChannels = [
 ];
 
 async function copyIban() {
-  await navigator.clipboard.writeText(iban);
-  ibanCopied.value = true;
-  window.setTimeout(() => { ibanCopied.value = false; }, 2000);
+  if (ibanCopyPending.value) return;
+  window.clearTimeout(ibanResetTimer);
+  ibanCopied.value = false;
+  ibanCopyFailed.value = false;
+  ibanCopyPending.value = true;
+  try {
+    await navigator.clipboard.writeText(iban);
+    ibanCopied.value = true;
+    ibanResetTimer = window.setTimeout(() => { ibanCopied.value = false; }, 2000);
+  } catch {
+    ibanCopyFailed.value = true;
+  } finally {
+    ibanCopyPending.value = false;
+  }
 }
 </script>
 
@@ -147,14 +161,12 @@ async function copyIban() {
 
     <support-block />
 
-    <history-block />
-
     <media-block :title="$t('text.donate.title')" id="donate">
       <p class="donation-intro">{{ $t('landing.donationIntro') }}</p>
       <details class="donation-details">
         <summary>{{ $t('landing.showPaypalDetails') }}</summary>
         <div class="donation donation-paypal">
-          <div>PayPal: kontakt.neuesleben@gmail.com</div>
+          <div>{{ $t('landing.paypalRecipient') }}: kontakt.neuesleben@gmail.com</div>
           <a href="https://www.paypal.com/" target="_blank" rel="noopener noreferrer">PayPal ↗</a>
         </div>
       </details>
@@ -162,11 +174,12 @@ async function copyIban() {
         <summary>{{ $t('landing.showBankDetails') }}</summary>
         <div class="donation">
           <div>{{ $t('site.donation.receiver') }}</div>
-          <div>{{ $t('site.donation.iban') }}</div>
+          <div class="donation__iban">{{ $t('site.donation.iban') }}</div>
           <div>{{ $t('site.donation.bic') }}</div>
           <div>{{ $t('site.donation.bank') }}</div>
           <div>{{ $t('site.donation.purpose') }}</div>
-          <button type="button" class="copy-button" @click="copyIban">{{ ibanCopied ? $t('landing.ibanCopied') : $t('landing.copyIban') }}</button>
+          <button type="button" class="copy-button" :disabled="ibanCopyPending" @click="copyIban">{{ ibanCopied ? $t('landing.ibanCopied') : $t('landing.copyIban') }}</button>
+          <p class="donation__status" role="status">{{ ibanCopyFailed ? $t('landing.ibanCopyError') : ibanCopied ? $t('landing.ibanCopied') : '' }}</p>
         </div>
       </details>
     </media-block>
@@ -243,7 +256,10 @@ async function copyIban() {
 .map-placeholder__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; }
 .map-button { display: inline-flex; align-items: center; justify-content: center; padding: .75rem 1.1rem; border-radius: 999px; font-weight: 800; text-decoration: none; cursor: pointer; }
 .map-button { border: 0; background: $color-primary; color: $color-white; }
-.donation { display: grid; gap: .55rem; padding: 1.25rem; border-radius: 18px; background: $color-background; color: $color-muted; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .9rem; overflow-wrap: anywhere; }
+.donation { display: grid; gap: .55rem; padding: 1.25rem; border-radius: 18px; background: $color-background; color: $color-muted; font-size: 1rem; overflow-wrap: anywhere; }
+.donation__iban { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; user-select: all; }
+.donation__status { color: $color-primary; }
+.donation__status:empty { display: none; }
 .donation-intro { max-width: 720px; color: $color-muted; }
 .donation-paypal a { color: $color-primary; font-weight: 800; }
 .donation-details { margin-top: 1rem; }
