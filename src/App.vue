@@ -85,7 +85,7 @@ watchEffect(() => {
       <p>{{ $t('landing.heroText') }}</p>
       <div class="hero__actions">
         <button class="button button--primary" @click="scrollToSection('ministry')">{{ $t('landing.visitService') }}</button>
-        <a class="button button--ghost" href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen" target="_blank" rel="noopener">{{ $t('landing.directions') }}</a>
+        <button type="button" class="button button--ghost" @click="scrollToSection('contacts')">{{ $t('landing.directions') }}</button>
       </div>
     </div>
   </div>

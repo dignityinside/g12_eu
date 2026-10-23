@@ -73,7 +73,7 @@ async function copyIban() {
 
           <strong>{{ $t('landing.contactAddress') }}</strong>
           <address>Karlstraße 5–7, 08523 Plauen</address>
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen" target="_blank" rel="noopener">{{ $t('landing.directions') }}</a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen" target="_blank" rel="noopener">{{ $t('text.contacts.openRoute') }}</a>
         </div>
         <div class="contact-card">
 
