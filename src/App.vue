@@ -31,7 +31,7 @@ const footerItems = ref([
 ]);
 
 function scrollToSection(id) {
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  document.getElementById(id)?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
 }
 
 watchEffect(() => {
@@ -79,11 +79,10 @@ watchEffect(() => {
     </picture>
     <div class="hero__shade"></div>
     <div class="hero__content">
-      <div class="hero__eyebrow">{{ $t('landing.heroEyebrow') }}</div>
       <h1>{{ $t('landing.heroTitle') }}</h1>
       <p>{{ $t('landing.heroText') }}</p>
       <div class="hero__actions">
-        <button class="button button--primary" @click="scrollToSection('contacts')">{{ $t('landing.visitService') }}</button>
+        <button class="button button--primary" @click="scrollToSection('ministry')">{{ $t('landing.visitService') }}</button>
         <a class="button button--ghost" href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen" target="_blank" rel="noopener">{{ $t('text.contacts.openRoute') }}</a>
       </div>
     </div>
@@ -114,8 +113,8 @@ watchEffect(() => {
   z-index: 10;
   background: rgba(31, 11, 48, .96);
   border-bottom: 1px solid rgba(255,255,255,.1);
-  box-shadow: 0 8px 28px rgba(21, 7, 33, .16);
-  backdrop-filter: blur(18px) saturate(130%);
+
+
 }
 .skip-link { position: fixed; top: .75rem; left: .75rem; z-index: 100; padding: .7rem 1rem; border-radius: 10px; background: $color-secondary; color: #281137; font-weight: 800; text-decoration: none; transform: translateY(-150%); transition: transform .2s ease; }
 .skip-link:focus { transform: translateY(0); }
@@ -131,7 +130,7 @@ watchEffect(() => {
   gap: 1rem;
 }
 .brand { display: flex; align-items: center; gap: .72rem; min-width: 0; color: $color-white; text-decoration: none; flex-shrink: 1; }
-.brand__mark { width: 42px; height: 42px; display: grid; place-items: center; flex: 0 0 42px; border: 1px solid rgba(255,255,255,.35); border-radius: 14px; background: linear-gradient(145deg, #ffd878, $color-secondary); color: #301048; font-size: .78rem; font-weight: 900; letter-spacing: -.03em; box-shadow: 0 8px 24px rgba(242,184,75,.2), inset 0 1px 0 rgba(255,255,255,.65); }
+.brand__mark { width: 42px; height: 42px; display: grid; place-items: center; flex: 0 0 42px; border: 1px solid rgba(255,255,255,.35); border-radius: 14px; background: $color-secondary; color: #301048; font-size: .78rem; font-weight: 900; letter-spacing: -.03em;  }
 .brand__mark--small { width: 38px; height: 38px; flex-basis: 38px; }
 .brand__copy { display: flex; min-width: 0; flex-direction: column; line-height: 1.1; }
 .brand__title { overflow: hidden; font-size: .88rem; font-weight: 850; letter-spacing: .075em; text-overflow: ellipsis; white-space: nowrap; }
@@ -142,14 +141,13 @@ watchEffect(() => {
 .hero__image { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 48%; }
 .hero__shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(28,10,45,.92) 0%, rgba(43,16,68,.66) 45%, rgba(26,10,39,.15) 100%), linear-gradient(0deg, rgba(26,10,39,.6), transparent 55%); }
 .hero__content { position: relative; width: 100%; max-width: $max-width-100; margin: 0 auto; padding: clamp(4rem, 10vw, 8rem) $spacing-20; color: $color-white; }
-.hero__eyebrow { margin-bottom: 1.1rem; color: $color-secondary; font-size: .82rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-.hero h1 { max-width: 760px; margin: 0; font-size: clamp(2.6rem, 7vw, 5.5rem); line-height: .98; letter-spacing: -.055em; }
+.hero h1 { text-wrap: balance; max-width: 760px; margin: 0; font-size: clamp(2.6rem, 7vw, 5.5rem); line-height: .98; letter-spacing: -.03em; }
 .hero p { margin: 1.5rem 0 0; max-width: 560px; color: rgba(255,255,255,.82); font-size: clamp(1rem, 2vw, 1.2rem); }
 .hero__actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
-.button { display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 999px; padding: .85rem 1.3rem; font-weight: 750; text-decoration: none; cursor: pointer; transition: transform .2s ease, background .2s ease; }
+.button { display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 10px; min-height: 48px; padding: .85rem 1.3rem; font-weight: 750; text-decoration: none; cursor: pointer; transition: transform .2s ease, background .2s ease; }
 .button:hover { transform: translateY(-2px); }
 .button--primary { background: $color-secondary; color: #2d123e; }
-.button--ghost { background: rgba(255,255,255,.12); color: $color-white; border: 1px solid rgba(255,255,255,.3); backdrop-filter: blur(8px); }
+.button--ghost { background: transparent; color: $color-white; border: 1px solid rgba(255,255,255,.5); }
 
 .page-shell { max-width: $max-width-100; margin: 0 auto; padding: clamp(3rem, 7vw, 6rem) $spacing-20; }
 .page-shell--home { padding-top: 0; }

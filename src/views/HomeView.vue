@@ -8,6 +8,7 @@ import SupportBlock from '../components/SupportBlock.vue';
 import HistoryBlock from '../components/HistoryBlock.vue';
 
 const showMap = ref(false);
+const pastorExpanded = ref(false);
 const ibanCopied = ref(false);
 const iban = 'DE19870958245028779013';
 const socialChannels = [
@@ -27,33 +28,29 @@ async function copyIban() {
   <main class="landing-page">
     <section class="quick-facts" :aria-label="$t('landing.quickTitle')">
       <article class="quick-fact">
-        <span class="quick-fact__number">01</span>
         <div><span>{{ $t('landing.serviceLabel') }}</span><strong>{{ $t('landing.serviceValue') }}</strong></div>
       </article>
       <article class="quick-fact">
-        <span class="quick-fact__number">02</span>
         <div><span>{{ $t('landing.locationLabel') }}</span><strong>{{ $t('landing.locationValue') }}</strong></div>
       </article>
       <article class="quick-fact">
-        <span class="quick-fact__number">03</span>
         <div><span>{{ $t('landing.languagesLabel') }}</span><strong>{{ $t('landing.languagesValue') }}</strong></div>
       </article>
     </section>
 
     <section id="welcome" class="welcome-section">
       <header class="section-heading">
-        <span>{{ $t('landing.expectEyebrow') }}</span>
         <h2>{{ $t('landing.expectTitle') }}</h2>
         <p>{{ $t('landing.expectText') }}</p>
       </header>
       <div class="expectations">
         <article>
-          <span>01</span>
+
           <h3>{{ $t('landing.communityTitle') }}</h3>
           <p>{{ $t('landing.communityText') }}</p>
         </article>
         <article>
-          <span>02</span>
+
           <h3>{{ $t('landing.worshipTitle') }}</h3>
           <p>{{ $t('landing.worshipText') }}</p>
         </article>
@@ -66,30 +63,28 @@ async function copyIban() {
 
     <section id="contacts" class="contact-section">
       <div class="contact-section__intro">
-        <span class="section-eyebrow">{{ $t('landing.visitEyebrow') }}</span>
         <h2>{{ $t('landing.visitTitle') }}</h2>
         <p>{{ $t('landing.visitText') }}</p>
       </div>
       <div class="contact-grid">
         <div class="contact-card">
-          <span class="contact-card__icon">01</span>
+
           <strong>{{ $t('landing.scheduleLocation') }}</strong>
           <p>Karlstr. 5–7<br />08523 Plauen, Germany</p>
         </div>
         <div class="contact-card">
-          <span class="contact-card__icon">02</span>
+
           <strong>{{ $t('menu.contacts') }}</strong>
           <p><a href="tel:+4917624113132">+49 176 241 13 132</a><br /><a href="tel:+4917661548530">+49 176 615 48 530</a></p>
           <a href="mailto:kontakt.neuesleben@gmail.com">kontakt.neuesleben@gmail.com</a>
         </div>
         <div class="contact-card">
-          <span class="contact-card__icon">03</span>
+
           <strong>{{ $t('landing.arrivalTitle') }}</strong>
           <p>{{ $t('landing.arrivalText') }}</p>
           <a href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen" target="_blank" rel="noopener">{{ $t('text.contacts.openRoute') }} ↗</a>
         </div>
       </div>
-
       <div v-if="!showMap" class="map-placeholder">
         <p>{{ $t('text.contacts.mapHint') }}</p>
         <div class="map-placeholder__actions">
@@ -97,7 +92,6 @@ async function copyIban() {
           <a class="route-link" href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen" target="_blank" rel="noopener">{{ $t('text.contacts.openRoute') }}</a>
         </div>
       </div>
-
       <iframe
         v-else
         class="map"
@@ -106,10 +100,9 @@ async function copyIban() {
         :title="$t('text.contacts.title')"
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1268.8888418942242!2d12.133819957783263!3d50.501095282215616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a1268a354f79c3%3A0x2b667815f5e3d45d!2sKarlstra%C3%9Fe+7%2C+08523+Plauen!5e0!3m2!1sde!2sde!4v1492103663904"
       />
-
       <div class="social-section">
         <div class="social-section__copy">
-          <span>{{ $t('landing.socialEyebrow') }}</span>
+
           <strong>{{ $t('landing.socialTitle') }}</strong>
         </div>
         <div class="social-links">
@@ -140,16 +133,21 @@ async function copyIban() {
       :image-height="1362"
       id="pastor"
     >
-      <details class="pastor-details">
-        <summary>{{ $t('text.pastor.more') }}</summary>
-        <div v-html="$t('text.pastor.text')"></div>
-      </details>
+      <div class="pastor-details">
+        <div id="pastor-biography" v-show="pastorExpanded" v-html="$t('text.pastor.text')"></div>
+        <button
+          type="button"
+          :aria-expanded="pastorExpanded"
+          aria-controls="pastor-biography"
+          @click="pastorExpanded = !pastorExpanded"
+        >{{ $t(pastorExpanded ? 'text.pastor.less' : 'text.pastor.more') }}</button>
+      </div>
     </media-block>
 
     <section id="sermons" class="sermon-section">
       <div class="sermon-section__header">
         <div class="sermon-section__copy">
-          <span class="section-eyebrow section-eyebrow--gold">{{ $t('landing.sermonEyebrow') }}</span>
+
           <h2>{{ $t('text.sermons.title') }}</h2>
           <p class="sermon-section__text">{{ $t('landing.sermonIntro') }}</p>
         </div>
@@ -192,29 +190,26 @@ async function copyIban() {
 @use '@assets/scss/main.scss' as *;
 
 .landing-page { position: relative; }
-.quick-facts { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr; gap: .65rem; margin-top: -1.5rem; margin-bottom: clamp(4rem, 8vw, 7rem); padding: .7rem; border: 1px solid rgba($color-primary,.09); border-radius: 24px; background: rgba(255,255,255,.94); box-shadow: 0 24px 65px rgba(41,17,59,.14); backdrop-filter: blur(16px); }
-.quick-fact { display: flex; align-items: flex-start; gap: .75rem; min-width: 0; padding: 1rem; border-radius: 17px; background: $color-background; }
-.quick-fact__number { display: grid; place-items: center; flex: 0 0 1.9rem; width: 1.9rem; height: 1.9rem; border-radius: 50%; background: rgba($color-secondary,.28); color: $color-primary; font-size: .64rem; font-weight: 900; }
-.quick-fact div { min-width: 0; }
-.quick-fact div > span { display: block; color: $color-muted; font-size: .7rem; font-weight: 750; letter-spacing: .06em; text-transform: uppercase; }
-.quick-fact strong { display: block; margin-top: .22rem; color: $color-primary; font-size: .82rem; line-height: 1.35; }
+.quick-facts { display: grid; grid-template-columns: 1fr; margin-bottom: clamp(4rem, 8vw, 7rem); padding: 1.5rem 0; border-bottom: 1px solid rgba($color-primary,.16); }
+.quick-fact { min-width: 0; padding: .8rem 1.5rem; }
+.quick-fact div > span { display: block; color: $color-muted; font-size: .82rem; }
+.quick-fact strong { display: block; margin-top: .3rem; color: $color-primary; font-size: clamp(1rem, 1.8vw, 1.2rem); line-height: 1.4; }
 
 .welcome-section { padding: 0 0 clamp(4rem,8vw,7rem); scroll-margin-top: 95px; }
-.section-heading { max-width: 760px; margin: 0 auto 2.25rem; text-align: center; }
+.section-heading { max-width: 760px; margin: 0 0 2.5rem; text-align: left; }
 .section-heading > span, .section-eyebrow { color: $color-primarty-light; font-size: .72rem; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; }
-.section-heading h2, .contact-section__intro h2 { margin: .65rem 0 1rem; color: $color-primary; font-size: clamp(2rem,5vw,3.35rem); line-height: 1.04; letter-spacing: -.045em; }
+.section-heading h2, .contact-section__intro h2 { margin: .65rem 0 1rem; color: $color-primary; font-size: clamp(2rem,5vw,3.35rem); line-height: 1.04; letter-spacing: -.03em; }
 .section-heading p { margin: 0; color: $color-muted; font-size: 1.03rem; }
 .section-heading--left { margin-inline: 0; text-align: left; }
-.expectations { display: grid; gap: 1rem; }
-.expectations article { padding: clamp(1.4rem,3vw,2rem); border-top: 3px solid $color-secondary; border-radius: 0 0 20px 20px; background: $color-white; box-shadow: 0 14px 42px rgba(45,20,65,.07); }
-.expectations article > span { color: $color-primarty-light; font-size: .68rem; font-weight: 900; letter-spacing: .08em; }
-.expectations h3 { margin: 1.3rem 0 .55rem; color: $color-primary; font-size: 1.2rem; }
+.expectations { display: grid; gap: 2rem; }
+.expectations article { padding: 1.5rem 0; border-top: 1px solid rgba($color-primary,.2); }
+.expectations h3 { margin: 0 0 .55rem; color: $color-primary; font-size: 1.2rem; }
 .expectations p { margin: 0; color: $color-muted; font-size: .92rem; }
 
 .pastor-details { margin-top: 1rem; }
-.pastor-details summary { width: fit-content; padding: .65rem .9rem; border: 1px solid rgba($color-primary,.14); border-radius: 999px; color: $color-primary; font-size: .82rem; font-weight: 800; cursor: pointer; list-style: none; }
-.pastor-details summary::-webkit-details-marker { display: none; }
-.pastor-details[open] summary { display: none; }
+.pastor-details button { width: fit-content; padding: .65rem .9rem; border: 1px solid rgba($color-primary,.14); border-radius: 999px; color: $color-primary; font-size: .82rem; font-weight: 800; cursor: pointer; background: transparent; }
+.pastor-details button:hover { background: rgba($color-primary,.06); }
+.pastor-details div { margin-bottom: 1rem; }
 .pastor-details div { color: $color-muted; }
 
 .sermon-section { margin-bottom: clamp(1.25rem,3vw,2.5rem); padding: clamp(1.5rem,4vw,2.4rem); border: 1px solid rgba($color-primary,.08); border-radius: 22px; background: linear-gradient(135deg,rgba(255,255,255,.9),rgba($color-secondary,.13)); box-shadow: 0 16px 45px rgba(41,16,59,.07); scroll-margin-top: 95px; }
@@ -232,13 +227,12 @@ async function copyIban() {
 .sermon-link--primary:hover { border-color: $color-primarty-light; background: $color-primarty-light; }
 .sermon-link:focus-visible { outline: 3px solid $color-secondary; outline-offset: 3px; }
 
-.contact-section { margin-bottom: clamp(1.25rem,3vw,2.5rem); padding: clamp(1rem,2vw,1.4rem); border: 1px solid rgba($color-primary,.08); border-radius: 28px; background: $color-white; box-shadow: 0 18px 55px rgba(45,20,65,.07); scroll-margin-top: 95px; }
-.contact-section__intro { padding: clamp(1.7rem,5vw,3.5rem); border-radius: 21px; background: linear-gradient(135deg,#f7d98f,$color-secondary); text-align: center; }
-.contact-section__intro h2 { max-width: 760px; margin-inline: auto; }
-.contact-section__intro p { max-width: 660px; margin: 0 auto; color: rgba(49,17,67,.72); font-size: 1.03rem; }
+.contact-section { margin-bottom: clamp(1.25rem,3vw,2.5rem); padding: clamp(1rem,2vw,1.4rem); border-radius: 16px; background: $color-white; scroll-margin-top: 95px; }
+.contact-section__intro { padding: clamp(1.7rem,5vw,3.5rem); border-radius: 12px; background: #f8e7c3; text-align: left; }
+.contact-section__intro h2 { max-width: 760px; margin-inline: 0; }
+.contact-section__intro p { max-width: 660px; margin: 0; color: #573b52; font-size: 1.03rem; }
 .contact-grid { display: grid; gap: .8rem; margin-top: 1rem; }
-.contact-card { min-width: 0; padding: 1.25rem; border: 1px solid rgba($color-primary,.06); border-radius: 18px; background: $color-background; overflow: hidden; }
-.contact-card__icon { display: inline-grid; place-items: center; width: 2rem; height: 2rem; margin-bottom: .8rem; border-radius: 50%; background: rgba($color-secondary,.32); color: $color-primary; font-size: .7rem; font-weight: 900; }
+.contact-card { min-width: 0; padding: 1.25rem; overflow-wrap: anywhere; }
 .contact-card strong { display: block; color: $color-primary; }
 .contact-card p { margin: .55rem 0; color: $color-muted; font-size: .92rem; line-height: 1.55; }
 .contact-card a { color: $color-primarty-light; font-weight: 800; overflow-wrap: anywhere; }
@@ -276,6 +270,7 @@ async function copyIban() {
 
 @media (min-width: 667px) {
   .quick-facts { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .quick-fact + .quick-fact { border-left: 1px solid rgba($color-primary,.16); }
   .expectations { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .contact-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
   .social-links { grid-template-columns: repeat(3,minmax(0,1fr)); }

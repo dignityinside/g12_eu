@@ -199,6 +199,7 @@ export default {
       team: 'Vjacheslav und Oxana Schilling sind die Pastoren der christlichen Gemeinde „Neues Leben“ in Plauen.',
       summary: 'Gemeinsam leiten und begleiten sie die Gemeinde. Vjacheslav ist ihr Gründer und leitender Pastor.',
       more: 'Mehr lesen',
+      less: 'Weniger anzeigen',
       imageAlt: 'Pastor Vjacheslav Schilling',
       text: 'Vjacheslav Schilling ist Gründer und leitender Pastor der christlichen Gemeinde "Neues Leben" der Stadt Plauen.<br><br>Vjacheslav wurde in Almaty, Kasachstan geboren. Nach der Ankunft mit seiner Familie in Deutschland, gründet er im Jahr 2005 eine russisch-sprachige Gemeinde "Neues Leben".<br><br>Pastor Vjacheslav ist Prediger und Speaker auf vielen Konferenzen und Seminaren.<br><br>Vjacheslav Schilling lebt mit seiner Familie in Stadt Plauen und hat zwei Kinder.',
     },

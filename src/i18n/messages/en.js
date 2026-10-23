@@ -199,6 +199,7 @@ export default {
       team: 'Vjacheslav and Oxana Schilling are the pastors of New Life Christian Church in Plauen.',
       summary: 'Together they lead and care for the church. Vjacheslav is its founder and lead pastor.',
       more: 'Read more',
+      less: 'Read less',
       imageAlt: 'Pastor Vjacheslav Schilling',
       text: 'Vjacheslav Schilling is the founder and pastor of the Christian Church "New Life" in the city of Plauen.<br><br>Vjacheslav was born in Almaty, Kazakhstan. After arriving in Germany with his family, he founded a Russian-speaking Church "New Life" in 2005.<br><br>Pastor Vjacheslav is a preacher and speaker at many conferences and seminars.<br><br>Vjacheslav Schilling lives with his family in the city of Plauen and has two children.',
     },
