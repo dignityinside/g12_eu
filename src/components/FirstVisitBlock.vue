@@ -37,7 +37,7 @@ const questions = [
     <footer class="first-visit-section__footer">
       <p>{{ $t('landing.firstVisitQuestions') }}</p>
       <div>
-        <a class="first-visit-section__contact" href="mailto:kontakt.neuesleben@gmail.com">{{ $t('landing.contactUs') }}</a>
+        <a class="first-visit-section__contact" href="#contacts">{{ $t('landing.contactUs') }}</a>
       </div>
     </footer>
   </section>

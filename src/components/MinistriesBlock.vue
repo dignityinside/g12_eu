@@ -32,7 +32,7 @@ const ministryDays = computed(() => {
         <div class="ministry-day__events">
           <div v-for="ministry in item.ministries" :key="ministry.name" class="item">
             <strong class="item__name">{{ ministry.name }}</strong>
-            <a v-if="ministry.timeUponRequest" class="item__time item__time--contact" href="mailto:kontakt.neuesleben@gmail.com">{{ ministry.time }}</a>
+            <a v-if="ministry.timeUponRequest" class="item__time item__time--contact" href="#contacts">{{ ministry.time }}</a>
             <span v-else class="item__time">{{ ministry.time }}</span>
           </div>
         </div>
