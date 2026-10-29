@@ -1,31 +1,21 @@
-<script setup>
-import { useI18n } from 'vue-i18n';
+---
+import { locales, translator } from '../i18n/index.js';
+const { locale } = Astro.props;
+const t = translator(locale);
+const suffix = Astro.url.pathname.endsWith('/imprint/') ? 'imprint/' : '';
+---
 
-const { locale, availableLocales } = useI18n();
+<label class="language-select">
+ <span class="language-select__label">{t('menu.language')}</span>
+ <span class="language-select__current" aria-hidden="true"><span class="language-select__value">{locale.toUpperCase()}</span></span>
+ <svg class="language-select__arrow" aria-hidden="true" width="12" height="8" viewBox="0 0 12 8"><path d="m1 1 5 5 5-5" /></svg>
+ <select aria-label={t('menu.language')} data-language-select>
+ {locales.map(language => <option value={`/${language}/${suffix}`} selected={language === locale}>{language.toUpperCase()}</option>)}
+ </select>
+</label>
+<noscript><div>{locales.map(language => <a class="navigation__item" href={`/${language}/${suffix}`} lang={language}>{language.toUpperCase()}</a>)}</div></noscript>
 
-function languageChanged() {
-  localStorage.setItem('locale', locale.value);
-}
-</script>
-
-<template>
-  <label class="language-select">
-    <span class="language-select__label">{{ $t('menu.language') }}</span>
-    <span class="language-select__current" aria-hidden="true">
-      <span class="language-select__value">{{ locale.toUpperCase() }}</span>
-    </span>
-    <svg class="language-select__arrow" aria-hidden="true" width="12" height="8" viewBox="0 0 12 8">
-      <path d="m1 1 5 5 5-5" />
-    </svg>
-    <select v-model="locale" :aria-label="$t('menu.language')" @change="languageChanged">
-      <option v-for="language in availableLocales" :key="language" :value="language">
-        {{ language.toUpperCase() }}
-      </option>
-    </select>
-  </label>
-</template>
-
-<style scoped lang="scss">
+<style lang="scss">
 .language-select {
   position: relative;
   display: grid;
@@ -45,6 +35,10 @@ function languageChanged() {
     outline: 2px solid #f2b84b;
     outline-offset: 2px;
   }
+}
+
+@media (max-width: 1023px) {
+  .language-select { grid-template-columns: minmax(0, 1fr) auto; }
 }
 
 .language-select__current {

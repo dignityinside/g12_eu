@@ -1,11 +1,14 @@
-<script setup>
-import MediaBlock from '../components/MediaBlock.vue';
-</script>
+---
+import MediaBlock from './MediaBlock.astro';
+import { translator } from '../i18n/index.js';
+const { locale = 'de' } = Astro.props;
+const t = translator(locale);
 
-<template>
-  <main>
+---
+
+<main>
     <div class="imprint">
-      <media-block :title="$t('menu.imprint')" id="imprint" is-page-title>
+      <MediaBlock title={t('menu.imprint')} id="imprint" isPageTitle>
         <p class="imprint__updated">Stand: August 2026</p>
 
         <section>
@@ -57,13 +60,12 @@ import MediaBlock from '../components/MediaBlock.vue';
           <p>Wir sind weder verpflichtet noch bereit, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
         </section>
 
-      </media-block>
+      </MediaBlock>
     </div>
   </main>
-</template>
 
-<style scoped lang="scss">
-@use '@assets/scss/main.scss' as *;
+<style lang="scss">
+@use '../assets/scss/tokens.scss' as *;
 
 .imprint { max-width: 900px; margin: 0 auto; }
 .imprint__updated { width: fit-content; margin: 0 0 1.5rem; padding: .35rem .65rem; border-radius: 999px; background: rgba($color-secondary,.2); color: $color-primary; font-size: .76rem; font-weight: 800; }

@@ -1,0 +1,214 @@
+---
+import LanguageSelect from './LanguageSelect.astro';
+import { translator, homePath } from '../i18n/index.js';
+interface Props { items: { id?: string; name: string; accent?: boolean; hideOnLocale?: string[]; external?: boolean; to?: string; i18n?: boolean }[]; locale: string; isFooter?: boolean; isHome?: boolean }
+const { items, locale, isFooter = false, isHome = false } = Astro.props;
+const t = translator(locale);
+---
+
+<div class:list={['navigation', { 'navigation--footer': isFooter }]}>
+ <nav class="navigation__wrapper" data-navigation>
+ {!isFooter && <button class="navigation__toggle" type="button" aria-expanded="false" aria-controls="main-navigation" aria-label={t('menu.openNavigation')} data-open-label={t('menu.openNavigation')} data-close-label={t('menu.closeNavigation')}><span aria-hidden="true">☰</span></button>}
+ <div id={isFooter ? 'footer-navigation' : 'main-navigation'} class="navigation__items">
+ {!isFooter && <div class="navigation__item navigation__item--language"><LanguageSelect locale={locale} /></div>}
+ {items.filter(item => !item.hideOnLocale?.includes(locale)).map(item => <a
+ class:list={['navigation__item', { 'navigation__item--accent': item.accent }]}
+ href={item.id ? `${homePath(locale)}#${item.id}` : item.external ? item.to : `${homePath(locale)}imprint/`}
+ target={item.external ? '_blank' : undefined} rel={item.external ? 'nofollow noopener' : undefined}
+ >{item.i18n === false ? item.name : t(item.name)}</a>)}
+ {!isFooter && !isHome && <a class="navigation__item" href={homePath(locale)}>{t('menu.back')}</a>}
+ </div></nav></div>
+
+<style lang="scss">
+@use "../assets/scss/tokens.scss" as *;
+
+.navigation { flex-shrink: 0; padding: 0; }
+
+.navigation--footer { padding: 0; }
+
+.navigation__wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.navigation__toggle {
+  display: flex;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  color: $color-white;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  padding: 0;
+  border-radius: 14px;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: background .2s ease;
+}
+
+.navigation__toggle:hover { background: rgba(255,255,255,.15); }
+.navigation__toggle[aria-expanded='true'] { border-color: $color-secondary; background: $color-secondary; color: $color-primary; }
+
+.navigation__items {
+  display: none;
+  flex-direction: column;
+
+  .navigation__item {
+    margin: 0;
+    padding: .58rem .72rem;
+    border: 0;
+    background-color: transparent;
+    color: rgba(255,255,255,.8);
+    text-decoration: none;
+    border-radius: 999px;
+    font-size: .8rem;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: color .2s ease, background-color .2s ease, transform .2s ease;
+
+    &:hover {
+      background-color: rgba(255,255,255,.1);
+      color: $color-white;
+      transform: translateY(-1px);
+      cursor: pointer;
+    }
+  }
+
+  .navigation__item--active {
+    background: rgba(255,255,255,.12);
+    border-radius: 999px;
+    cursor: pointer;
+  }
+
+  .navigation__item--accent {
+    padding-inline: .9rem;
+    background: $color-secondary;
+    color: #311143;
+    box-shadow: 0 5px 16px rgba($color-secondary, .18);
+
+    &:hover {
+      background-color: #ffd16d;
+      color: #25102f;
+    }
+  }
+
+  .navigation__item--language {
+    align-self: center;
+    display: grid;
+    place-items: center;
+    min-width: 5.75rem;
+    height: 2.4rem;
+    padding: 0;
+    background-color: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 999px;
+    color: $color-white;
+  }
+}
+
+.navigation__item--language :global(.language-select) { width: 100%; }
+
+.navigation__items--open { display: flex; }
+
+.navigation--footer .navigation__items { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-end; }
+.navigation--footer .navigation__item { color: rgba(255,255,255,.62); font-size: .78rem; }
+
+@media (max-width: 1023px) {
+  .navigation:not(.navigation--footer) .navigation__items {
+    position: fixed;
+    top: 80px;
+    right: 1rem;
+    display: flex;
+    width: min(360px, calc(100vw - 2rem));
+    max-height: calc(100svh - 96px);
+    padding: .75rem;
+    background: rgba(31,11,48,.985);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 18px;
+    box-shadow: 0 24px 60px rgba(17,5,28,.48), inset 0 1px 0 rgba(255,255,255,.05);
+    backdrop-filter: blur(20px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px) scale(.985);
+    transform-origin: top right;
+    transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
+  }
+  .navigation:not(.navigation--footer) .navigation__items--open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+    box-shadow: 0 0 0 100vmax rgba(17,5,28,.38), 0 24px 60px rgba(17,5,28,.48), inset 0 1px 0 rgba(255,255,255,.05);
+  }
+  .navigation:not(.navigation--footer) .navigation__items .navigation__item {
+    width: 100%;
+    margin: 0;
+    padding: .82rem .9rem;
+    text-align: left;
+    border-radius: 11px;
+    font-size: .9rem;
+    transform: none;
+  }
+  .navigation:not(.navigation--footer) .navigation__items .navigation__item:hover {
+    transform: none;
+  }
+  .navigation:not(.navigation--footer) .navigation__items .navigation__item--active {
+    padding-left: .75rem;
+    border-left: 3px solid $color-secondary;
+    background: rgba(255,255,255,.1);
+    color: $color-white;
+  }
+  .navigation:not(.navigation--footer) .navigation__items .navigation__item--language {
+    order: 2;
+    grid-template-columns: minmax(0,1fr) auto;
+    place-items: center stretch;
+    width: 100%;
+    height: 2.75rem;
+    margin-top: .45rem;
+    padding: 0 .9rem;
+    border-top: 1px solid rgba(255,255,255,.06);
+    background: rgba(255,255,255,.08);
+  }
+  .navigation:not(.navigation--footer) .navigation__item--language :global(.language-select__label) {
+    display: block;
+    color: rgba(255,255,255,.66);
+    font-size: .76rem;
+    font-weight: 700;
+  }
+  .navigation:not(.navigation--footer) .navigation__item--language :global(.language-select__current) {
+    justify-self: end;
+    margin-right: .65rem;
+  }
+  .navigation:not(.navigation--footer) .navigation__items .navigation__item--accent {
+    margin-top: .35rem;
+    text-align: center;
+  }
+  .navigation--footer .navigation__item { width: auto; }
+}
+
+@media (max-width: 480px) {
+  .navigation:not(.navigation--footer) .navigation__items {
+    top: 76px;
+    right: .65rem;
+    width: calc(100vw - 1.3rem);
+    max-height: calc(100svh - 88px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .navigation__toggle { display: none; }
+  .navigation:not(.navigation--footer) .navigation__items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .08rem;
+  }
+  .navigation:not(.navigation--footer) .navigation__item--language {
+    margin-right: .45rem;
+  }
+}
+</style>

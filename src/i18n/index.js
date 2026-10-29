@@ -1,41 +1,15 @@
-import { createI18n } from 'vue-i18n';
-import ru from '@i18n/messages/ru';
-import de from '@i18n/messages/de';
-import en from '@i18n/messages/en';
-import ua from '@i18n/messages/ua';
-import be from '@i18n/messages/be';
+import de from './messages/de.js';
+import en from './messages/en.js';
+import ru from './messages/ru.js';
+import uk from './messages/ua.js';
+import be from './messages/be.js';
 
-const supportedLocales = ['de', 'en', 'ru', 'uk', 'be'];
-const storedLocale = localStorage.getItem('locale');
-const normalizedStoredLocale = storedLocale === 'ua' ? 'uk' : storedLocale;
-const browserLocale = navigator.language?.split('-')[0];
-const initialLocale = supportedLocales.includes(normalizedStoredLocale)
-  ? normalizedStoredLocale
-  : supportedLocales.includes(browserLocale)
-    ? browserLocale
-    : 'de';
-
-if (storedLocale === 'ua') {
-  localStorage.setItem('locale', 'uk');
+export const messages = { de, en, ru, uk, be };
+export const locales = Object.keys(messages);
+export const homePath = locale => `/${locale}/`;
+export function translator(locale) {
+  return key => {
+    const resolve = data => key.split('.').reduce((value, part) => value?.[part], data);
+    return resolve(messages[locale]) ?? resolve(de) ?? key;
+  };
 }
-
-export const language = {
-  legacy: false,
-  locale: initialLocale,
-  fallbackLocale: 'de',
-  messages: {
-    ru,
-    de,
-    en,
-    uk: ua,
-    be,
-  },
-};
-
-const i18n = createI18n(language);
-
-export default {
-  install: (app) => {
-    app.use(i18n);
-  },
-};

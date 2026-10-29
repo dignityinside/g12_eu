@@ -1,0 +1,8 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Home from '../../components/Home.astro';
+import { locales } from '../../i18n/index.js';
+export function getStaticPaths() { return locales.map(locale => ({ params: { locale } })); }
+const { locale } = Astro.params;
+---
+<BaseLayout locale={locale}><Home locale={locale} /></BaseLayout>

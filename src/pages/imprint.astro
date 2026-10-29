@@ -1,0 +1,13 @@
+---
+const destination = '/de/imprint/';
+---
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><meta http-equiv="refresh" content={`0;url=${destination}`} /><link rel="canonical" href={new URL(destination, Astro.site)} /><title>Neues Leben</title></head>
+<body><a href={destination}>Weiter zur Gemeinde Neues Leben</a>
+<script is:inline>
+let saved;
+try { saved = localStorage.getItem('locale'); } catch {}
+const language = (saved === 'ua' ? 'uk' : saved) || navigator.language?.split('-')[0];
+const locale = ['de', 'en', 'ru', 'uk', 'be'].includes(language) ? language : 'de';
+window.location.replace(`/${locale}/imprint/${window.location.hash}`);
+</script></body></html>

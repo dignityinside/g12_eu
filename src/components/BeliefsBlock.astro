@@ -1,32 +1,33 @@
-<script setup>
+---
+import { translator } from '../i18n/index.js';
+const { locale = 'de' } = Astro.props;
+const t = translator(locale);
 const beliefKeys = [5, 1, 2, 6, 3, 7, 8, 9, 4, 10];
-</script>
+---
 
-<template>
-  <section class="beliefs-section">
+<section class="beliefs-section">
     <header class="beliefs-section__header">
       <div>
-        <h2>{{ $t('landing.beliefsTitle') }}</h2>
+        <h2>{t('landing.beliefsTitle')}</h2>
       </div>
-      <p>{{ $t('landing.beliefsIntro') }}</p>
+      <p>{t('landing.beliefsIntro')}</p>
     </header>
 
     <div class="beliefs-grid">
-      <article v-for="belief in beliefKeys" :key="belief">
-        <h3>{{ $t(`landing.belief${belief}Title`) }}</h3>
-        <p>{{ $t(`landing.belief${belief}Text`) }}</p>
-      </article>
+      {beliefKeys.map(belief => <article>
+        <h3>{t(`landing.belief${belief}Title`)}</h3>
+        <p>{t(`landing.belief${belief}Text`)}</p>
+      </article>)}
     </div>
 
     <div class="beliefs-section__affiliation">
-      <p>{{ $t('landing.bfpText') }}</p>
-      <a href="https://bfp.de/de/" target="_blank" rel="noopener">{{ $t('landing.bfpLink') }} <span aria-hidden="true">↗</span></a>
+      <p>{t('landing.bfpText')}</p>
+      <a href="https://bfp.de/de/" target="_blank" rel="noopener">{t('landing.bfpLink')} <span aria-hidden="true">↗</span></a>
     </div>
   </section>
-</template>
 
-<style scoped lang="scss">
-@use '@assets/scss/main.scss' as *;
+<style lang="scss">
+@use '../assets/scss/tokens.scss' as *;
 
 .beliefs-section { margin-bottom: clamp(1.25rem,3vw,2.5rem); padding: clamp(1.6rem,4vw,3.25rem); border-radius: 16px; background: #f3ecdf; }
 .beliefs-section__header { display: grid; gap: 1rem; align-items: end; margin-bottom: clamp(1.5rem,4vw,2.3rem); }

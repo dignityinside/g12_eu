@@ -1,193 +1,167 @@
-<script setup>
-import { onBeforeUnmount, ref } from 'vue';
-import MediaBlock from '../components/MediaBlock.vue';
-import MinistriesBlock from '../components/MinistriesBlock.vue';
-import BeliefsBlock from '../components/BeliefsBlock.vue';
-import FirstVisitBlock from '../components/FirstVisitBlock.vue';
-import SupportBlock from '../components/SupportBlock.vue';
-
-const showMap = ref(false);
-const pastorExpanded = ref(false);
-const ibanCopied = ref(false);
-const ibanCopyFailed = ref(false);
-const ibanCopyPending = ref(false);
-let ibanResetTimer;
-onBeforeUnmount(() => window.clearTimeout(ibanResetTimer));
-const iban = 'DE19870958245028779013';
+---
+import MediaBlock from './MediaBlock.astro';
+import MinistriesBlock from './MinistriesBlock.astro';
+import BeliefsBlock from './BeliefsBlock.astro';
+import FirstVisitBlock from './FirstVisitBlock.astro';
+import SupportBlock from './SupportBlock.astro';
+import { translator } from '../i18n/index.js';
+const { locale = 'de' } = Astro.props;
+const t = translator(locale);
 const socialChannels = [
   { name: 'Instagram', handle: '@neuesleben.church', short: 'IG', className: 'instagram', url: 'https://www.instagram.com/neuesleben.church/' },
   { name: 'YouTube', handle: 'Neues Leben Plauen', short: 'YT', className: 'youtube', url: 'https://www.youtube.com/channel/UCgECrFqV9vn-yxOGARqHoVw' },
   { name: 'Telegram', handle: '@NeuesLebenPL', short: 'TG', className: 'telegram', url: 'https://t.me/NeuesLebenPL' },
 ];
 
-async function copyIban() {
-  if (ibanCopyPending.value) return;
-  window.clearTimeout(ibanResetTimer);
-  ibanCopied.value = false;
-  ibanCopyFailed.value = false;
-  ibanCopyPending.value = true;
-  try {
-    await navigator.clipboard.writeText(iban);
-    ibanCopied.value = true;
-    ibanResetTimer = window.setTimeout(() => { ibanCopied.value = false; }, 2000);
-  } catch {
-    ibanCopyFailed.value = true;
-  } finally {
-    ibanCopyPending.value = false;
-  }
-}
-</script>
 
-<template>
-  <main class="landing-page">
-    <section class="quick-facts" :aria-label="$t('landing.quickTitle')">
+---
+
+<main class="landing-page">
+    <section class="quick-facts" aria-label={t('landing.quickTitle')}>
       <article class="quick-fact">
-        <div><span>{{ $t('landing.serviceLabel') }}</span><strong>{{ $t('landing.serviceValue') }}</strong></div>
+        <div><span>{t('landing.serviceLabel')}</span><strong>{t('landing.serviceValue')}</strong></div>
       </article>
       <article class="quick-fact">
-        <div><span>{{ $t('landing.locationLabel') }}</span><strong>{{ $t('landing.locationValue') }}</strong></div>
+        <div><span>{t('landing.locationLabel')}</span><strong>{t('landing.locationValue')}</strong></div>
       </article>
       <article class="quick-fact">
-        <div><span>{{ $t('landing.languagesLabel') }}</span><strong>{{ $t('landing.languagesValue') }}</strong></div>
+        <div><span>{t('landing.languagesLabel')}</span><strong>{t('landing.languagesValue')}</strong></div>
       </article>
     </section>
 
     <section id="welcome" class="welcome-section">
       <header class="section-heading">
-        <h2>{{ $t('landing.expectTitle') }}</h2>
-        <p>{{ $t('landing.expectText') }}</p>
+        <h2>{t('landing.expectTitle')}</h2>
+        <p>{t('landing.expectText')}</p>
       </header>
     </section>
 
-    <first-visit-block />
+    <FirstVisitBlock locale={locale} />
 
-    <ministries-block />
+    <MinistriesBlock locale={locale} />
 
     <section id="contacts" class="contact-section">
       <div class="contact-section__intro">
-        <h2>{{ $t('landing.visitTitle') }}</h2>
-        <p>{{ $t('landing.visitText') }}</p>
+        <h2>{t('landing.visitTitle')}</h2>
+        <p>{t('landing.visitText')}</p>
       </div>
       <div class="contact-grid">
         <div class="contact-card">
 
-          <strong>{{ $t('landing.contactAddress') }}</strong>
+          <strong>{t('landing.contactAddress')}</strong>
           <address>Karlstraße 5–7, 08523 Plauen</address>
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen" target="_blank" rel="noopener">{{ $t('text.contacts.openRoute') }}</a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen" target="_blank" rel="noopener">{t('text.contacts.openRoute')}</a>
         </div>
         <div class="contact-card">
 
-          <strong>{{ $t('menu.contacts') }}</strong>
+          <strong>{t('menu.contacts')}</strong>
           <p><a href="tel:+4917624113132">+49 176 241 13 132</a><br /><a href="tel:+4917661548530">+49 176 615 48 530</a></p>
           <a href="mailto:kontakt.neuesleben@gmail.com">kontakt.neuesleben@gmail.com</a>
         </div>
         <div class="contact-card">
 
-          <strong>{{ $t('landing.arrivalTitle') }}</strong>
-          <p>{{ $t('landing.arrivalText') }}</p>
+          <strong>{t('landing.arrivalTitle')}</strong>
+          <p>{t('landing.arrivalText')}</p>
         </div>
       </div>
-      <div v-if="!showMap" class="map-placeholder">
-        <p>{{ $t('text.contacts.mapHint') }}</p>
+      <div data-map-placeholder class="map-placeholder">
+        <p>{t('text.contacts.mapHint')}</p>
         <div class="map-placeholder__actions">
-          <button type="button" class="map-button" @click="showMap = true">{{ $t('text.contacts.showMap') }}</button>
+          <button type="button" class="map-button" data-show-map>{t('text.contacts.showMap')}</button>
         </div>
       </div>
       <iframe
-        v-else
+        hidden
         class="map"
         allowfullscreen
         loading="lazy"
-        :title="$t('text.contacts.title')"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1268.8888418942242!2d12.133819957783263!3d50.501095282215616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a1268a354f79c3%3A0x2b667815f5e3d45d!2sKarlstra%C3%9Fe+7%2C+08523+Plauen!5e0!3m2!1sde!2sde!4v1492103663904"
+        title={t('text.contacts.title')}
+        data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1268.8888418942242!2d12.133819957783263!3d50.501095282215616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a1268a354f79c3%3A0x2b667815f5e3d45d!2sKarlstra%C3%9Fe+7%2C+08523+Plauen!5e0!3m2!1sde!2sde!4v1492103663904"
       />
       <div class="social-section">
         <div class="social-section__copy">
 
-          <strong>{{ $t('landing.socialTitle') }}</strong>
+          <strong>{t('landing.socialTitle')}</strong>
         </div>
         <div class="social-links">
-          <a
-            v-for="channel in socialChannels"
-            :key="channel.name"
-            :class="['social-link', `social-link--${channel.className}`]"
-            :href="channel.url"
+          {socialChannels.map(channel => <a
+            class:list={['social-link', `social-link--${channel.className}`]}
+            href={channel.url}
             target="_blank"
             rel="noopener"
           >
-            <span class="social-link__mark" aria-hidden="true">{{ channel.short }}</span>
-            <span class="social-link__copy"><strong>{{ channel.name }}</strong><small>{{ channel.handle }}</small></span>
+            <span class="social-link__mark" aria-hidden="true">{channel.short}</span>
+            <span class="social-link__copy"><strong>{channel.name}</strong><small>{channel.handle}</small></span>
             <span class="social-link__arrow" aria-hidden="true">↗</span>
-          </a>
+          </a>)}
         </div>
       </div>
     </section>
 
-    <beliefs-block />
+    <BeliefsBlock locale={locale} />
 
-    <media-block
-      :title="$t('text.pastor.title')"
-      :content="$t('text.pastor.team') + '<br><br>' + $t('text.pastor.summary')"
+    <MediaBlock
+      title={t('text.pastor.title')}
+      content={t('text.pastor.team') + '<br><br>' + t('text.pastor.summary')}
       image="pastor.jpg"
-      :image-alt="$t('text.pastor.imageAlt')"
-      :image-width="1155"
-      :image-height="1362"
+      imageAlt={t('text.pastor.imageAlt')}
+      imageWidth={1155}
+      imageHeight={1362}
       id="pastor"
     >
       <div class="pastor-details">
-        <div id="pastor-biography" v-show="pastorExpanded" v-html="$t('text.pastor.text')"></div>
+        <div id="pastor-biography" hidden set:html={t('text.pastor.text')}></div>
         <button
           type="button"
-          :aria-expanded="pastorExpanded"
+          aria-expanded="false"
           aria-controls="pastor-biography"
-          @click="pastorExpanded = !pastorExpanded"
-        >{{ $t(pastorExpanded ? 'text.pastor.less' : 'text.pastor.more') }}</button>
+          data-pastor-toggle data-more={t('text.pastor.more')} data-less={t('text.pastor.less')}
+        >{t('text.pastor.more')}</button>
       </div>
-    </media-block>
+    </MediaBlock>
 
     <section id="sermons" class="sermon-section">
       <div class="sermon-section__header">
         <div class="sermon-section__copy">
 
-          <h2>{{ $t('text.sermons.title') }}</h2>
-          <p class="sermon-section__text">{{ $t('landing.sermonIntro') }}</p>
+          <h2>{t('text.sermons.title')}</h2>
+          <p class="sermon-section__text">{t('landing.sermonIntro')}</p>
         </div>
         <div class="sermon-section__actions">
-          <a class="sermon-link sermon-link--primary" href="https://www.youtube.com/channel/UCgECrFqV9vn-yxOGARqHoVw" target="_blank" rel="noopener">{{ $t('landing.youtube') }} <span>↗</span></a>
-          <a class="sermon-link" href="https://t.me/NeuesLebenPL" target="_blank" rel="noopener">{{ $t('landing.telegram') }} <span>↗</span></a>
+          <a class="sermon-link sermon-link--primary" href="https://www.youtube.com/channel/UCgECrFqV9vn-yxOGARqHoVw" target="_blank" rel="noopener">{t('landing.youtube')} <span>↗</span></a>
+          <a class="sermon-link" href="https://t.me/NeuesLebenPL" target="_blank" rel="noopener">{t('landing.telegram')} <span>↗</span></a>
         </div>
       </div>
     </section>
 
-    <support-block />
+    <SupportBlock locale={locale} />
 
-    <media-block :title="$t('text.donate.title')" id="donate">
-      <p class="donation-intro">{{ $t('landing.donationIntro') }}</p>
+    <MediaBlock title={t('text.donate.title')} id="donate">
+      <p class="donation-intro">{t('landing.donationIntro')}</p>
       <details class="donation-details">
-        <summary>{{ $t('landing.showPaypalDetails') }}</summary>
+        <summary>{t('landing.showPaypalDetails')}</summary>
         <div class="donation donation-paypal">
-          <div>{{ $t('landing.paypalRecipient') }}: kontakt.neuesleben@gmail.com</div>
+          <div>{t('landing.paypalRecipient')}: kontakt.neuesleben@gmail.com</div>
           <a href="https://www.paypal.com/" target="_blank" rel="noopener noreferrer">PayPal ↗</a>
         </div>
       </details>
       <details class="donation-details">
-        <summary>{{ $t('landing.showBankDetails') }}</summary>
+        <summary>{t('landing.showBankDetails')}</summary>
         <div class="donation">
-          <div>{{ $t('site.donation.receiver') }}</div>
-          <div class="donation__iban">{{ $t('site.donation.iban') }}</div>
-          <div>{{ $t('site.donation.bic') }}</div>
-          <div>{{ $t('site.donation.bank') }}</div>
-          <div>{{ $t('site.donation.purpose') }}</div>
-          <button type="button" class="copy-button" :disabled="ibanCopyPending" @click="copyIban">{{ ibanCopied ? $t('landing.ibanCopied') : $t('landing.copyIban') }}</button>
-          <p class="donation__status" role="status">{{ ibanCopyFailed ? $t('landing.ibanCopyError') : ibanCopied ? $t('landing.ibanCopied') : '' }}</p>
+          <div>{t('site.donation.receiver')}</div>
+          <div class="donation__iban">{t('site.donation.iban')}</div>
+          <div>{t('site.donation.bic')}</div>
+          <div>{t('site.donation.bank')}</div>
+          <div>{t('site.donation.purpose')}</div>
+          <button type="button" class="copy-button" data-copy-iban data-copied={t('landing.ibanCopied')} data-error={t('landing.ibanCopyError')}>{t('landing.copyIban')}</button>
+          <p class="donation__status" role="status"></p>
         </div>
       </details>
-    </media-block>
+    </MediaBlock>
   </main>
-</template>
 
-<style scoped lang="scss">
-@use '@assets/scss/main.scss' as *;
+<style lang="scss">
+@use '../assets/scss/tokens.scss' as *;
 
 .landing-page { position: relative; }
 .quick-facts { display: grid; grid-template-columns: 1fr; margin-bottom: clamp(4rem, 8vw, 7rem); padding: 1.5rem 0; border-bottom: 1px solid rgba($color-primary,.16); }

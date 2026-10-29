@@ -1,24 +1,24 @@
-<script setup>
-import { RouterView, useRoute } from 'vue-router';
-import { computed, ref, watchEffect } from 'vue';
-import { useI18n } from 'vue-i18n';
-import Navigation from '@components/Navigation.vue';
-import BackToTop from '@components/BackToTop.vue';
-
-const route = useRoute();
-const { t, locale } = useI18n();
-const isHome = computed(() => route.path === '/');
-
-const mainMenuItems = ref([
+---
+import '../assets/scss/main.scss';
+import Navigation from '../components/Navigation.astro';
+import BackToTop from '../components/BackToTop.astro';
+import { translator, locales, homePath } from '../i18n/index.js';
+const { locale = 'de', page = 'home' } = Astro.props;
+const t = translator(locale);
+const isHome = page === 'home';
+const title = isHome ? `${t('site.name')} · Plauen` : `${t(page === 'imprint' ? 'menu.imprint' : 'text.error404.title')} · ${t('site.name')}`;
+const description = t('site.metaDescription');
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const mainMenuItems = [
   { id: 'welcome', name: 'menu.church' },
   { id: 'ministry', name: 'menu.ministries' },
   { id: 'contacts', name: 'menu.contacts' },
   { id: 'pastor', name: 'menu.pastor' },
   { id: 'sermons', name: 'menu.sermons' },
   { id: 'donate', name: 'menu.donate', accent: true },
-]);
+];
 
-const footerItems = ref([
+const footerItems = [
   { to: 'https://t.me/NeuesLebenPL', name: 'Telegram', external: true, i18n: false },
   { to: 'https://www.youtube.com/channel/UCgECrFqV9vn-yxOGARqHoVw', name: 'YouTube', external: true, i18n: false },
   { to: 'https://www.instagram.com/neuesleben.church/', name: 'Instagram', external: true, i18n: false },
@@ -29,86 +29,102 @@ const footerItems = ref([
   { to: 'https://www.tbn.org', name: 'TBN', external: true, i18n: false, hideOnLocale: ['ru', 'uk'] },
   { to: 'https://www.bibeltv.de', name: 'BibelTV', external: true, i18n: false, hideOnLocale: ['ru', 'uk', 'en'] },
   { to: '/imprint', name: 'menu.imprint' },
-]);
+];
 
-function scrollToSection(id) {
-  document.getElementById(id)?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
-}
 
-watchEffect(() => {
-  const routeTitle = route.name === 'imprint'
-    ? t('menu.imprint')
-    : route.name === 'Error404'
-      ? t('text.error404.title')
-      : t('site.name');
-  const fullTitle = route.name === 'home' ? `${routeTitle} · Plauen` : `${routeTitle} · ${t('site.name')}`;
-  const description = t('site.metaDescription');
-  const canonicalUrl = `https://neuesleben.church${route.path}`;
-
-  document.documentElement.lang = locale.value;
-  document.title = fullTitle;
-  document.querySelector('meta[name="description"]')?.setAttribute('content', description);
-  document.querySelector('meta[property="og:title"]')?.setAttribute('content', fullTitle);
-  document.querySelector('meta[property="og:description"]')?.setAttribute('content', description);
-  document.querySelector('meta[property="og:locale"]')?.setAttribute('content', locale.value);
-  document.querySelector('meta[property="og:url"]')?.setAttribute('content', canonicalUrl);
-  document.querySelector('link[rel="canonical"]')?.setAttribute('href', canonicalUrl);
-});
-</script>
-
-<template>
-  <a class="skip-link" href="#main-content">{{ $t('menu.skipContent') }}</a>
+---
+<!doctype html>
+<html lang={locale}>
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/img/favicon.jpg">
+    <link rel="canonical" href={canonical}>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#230e39">
+    <meta name="description" content={description}>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+    <meta property="og:image" content="https://neuesleben.church/img/header.jpg">
+    <meta property="og:url" content={canonical}>
+    <meta property="og:locale" content={locale}>
+    <meta name="twitter:card" content="summary_large_image">
+    <title>{title}</title>
+    <script is:inline type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Church",
+        "name": "Gemeinde Neues Leben e.V.",
+        "url": "https://neuesleben.church/",
+        "email": "kontakt.neuesleben@gmail.com",
+        "telephone": "+49 176 24113132",
+        "image": "https://neuesleben.church/img/header.jpg",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Karlstraße 5–7",
+          "postalCode": "08523",
+          "addressLocality": "Plauen",
+          "addressCountry": "DE"
+        }
+      }
+    </script>
+  
+{locales.map(language => <link rel="alternate" hreflang={language} href={new URL(`/${language}/${page === 'imprint' ? 'imprint/' : ''}`, Astro.site)} />)}
+<meta name="robots" content={page === 'error' ? 'noindex' : 'index, follow'} /></head>
+<body>
+<a class="skip-link" href="#main-content">{t('menu.skipContent')}</a>
 
   <header class="header">
     <div class="header__inner">
-      <router-link to="/" class="brand" aria-label="Neues Leben Startseite">
+      <a href={homePath(locale)} class="brand" aria-label="Neues Leben Startseite">
         <span class="brand__mark">NL</span>
         <span class="brand__copy">
-          <span class="brand__title">{{ $t('site.name') }}</span>
-          <span class="brand__description">{{ $t('site.description') }}</span>
+          <span class="brand__title">{t('site.name')}</span>
+          <span class="brand__description">{t('site.description')}</span>
         </span>
-      </router-link>
-      <navigation :items="mainMenuItems" />
+      </a>
+      <Navigation items={mainMenuItems} locale={locale} isHome={isHome} />
     </div>
   </header>
 
-  <div v-if="isHome" class="hero">
+  {isHome && <div class="hero">
     <picture class="hero__media">
       <source srcset="/img/header.avif" type="image/avif" />
       <source srcset="/img/header.webp" type="image/webp" />
-      <img src="/img/header.jpg" :alt="$t('site.name')" class="hero__image" width="1707" height="921" fetchpriority="high" decoding="async" />
+      <img src="/img/header.jpg" alt={t('site.name')} class="hero__image" width="1707" height="921" fetchpriority="high" decoding="async" />
     </picture>
     <div class="hero__shade"></div>
     <div class="hero__content">
-      <h1>{{ $t('landing.heroTitle') }}</h1>
-      <p class="hero__location">{{ $t('landing.heroLocation') }}</p>
-      <p>{{ $t('landing.heroText') }}</p>
+      <h1>{t('landing.heroTitle')}</h1>
+      <p class="hero__location">{t('landing.heroLocation')}</p>
+      <p>{t('landing.heroText')}</p>
       <div class="hero__actions">
-        <button class="button button--primary" @click="scrollToSection('ministry')">{{ $t('landing.visitService') }}</button>
-        <button type="button" class="button button--ghost" @click="scrollToSection('contacts')">{{ $t('landing.directions') }}</button>
+        <a class="button button--primary" href="#ministry">{t('landing.visitService')}</a>
+        <a class="button button--ghost" href="#contacts">{t('landing.directions')}</a>
       </div>
     </div>
-  </div>
+  </div>}
 
-  <div id="main-content" class="page-shell" :class="{ 'page-shell--home': isHome, 'page-shell--subpage': !isHome }" tabindex="-1">
-    <RouterView />
+  <div id="main-content" class:list={["page-shell", { 'page-shell--home': isHome, 'page-shell--subpage': !isHome }]} tabindex="-1">
+    <slot />
   </div>
 
   <footer class="footer">
     <div class="footer__inner">
       <div class="footer__brand">
         <span class="brand__mark brand__mark--small">NL</span>
-        <div><strong>{{ $t('site.name') }}</strong><div>Karlstr. 5–7 · 08523 Plauen</div></div>
+        <div><strong>{t('site.name')}</strong><div>Karlstr. 5–7 · 08523 Plauen</div></div>
       </div>
-      <navigation :is-footer="true" :hide-language-select="true" :hide-back-link="true" :items="footerItems" />
+      <Navigation isFooter items={footerItems} locale={locale} />
     </div>
-    <div class="copyright">© 2005-{{ new Date().getFullYear() }} {{ $t('site.copyright') }}</div>
+    <div class="copyright">© 2005-{new Date().getFullYear()} {t('site.copyright')}</div>
   </footer>
-  <BackToTop />
-</template>
-
+  <BackToTop locale={locale} />
+<script>import "../scripts/site.js";</script>
+</body>
+</html>
 <style lang="scss">
-@use '@assets/scss/main.scss' as *;
+@use '../assets/scss/tokens.scss' as *;
 
 .header {
   position: sticky;

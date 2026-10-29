@@ -1,57 +1,47 @@
-<script setup>
-import { computed } from 'vue';
-import { useI18n } from 'vue-i18n';
-import { language } from '@i18n';
+---
+import { translator } from '../i18n/index.js';
+const { locale = 'de' } = Astro.props;
+const t = translator(locale);
+const days = t('text.ministriesList') as { id: string; day: string; ministries: { name: string; time: string; timeUponRequest?: boolean }[] }[];
+const ministryDays = [...days.filter(day => day.id === 'sunday'), ...days.filter(day => day.id !== 'sunday')];
+---
 
-const { locale } = useI18n();
-const ministryDays = computed(() => {
-  const days = language.messages[locale.value]?.text?.ministriesList ?? [];
-  return [...days.filter(day => day.id === 'sunday'), ...days.filter(day => day.id !== 'sunday')];
-});
-</script>
-
-<template>
-  <section id="ministry" class="service-section">
+<section id="ministry" class="service-section">
     <header class="service-section__header">
       <div class="service-section__copy">
-        <h2>{{ $t('text.ministry.title') }}</h2>
-        <p>{{ $t('text.ministry.text') }}</p>
+        <h2>{t('text.ministry.title')}</h2>
+        <p>{t('text.ministry.text')}</p>
       </div>
     </header>
 
     <div class="ministries">
-      <article
-        v-for="item in ministryDays"
-        :key="item.day"
-        class="ministry-day"
-        :class="{ 'ministry-day--featured': item.id === 'sunday' }"
+      {ministryDays.map(item => <article
+        class:list={["ministry-day", { 'ministry-day--featured': item.id === 'sunday' }]}
       >
         <div class="ministry-day__header">
-          <h3>{{ item.day }}</h3>
+          <h3>{item.day}</h3>
         </div>
         <div class="ministry-day__events">
-          <div v-for="ministry in item.ministries" :key="ministry.name" class="item">
-            <strong class="item__name">{{ ministry.name }}</strong>
-            <a v-if="ministry.timeUponRequest" class="item__time item__time--contact" href="#contacts">{{ ministry.time }}</a>
-            <span v-else class="item__time">{{ ministry.time }}</span>
-          </div>
+          {item.ministries.map(ministry => <div class="item">
+            <strong class="item__name">{ministry.name}</strong>
+            {ministry.timeUponRequest ? <a class="item__time item__time--contact" href="#contacts">{ministry.time}</a> : <span class="item__time">{ministry.time}</span>}
+          </div>)}
         </div>
-      </article>
+      </article>)}
     </div>
 
     <footer class="service-section__note">
       <span aria-hidden="true">✓</span>
       <div class="service-section__visit">
-        <p>{{ $t('landing.scheduleNote') }}</p>
+        <p>{t('landing.scheduleNote')}</p>
         <address>Karlstraße 5–7, 08523 Plauen</address>
-        <a href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen" target="_blank" rel="noopener">{{ $t('text.contacts.openRoute') }}</a>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Karlstra%C3%9Fe+7%2C+08523+Plauen" target="_blank" rel="noopener">{t('text.contacts.openRoute')}</a>
       </div>
     </footer>
   </section>
-</template>
 
-<style scoped lang="scss">
-@use '@assets/scss/main.scss' as *;
+<style lang="scss">
+@use '../assets/scss/tokens.scss' as *;
 .service-section { margin-bottom: clamp(1.25rem,3vw,2.5rem); padding: clamp(1.6rem,4vw,3.25rem); border-top: 1px solid rgba($color-primary,.16); background: transparent; scroll-margin-top: 100px; }
 .service-section__header { display: grid; gap: 1.4rem; align-items: end; margin-bottom: clamp(1.5rem,4vw,2.2rem); }
 .service-section__copy { max-width: 680px; }

@@ -1,0 +1,14 @@
+---
+import MediaBlock from './MediaBlock.astro';
+import { translator } from '../i18n/index.js';
+const { locale = 'de' } = Astro.props;
+const t = translator(locale);
+
+---
+
+<main>
+    <div class="error404">
+      <MediaBlock title={t('text.error404.title')} content={t('text.error404.text')} id="error404" isPageTitle />
+    </div>
+  </main>
+
